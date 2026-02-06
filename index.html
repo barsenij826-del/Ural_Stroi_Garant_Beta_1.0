@@ -74,15 +74,13 @@
         .contact-icon:hover { border-color: var(--copper); background: var(--dark-card); }
         .contact-icon svg { width: 18px; fill: #fff; }
 
-        /* HERO (НОВОЕ ФОТО С ЗАТЕМНЕНИЕМ) */
+        /* HERO */
         .hero {
-            height: 90vh;
+            height: 85vh;
             position: relative;
             background: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.4)), 
-                        url('https://i.ibb.co/QsdYKnn/image.png') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            color: #fff;
+                        url('img/hero.webp') center/cover no-repeat;
+            display: flex; align-items: center; color: #fff;
         }
         .hero-content { max-width: 900px; position: relative; z-index: 2; }
         .hero h1 {
@@ -92,12 +90,12 @@
         }
         .hero p { font-size: 1.1rem; font-weight: 300; border-left: 3px solid var(--copper); padding-left: 1.5rem; max-width: 600px; opacity: 0.9; }
 
-        /* О КОМПАНИИ (ФОТО IMG12 НА ФОНЕ) */
+        /* О КОМПАНИИ */
         .about-intro {
             position: relative;
             padding: 12rem 0;
             background: linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.85)), 
-                        url('https://i.ibb.co/qYPs7V4X/img12.jpg') center/cover no-repeat fixed;
+                        url('img/about_bg.webp') center/cover no-repeat fixed;
             text-align: center;
         }
         .about-intro h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 2rem; color: #fff; }
@@ -153,7 +151,7 @@
         .work-list li { margin-bottom: 0.5rem; padding-left: 1.2rem; position: relative; }
         .work-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--copper); }
 
-        /* КОЛЛАБОРАЦИЯ (СЕТКА 2х2) */
+        /* КОЛЛАБОРАЦИЯ */
         .collab-box { display: grid; grid-template-columns: 1fr; gap: 5rem; align-items: center; }
         @media (min-width: 1024px) { .collab-box { grid-template-columns: 1fr 1fr; } }
         
@@ -224,7 +222,6 @@
     </header>
 
     <main>
-        <!-- HERO (НОВОЕ ФОТО НА ФОНЕ) -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content reveal">
@@ -234,7 +231,6 @@
             </div>
         </section>
 
-        <!-- О КОМПАНИИ -->
         <section id="about" class="about-intro">
             <div class="container">
                 <span class="section-label reveal">Наследие и опыт</span>
@@ -258,30 +254,21 @@
             </div>
         </section>
 
-        <!-- ГЕНПОДРЯД -->
         <section id="gen" class="container">
             <span class="section-label reveal">Направление 01</span>
             <h2 class="title-main reveal">Масштаб и ответственность</h2>
-            
             <div class="gen-grid">
                 <div class="reveal">
                     <div class="img-box" style="aspect-ratio: 10/13;">
-                        <img src="https://i.ibb.co/S412cpXb/img10.jpg" alt="Процесс строительства">
+                        <img src="img/gen_process.webp" alt="Процесс строительства" loading="lazy">
                     </div>
                 </div>
                 <div class="reveal">
                     <p style="margin-bottom: 3rem; font-size: 1.1rem; opacity: 0.9;">Мы выступаем гарантом реализации проекта любой сложности. ООО «Уралстройгарант» — это управление всеми процессами: от проектирования до ввода в эксплуатацию.</p>
-                    
                     <div class="techno-collage">
-                        <div class="img-box techno-main">
-                            <img src="https://i.ibb.co/gMqjwqx6/img10.jpg" alt="Технопарк">
-                        </div>
-                        <div class="img-box techno-sub">
-                            <img src="https://i.ibb.co/XkX71sNB/img14.jpg" alt="Детали">
-                        </div>
-                        <div class="img-box techno-sub">
-                            <img src="https://i.ibb.co/B2VhxC9L/img17.jpg" alt="Мозаика">
-                        </div>
+                        <div class="img-box techno-main"><img src="img/techno_main.webp" alt="Технопарк" loading="lazy"></div>
+                        <div class="img-box techno-sub"><img src="img/techno_1.webp" alt="Детали" loading="lazy"></div>
+                        <div class="img-box techno-sub"><img src="img/techno_2.webp" alt="Мозаика" loading="lazy"></div>
                     </div>
                     <h3 style="margin-top: 2rem; font-family: 'Playfair Display', serif; font-size: 1.8rem;">Технопарк «Южная»</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem;">Проектирование и возведение производственных мощностей.</p>
@@ -289,21 +276,16 @@
             </div>
         </section>
 
-        <!-- РЕСТАВРАЦИЯ -->
         <section id="restoration" class="container">
             <span class="section-label reveal">Направление 02</span>
             <h2 class="title-main reveal">Технологическое сохранение истории</h2>
-            
             <div style="max-width: 800px; margin-bottom: 5rem;" class="reveal">
                 <p style="font-size: 1.2rem; color: var(--copper); font-weight: 600; margin-bottom: 1.5rem;">Мы обладаем уникальными инженерными компетенциями по укреплению фундаментов и воссозданию памятников архитектуры в критическом состоянии.</p>
                 <p style="opacity: 0.7;">Реставрация для нас — это баланс между сохранением исторического облика и внедрением современных систем жизнеобеспечения здания. Наличие лицензии Минкульта РФ позволяет нам работать с объектами высшей категории сложности.</p>
             </div>
-
             <div class="rest-grid">
                 <div class="rest-card reveal">
-                    <div class="img-box" style="aspect-ratio: 16/10;">
-                        <img src="https://i.ibb.co/G4Gbkch2/image.png" alt="Управление ЖД">
-                    </div>
+                    <div class="img-box" style="aspect-ratio: 16/10;"><img src="img/rest_1.webp" alt="Управление ЖД" loading="lazy"></div>
                     <h3>Управление Свердловской железной дороги</h3>
                     <ul class="work-list">
                         <li>Проектные работы на реконструкцию (2006-2009 гг.)</li>
@@ -313,9 +295,7 @@
                     </ul>
                 </div>
                 <div class="rest-card reveal">
-                    <div class="img-box" style="aspect-ratio: 16/10;">
-                        <img src="https://i.ibb.co/Wv6Pt6ZF/image.png" alt="Дача Малахова">
-                    </div>
+                    <div class="img-box" style="aspect-ratio: 16/10;"><img src="img/rest_2.webp" alt="Дача Малахова" loading="lazy"></div>
                     <h3>Загородная дача архитектора Малахова М.П.</h3>
                     <ul class="work-list">
                         <li>Комплексные фасадные и отделочные работы</li>
@@ -327,16 +307,15 @@
             </div>
         </section>
 
-        <!-- КОЛЛАБОРАЦИЯ (СЕТКА 2х2) -->
         <section id="collab" class="container">
             <span class="section-label reveal">Альянс</span>
             <h2 class="title-main reveal">Синергия инженерии и эстетики</h2>
             <div class="collab-box">
                 <div class="collab-collage reveal">
-                    <div class="img-box"><img src="https://i.ibb.co/ksw47dHZ/image.png" alt="Дизайн 1"></div>
-                    <div class="img-box"><img src="https://i.ibb.co/5xLksjr5/image.png" alt="Дизайн 2"></div>
-                    <div class="img-box"><img src="https://i.ibb.co/PG7Vk4ng/image.png" alt="Дизайн 4"></div>
-                    <div class="img-box"><img src="https://i.ibb.co/2YYFgPQg/image.png" alt="Дизайн 3"></div>
+                    <div class="img-box"><img src="img/design_1.webp" alt="Дизайн 1" loading="lazy"></div>
+                    <div class="img-box"><img src="img/design_2.webp" alt="Дизайн 2" loading="lazy"></div>
+                    <div class="img-box"><img src="img/design_3.webp" alt="Дизайн 3" loading="lazy"></div>
+                    <div class="img-box"><img src="img/design_4.webp" alt="Дизайн 4" loading="lazy"></div>
                 </div>
                 <div class="reveal">
                     <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">В стратегическом партнерстве с бюро <strong>Александра Батенкова (ADC Group)</strong> мы реализуем премиальные интерьеры, где каждый узел продуман инженерами и доведен до совершенства декораторами.</p>
@@ -345,27 +324,16 @@
             </div>
         </section>
 
-        <!-- СУБПОДРЯД -->
         <section id="expert" class="container">
             <span class="section-label reveal">Направление 03</span>
             <h2 class="title-main reveal">Экспертный субподряд</h2>
             <div class="expert-grid">
-                <div class="expert-item reveal">
-                    <h4>Инженерные системы</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Проектирование и монтаж ОВиК, ВК, систем безопасности и СКС в мультипроектах.</p>
-                </div>
-                <div class="expert-item reveal">
-                    <h4>Спец. конструкции</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Монтаж наружных сетей оптоволоконной связи и сложных фасадных решений.</p>
-                </div>
-                <div class="expert-item reveal">
-                    <h4>WaterJet & Полы</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Изготовление мозаичных полов и стен на итальянском оборудовании.</p>
-                </div>
+                <div class="expert-item reveal"><h4>Инженерные системы</h4><p style="font-size: 0.9rem; color: var(--text-muted);">Проектирование и монтаж ОВиК, ВК, систем безопасности и СКС в мультипроектах.</p></div>
+                <div class="expert-item reveal"><h4>Спец. конструкции</h4><p style="font-size: 0.9rem; color: var(--text-muted);">Монтаж наружных сетей оптоволоконной связи и сложных фасадных решений.</p></div>
+                <div class="expert-item reveal"><h4>WaterJet & Полы</h4><p style="font-size: 0.9rem; color: var(--text-muted);">Изготовление мозаичных полов и стен на итальянском оборудовании.</p></div>
             </div>
         </section>
 
-        <!-- CTA -->
         <section id="contact" class="cta reveal">
             <div class="container">
                 <h2 class="title-main" style="margin-bottom: 1rem;">Ваш проект начинается здесь</h2>
@@ -378,38 +346,12 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div>
-                    <div class="footer-h">Компания</div>
-                    <p style="margin-bottom: 1rem;">ООО «УРАЛСТРОЙГАРАНТ»</p>
-                    <p style="color: var(--text-muted);">ИНН 6670134875</p>
-                    <p style="color: var(--text-muted);">ОГРН 10696770134820</p>
-                </div>
-                <div>
-                    <div class="footer-h">Сотрудничество</div>
-                    <ul class="footer-links">
-                        <li><a href="#">Стать партнером</a></li>
-                        <li><a href="#">Тендерный отдел</a></li>
-                        <li><a href="#">Карьера в компании</a></li>
-                        <li><a href="#">Для поставщиков</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-h">Руководство</div>
-                    <p>Генеральный директор:</p>
-                    <p style="color: #fff; margin-bottom: 1rem;">Галлямов И.Г.</p>
-                    <p>Контактное лицо:</p>
-                    <p style="color: #fff;">Латыпов Ринат</p>
-                </div>
-                <div>
-                    <div class="footer-h">Контакты</div>
-                    <p>Екатеринбург, ул. Мамина-Сибиряка, 14б</p>
-                    <p style="color: #fff; margin: 0.5rem 0;">+7 (343) 266-37-25</p>
-                    <p>uralsg1@yandex.ru</p>
-                </div>
+                <div><div class="footer-h">Компания</div><p style="margin-bottom: 1rem;">ООО «УРАЛСТРОЙГАРАНТ»</p><p style="color: var(--text-muted);">ИНН 6670134875</p><p style="color: var(--text-muted);">ОГРН 10696770134820</p></div>
+                <div><div class="footer-h">Сотрудничество</div><ul class="footer-links"><li><a href="#">Стать партнером</a></li><li><a href="#">Тендерный отдел</a></li><li><a href="#">Карьера в компании</a></li><li><a href="#">Для поставщиков</a></li></ul></div>
+                <div><div class="footer-h">Руководство</div><p>Генеральный директор: <strong>Галлямов И.Г.</strong></p><p style="margin-top: 1rem;">Контактное лицо: <strong>Латыпов Ринат</strong></p></div>
+                <div><div class="footer-h">Контакты</div><p>Екатеринбург, ул. Мамина-Сибиряка, 14б</p><p style="color: #fff; margin: 0.5rem 0;">+7 (343) 266-37-25</p><p>uralsg1@yandex.ru</p></div>
             </div>
-            <div style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid #111; text-align: center; opacity: 0.3;">
-                © 2006 — 2026. Все права защищены. Лицензия Минкультуры РФ № Л040-00103-00/00625679
-            </div>
+            <div style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid #111; text-align: center; opacity: 0.3;">© 2006 — 2026. Все права защищены. Лицензия Минкультуры РФ № Л040-00103-00/00625679</div>
         </div>
     </footer>
 
@@ -423,9 +365,7 @@
                 }
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
         function animateCounter(el) {
             if (el.classList.contains('counted')) return;
             const target = +el.getAttribute('data-target');
@@ -446,5 +386,4 @@
         }
     </script>
 </body>
-
 </html>
