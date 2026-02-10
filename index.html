@@ -37,7 +37,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(10, 10, 10, 0.9);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(184, 115, 51, 0.3);
         }
@@ -61,6 +61,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: var(--transition);
         }
         .nav-menu a:hover { color: var(--copper); }
 
@@ -70,15 +71,14 @@
             display: flex; align-items: center; justify-content: center;
             text-decoration: none; border-radius: 50%;
         }
-        .contact-icon svg { width: 16px; fill: #fff; }
+        .contact-icon svg { width: 14px; fill: #fff; }
 
         /* HERO */
         .hero {
-            height: 80vh;
+            height: 75vh;
             position: relative;
-            background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.4)), 
+            background: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.3)), 
                         url('img/hero.webp') center/cover no-repeat;
-            background-color: #111; /* Защита от черного экрана */
             display: flex; align-items: center; color: #fff;
         }
         .hero-content { max-width: 850px; }
@@ -102,19 +102,33 @@
         }
         .info-line span { margin: 0 1.5rem; display: inline-block; }
 
-        /* СЕКЦИИ */
-        section { padding: 8rem 0; border-bottom: 1px solid #1a1a1a; position: relative; }
+        /* СЕКЦИИ И РАЗДЕЛИТЕЛИ */
+        section { 
+            padding: 8rem 0; 
+            position: relative; 
+        }
         
         section::after {
             content: '';
-            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 100%; height: 1px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 1px;
             background: linear-gradient(90deg, transparent, #222, transparent);
         }
         
         .divider-accent {
-            width: 60px; height: 3px; background: var(--copper);
-            position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); z-index: 2;
+            width: 60px;
+            height: 3px;
+            background: var(--copper);
+            margin: 0 auto;
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
         }
 
         .section-label {
@@ -128,7 +142,7 @@
         }
         .title-main:hover { color: var(--copper); }
 
-        /* СЕТКИ */
+        /* СЕТКИ И ФОТО */
         .img-box { overflow: hidden; width: 100%; background: #111; position: relative; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; transition: var(--transition); }
         .img-box:hover img { transform: scale(1.05); opacity: 1; }
@@ -160,7 +174,7 @@
         }
         .btn-copper:hover { background: var(--copper); color: #000; }
 
-        footer { padding: 6rem 0; background: #050505; border-top: 1px solid #111; font-size: 0.8rem; }
+        footer { padding: 6rem 0 3rem; background: #050505; border-top: 1px solid #111; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -171,10 +185,10 @@
                 <a href="index.html" class="logo-box">УРАЛ<span>СТРОЙ</span>ГАРАНТ</a>
                 <div class="nav-menu">
                     <a href="design.html">Дизайнерский ремонт</a>
-                    <a href="#cottages">Строительство домов</a>
-                    <a href="#construction">Генподряд</a>
-                    <a href="#restoration">Реставрация</a>
-                    <a href="#expert">Субподряд</a>
+                    <a href="cottages.html">Строительство домов</a>
+                    <a href="construction.html">Генподряд</a>
+                    <a href="restoration.html">Реставрация</a>
+                    <a href="expert.html">Субподряд</a>
                 </div>
                 <div class="header-contacts">
                     <a href="tel:+73432663725" class="contact-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
@@ -185,6 +199,7 @@
     </header>
 
     <main>
+        <!-- HERO -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
@@ -194,12 +209,19 @@
             </div>
         </section>
 
+        <!-- ИНФО-СТРОКА 1 -->
         <div class="info-line">
             <span>Работаем с 2006 года</span>
             <span>1500+ реализованных проектов</span>
             <span>Собственный штат инженеров</span>
         </div>
 
+        <!-- ИНФО-СТРОКА 2 -->
+        <div class="info-line" style="background: #0a0a0a; color: var(--copper); border-bottom: none;">
+            <span>Ключевые направления деятельности</span>
+        </div>
+
+        <!-- 01: ДИЗАЙНЕРСКИЙ РЕМОНТ -->
         <section id="design" class="container">
             <span class="section-label">Направление 01</span>
             <a href="design.html" class="title-main">Дизайнерский ремонт</a>
@@ -212,66 +234,100 @@
                 </div>
                 <div>
                     <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ремонт квартир, офисов и коммерческих помещений под ключ.</p>
-                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Мы создаем интерьеры, в которых продумана каждая деталь. От разработки уникального дизайн-проекта до полной реализации.</p>
-                    <a href="design.html" class="btn-copper">Заказать дизайн-проект</a>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Мы создаем интерьеры, в которых продумана каждая деталь. От разработки уникального дизайн-проекта до полной реализации и комплектации объекта материалами.</p>
+                    <a href="design.html" class="btn-copper" style="padding: 1rem 2rem; font-size: 0.7rem;">Заказать дизайн-проект</a>
                 </div>
             </div>
             <div class="divider-accent"></div>
         </section>
 
+        <!-- 02: СТРОИТЕЛЬСТВО ДОМОВ -->
         <section id="cottages" class="container">
             <span class="section-label">Направление 02</span>
-            <h2 class="title-main">Строительство домов</h2>
+            <h2 class="title-main">Строительство домов и коттеджей</h2>
             <div class="grid-split">
                 <div>
                     <p style="font-size: 1.2rem; margin-bottom: 2rem;">Проектирование и строительство загородных домов под ключ.</p>
-                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Берем на себя все этапы: от заливки фундамента до кровельных работ и фасадной отделки.</p>
-                    <a href="#contact" class="btn-copper">Рассчитать стоимость</a>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Берем на себя все этапы: от заливки фундамента и возведения стен до кровельных работ и фасадной отделки. Строим надежные дома для жизни с гарантией качества.</p>
+                    <a href="cottages.html" class="btn-copper" style="padding: 1rem 2rem; font-size: 0.7rem;">Рассчитать стоимость дома</a>
                 </div>
                 <div class="img-box" style="aspect-ratio: 16/10;">
-                    <img src="img/hero.webp" alt="House">
+                    <img src="img/hero.webp" alt="Modern House">
                 </div>
             </div>
             <div class="divider-accent"></div>
         </section>
 
+        <!-- 03: ГЕНЕРАЛЬНЫЙ ПОДРЯД -->
         <section id="construction" class="container">
             <span class="section-label">Направление 03</span>
             <h2 class="title-main">Генеральный подряд</h2>
             <div class="gen-layout">
                 <div class="img-box" style="aspect-ratio: 10/13;">
-                    <img src="img/gen_process.webp" alt="Process">
+                    <img src="img/gen_process.webp" alt="Процесс">
                 </div>
                 <div>
-                    <p style="margin-bottom: 3rem; font-size: 1.1rem;">Управление всеми процессами: от проектирования до ввода в эксплуатацию.</p>
+                    <p style="margin-bottom: 3rem; font-size: 1.1rem; opacity: 0.9;">Мы выступаем гарантом реализации проекта любой сложности. ООО «Уралстройгарант» — это управление всеми процессами: от проектирования до ввода в эксплуатацию.</p>
                     <div class="techno-collage">
-                        <div class="img-box techno-main"><img src="img/techno_main.webp" alt="Tech"></div>
+                        <div class="img-box techno-main"><img src="img/techno_main.webp" alt="Технопарк"></div>
                         <div class="img-box techno-sub"><img src="img/techno_1.webp" alt="1"></div>
                         <div class="img-box techno-sub"><img src="img/techno_2.webp" alt="2"></div>
                     </div>
+                    <h3 style="margin-top: 2rem; font-family: 'Playfair Display', serif; font-size: 1.8rem;">Технопарк «Южная»</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Проектирование и возведение производственных мощностей.</p>
                 </div>
             </div>
             <div class="divider-accent"></div>
         </section>
 
+        <!-- 04: РЕСТАВРАЦИЯ -->
         <section id="restoration" class="container">
             <span class="section-label">Направление 04</span>
             <h2 class="title-main">Реставрация памятников</h2>
             <div class="rest-grid">
                 <div class="rest-card">
                     <div class="img-box" style="aspect-ratio: 16/10;"><img src="img/rest_1.webp" alt="1"></div>
-                    <h3>Управление Свердловской ЖД</h3>
+                    <h3>Управление Свердловской железной дороги</h3>
+                    <ul class="work-list">
+                        <li>Проектные работы на реконструкцию (2006-2009 гг.)</li>
+                        <li>Замена кровли, окон, фасадные работы</li>
+                        <li>Усиление фундамента и межэтажных перекрытий</li>
+                    </ul>
                 </div>
                 <div class="rest-card">
                     <div class="img-box" style="aspect-ratio: 16/10;"><img src="img/rest_2.webp" alt="2"></div>
-                    <h3>Загородная дача Малахова</h3>
+                    <h3>Загородная дача архитектора Малахова М.П.</h3>
+                    <ul class="work-list">
+                        <li>Комплексные фасадные и отделочные работы</li>
+                        <li>Проектирование и монтаж инженерных сетей</li>
+                        <li>Реставрация декоративных элементов памятника</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="divider-accent"></div>
+        </section>
+
+        <!-- 05: СУБПОДРЯД -->
+        <section id="expert" class="container">
+            <span class="section-label">Направление 05</span>
+            <h2 class="title-main">Экспертный субподряд</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="padding: 3rem; background: var(--dark-card); border-top: 2px solid var(--copper);">
+                    <h4 style="margin-bottom: 1rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Инженерные системы</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Проектирование и монтаж ОВиК, ВК, систем безопасности и автоматизации.</p>
+                </div>
+                <div style="padding: 3rem; background: var(--dark-card); border-top: 2px solid var(--copper);">
+                    <h4 style="margin-bottom: 1rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">WaterJet мозаика</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Художественная резка камня на собственном итальянском оборудовании.</p>
                 </div>
             </div>
         </section>
 
+        <!-- CTA -->
         <section id="contact" class="cta">
             <div class="container">
                 <h2 class="title-main" style="margin-bottom: 1rem;">Начните проект с экспертами</h2>
+                <p style="opacity: 0.7;">Закажите бесплатный замер и техническую консультацию на вашем объекте.</p>
                 <a href="tel:+73432663725" class="btn-copper">Заказать замер</a>
             </div>
         </section>
@@ -279,7 +335,18 @@
 
     <footer>
         <div class="container">
-            <p>ООО «УРАЛСТРОЙГАРАНТ» | 2006 — 2026</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem;">
+                <div>
+                    <h4 style="color: var(--copper); margin-bottom: 1.5rem; font-size: 0.7rem; text-transform: uppercase;">Компания</h4>
+                    <p>ООО «УРАЛСТРОЙГАРАНТ»</p>
+                    <p style="color: var(--text-muted); font-size: 0.8rem;">ИНН 6670134875 | ОГРН 10696770134820</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--copper); margin-bottom: 1.5rem; font-size: 0.7rem; text-transform: uppercase;">Контакты</h4>
+                    <p>Екатеринбург, ул. Мамина-Сибиряка, 14б</p>
+                    <p style="color: #fff;">+7 (343) 266-37-25</p>
+                </div>
+            </div>
         </div>
     </footer>
 
