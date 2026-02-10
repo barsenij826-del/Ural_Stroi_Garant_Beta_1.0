@@ -37,7 +37,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(184, 115, 51, 0.3);
         }
@@ -61,7 +61,6 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: var(--transition);
         }
         .nav-menu a:hover { color: var(--copper); }
 
@@ -71,14 +70,15 @@
             display: flex; align-items: center; justify-content: center;
             text-decoration: none; border-radius: 50%;
         }
-        .contact-icon svg { width: 14px; fill: #fff; }
+        .contact-icon svg { width: 16px; fill: #fff; }
 
         /* HERO */
         .hero {
-            height: 75vh;
+            height: 80vh;
             position: relative;
-            background: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.3)), 
+            background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.4)), 
                         url('img/hero.webp') center/cover no-repeat;
+            background-color: #111; /* Защита от черного экрана */
             display: flex; align-items: center; color: #fff;
         }
         .hero-content { max-width: 850px; }
@@ -102,61 +102,15 @@
         }
         .info-line span { margin: 0 1.5rem; display: inline-block; }
 
-        /* СЕКЦИИ И РАЗДЕЛИТЕЛИ */
-        section { 
-            padding: 8rem 0; 
-            position: relative; 
-        }
+        /* СЕКЦИИ */
+        section { padding: 8rem 0; border-bottom: 1px solid #1a1a1a; position: relative; }
         
         section::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 1px;
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; height: 1px;
             background: linear-gradient(90deg, transparent, #222, transparent);
         }
         
         .divider-accent {
-            width: 60px;
-            height: 3px;
-            background: var(--copper);
-            margin: 0 auto;
-            position: absolute;
-            bottom: -1px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-        }
-
-        .section-label {
-            color: var(--copper); font-weight: 800; letter-spacing: 4px;
-            font-size: 0.7rem; text-transform: uppercase; margin-bottom: 1rem; display: block;
-        }
-        .title-main {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 3rem; color: #fff;
-            text-decoration: none; display: inline-block;
-        }
-        .title-main:hover { color: var(--copper); }
-
-        /* СЕТКИ И ФОТО */
-        .img-box { overflow: hidden; width: 100%; background: #111; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; transition: var(--transition); }
-        .img-box:hover img { transform: scale(1.05); opacity: 1; }
-
-        .grid-split { display: grid; grid-template-columns: 1fr; gap: 5rem; align-items: center; }
-        @media (min-width: 1024px) { .grid-split { grid-template-columns: 1.1fr 0.9fr; } }
-
-        .design-collage { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .design-collage .img-box { aspect-ratio: 1/1; }
-
-        .gen-layout { display: grid; grid-template-columns: 1fr; gap: 4rem; }
-        @media (min-width: 1024px) { .gen-layout { grid-template-columns: 0.9fr 1.1fr; } }
-        .techno-collage { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 2rem; }
-        .techno-main { grid-column: span 2; aspect-ratio: 16/9; }
-        .techno-sub { aspect-ratio: 1/1; }
-
-        .rest
+            width: 60px; height: 3px; background: var(--copp
