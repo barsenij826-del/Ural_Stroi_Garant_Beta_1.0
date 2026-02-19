@@ -32,7 +32,6 @@
         .nav-menu { display: none; gap: 2rem; }
         @media (min-width: 1024px) { .nav-menu { display: flex; } }
         .nav-menu a { text-decoration: none; color: var(--text-light); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-        .nav-menu a:hover { color: var(--copper); }
 
         .header-contacts { display: flex; gap: 0.8rem; }
         .contact-icon { width: 40px; height: 40px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; text-decoration: none; border-radius: 50%; transition: 0.3s; }
@@ -41,109 +40,127 @@
         /* HERO */
         .hero-design {
             height: 100vh;
-            position: relative;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/design_1.webp') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/design_hero.webp') center/cover no-repeat;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
         .hero-design h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.1; margin-bottom: 2rem; }
 
-        /* БЛОК ЦИТАТА */
-        .quote-section { background: var(--dark-bg); color: var(--text-light); padding: 10rem 0; border-bottom: 1px solid #1a1a1a; }
-        .quote-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; align-items: center; }
-        @media (min-width: 1024px) { .quote-grid { grid-template-columns: 1.2fr 0.8fr; } }
-        .quote-text { font-size: clamp(1.1rem, 2vw, 1.5rem); line-height: 1.4; font-weight: 300; border-left: 3px solid var(--copper); padding-left: 2.5rem; }
-        .author-box { text-align: center; }
-        .author-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; background: #1a1a1a; border: 1px solid var(--copper); }
+        /* КНОПКИ В РАМКАХ (ИСПРАВЛЕНА ЦЕНТРОВКА) */
+        .btn-framed {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.2rem 2rem;
+            border: 1px solid var(--copper);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            transition: var(--transition);
+            cursor: pointer;
+            background: transparent;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .btn-framed:hover { background: var(--copper); color: #000; }
+
+        /* СЕКЦИИ */
+        section { padding: 10rem 0; border-bottom: 1px solid #1a1a1a; }
+        .title-main { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); text-align: center; margin-bottom: 5rem; color: #fff; }
 
         /* ЧТО МЫ ДЕЛАЕМ */
-        section { padding: 10rem 0; border-bottom: 1px solid #1a1a1a; }
-        .title-main { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); text-align: center; margin-bottom: 5rem; color: #fff; }
         .what-we-do-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        
-        .do-card { 
-            background: var(--dark-card); display: flex; flex-direction: column; height: 100%; 
-            text-decoration: none; color: inherit; transition: var(--transition); 
-            border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;
-        }
+        .do-card { background: var(--dark-card); display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; transition: var(--transition); border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden; padding: 10px; }
         .do-card:hover { transform: translateY(-10px); border-color: var(--copper); }
         
+        /* ЛЕНТОЧКА ЭКОНОМ */
         .ribbon {
             position: absolute; top: 20px; right: -35px; background: var(--copper);
-            color: #000; font-weight: 800; font-size: 0.7rem; padding: 5px 40px;
+            color: #000; font-weight: 800; font-size: 0.6rem; padding: 5px 40px;
             transform: rotate(45deg); z-index: 5; text-transform: uppercase;
         }
 
-        .do-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; opacity: 0.8; }
-        .do-content { padding: 2.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .do-content h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1rem; color: #fff; }
-        .do-content p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; flex-grow: 1; }
-
-        /* КОМУ ПОДХОДЯТ УСЛУГИ */
-        .who-item { position: relative; padding: 6rem 0; border-bottom: 1px solid #1a1a1a; }
-        .who-num { position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-family: 'Playfair Display', serif; font-size: 12rem; color: rgba(184, 115, 51, 0.07); z-index: 1; }
-        .who-text { position: relative; z-index: 2; max-width: 700px; margin-left: 8rem; }
-        .who-text h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 1rem; color: var(--copper); }
+        .do-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+        .do-content { padding: 2rem 1rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .do-content h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #fff; text-align: center; }
+        .do-content p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; text-align: center; }
 
         /* РЕАЛИЗОВАННЫЕ ПРОЕКТЫ */
         .projects-masonry { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
         @media (max-width: 768px) { .projects-masonry { grid-template-columns: 1fr; } }
-        .project-item { position: relative; overflow: hidden; aspect-ratio: 16/10; background: #111; }
+        .project-item { position: relative; overflow: hidden; aspect-ratio: 16/10; background: #111; border: 1px solid #222; padding: 8px; transition: var(--transition); }
+        .project-item:hover { border-color: var(--copper); }
         .project-item img { width: 100%; height: 100%; object-fit: cover; transition: 1s; opacity: 0.7; }
         .project-item:hover img { transform: scale(1.05); opacity: 1; }
         .project-info { position: absolute; bottom: 2rem; left: 2rem; z-index: 2; }
         .project-info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; }
         .project-info small { color: var(--copper); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-        /* РЕЗУЛЬТАТ КОНСУЛЬТАЦИИ */
-        .bonus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-        .bonus-item { display: flex; gap: 1.5rem; background: var(--dark-card); padding: 2.5rem; border-left: 2px solid var(--copper); }
-        .check-icon { width: 24px; height: 24px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #000; font-weight: bold; }
+        /* КНОПКА ПОРТФОЛИО */
+        .portfolio-cta { margin-top: 5rem; display: flex; justify-content: center; align-items: center; gap: 3rem; padding: 3rem; border: 1px solid #222; background: var(--dark-card); }
+        @media (max-width: 768px) { .portfolio-cta { flex-direction: column; text-align: center; } }
 
-        /* КВИЗ */
-        .quiz-section { background: #f9f9f9; padding: 10rem 0; color: #000; }
-        .quiz-container { background: #fff; padding: 4rem; max-width: 1000px; margin: 0 auto; box-shadow: 0 30px 60px rgba(0,0,0,0.1); position: relative; min-height: 650px; }
+        /* КВИЗ (ИСПРАВЛЕННАЯ ЛОГИКА И ТЕМНЫЙ СТИЛЬ) */
+        .quiz-section { background: var(--dark-bg); }
+        .quiz-container { background: var(--dark-card); padding: 4rem; max-width: 1000px; margin: 0 auto; border: 1px solid #222; position: relative; min-height: 600px; }
         .progress-bar { position: absolute; top: 0; left: 0; height: 4px; background: var(--copper); transition: 0.5s; width: 14%; }
         .quiz-step { display: none; }
         .quiz-step.active { display: block; }
-        .quiz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .quiz-option { cursor: pointer; text-align: center; border: 1px solid #eee; padding: 10px; transition: 0.3s; }
-        .quiz-option:hover { border-color: var(--copper); }
-        .quiz-option img { width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 1rem; }
-        .radio-group { display: flex; flex-direction: column; gap: 1rem; }
-        .radio-item { display: flex; align-items: center; gap: 1rem; cursor: pointer; font-size: 1.1rem; padding: 1.2rem; border: 1px solid #eee; }
-        .quiz-nav { display: flex; justify-content: space-between; margin-top: 4rem; }
+        .quiz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .quiz-option { cursor: pointer; text-align: center; border: 1px solid #333; padding: 20px; transition: 0.3s; background: #0a0a0a; }
+        .quiz-option:hover { border-color: var(--copper); background: #1a1a1a; }
+        .quiz-option img { width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 1.5rem; opacity: 0.7; }
+        .quiz-option p { color: #fff; font-weight: 700; }
+
+        .radio-group { display: grid; gap: 1rem; margin-top: 2rem; }
+        .radio-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
+        .radio-item:hover { border-color: var(--copper); background: #1a1a1a; }
+        .radio-item input { width: 20px; height: 20px; accent-color: var(--copper); }
+
+        /* ТЕХНОЛОГИИ */
+        .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .tech-text h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 2rem; }
+        .vr-img-box { width: 100%; aspect-ratio: 1/1; background: #111; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
+        .vr-img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 3D ТУРЫ */
+        .tours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 5rem; }
+        .tour-item { position: relative; aspect-ratio: 1/1; overflow: hidden; border: 1px solid #333; background: #111; padding: 10px; }
+        .tour-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.5s; }
+        .tour-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; }
+        .btn-tour { padding: 0.8rem 1.5rem; background: var(--copper); color: #000; text-decoration: none; font-weight: 800; font-size: 0.7rem; border-radius: 50px; transition: 0.3s; opacity: 0; transform: translateY(10px); }
+        .tour-item:hover .btn-tour { opacity: 1; transform: translateY(0); }
 
         /* КОНСУЛЬТАЦИЯ */
-        .consult-section { background: #fff; color: #000; padding: 10rem 0; }
-        .consult-box { max-width: 700px; margin: 0 auto; text-align: center; }
-        .consult-form { display: grid; gap: 2rem; text-align: left; margin-top: 4rem; }
-        .consult-form input { width: 100%; border: none; border-bottom: 1px solid #ccc; padding: 1.5rem 0; font-family: inherit; outline: none; font-size: 1rem; }
+        .consult-section { background: var(--dark-bg); }
+        .consult-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .consult-form { display: grid; gap: 1.5rem; }
+        .consult-form input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #333; padding: 1.2rem 0; color: #fff; font-family: inherit; outline: none; }
 
-        /* КНОПКИ */
-        .btn-copper { display: inline-block; padding: 1rem 2.5rem; border: 1px solid var(--copper); color: #fff; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; cursor: pointer; background: none; font-size: 0.7rem; text-align: center; }
-        .btn-copper:hover { background: var(--copper); color: #000; }
-        .btn-black { background: #000; color: #fff; border: none; padding: 1.2rem 4rem; font-weight: 700; text-transform: uppercase; cursor: pointer; width: fit-content; justify-self: center; }
-        .btn-small { padding: 0.8rem 1.5rem; width: fit-content; margin-top: auto; }
+        /* ЧТО ВЫ ПОЛУЧАЕТЕ */
+        .bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; }
+        .bonus-card { padding: 3rem 2rem; border: 1px solid #222; border-left: 3px solid var(--copper); background: var(--dark-card); }
+        .check-circle { width: 30px; height: 30px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #000; font-weight: 800; }
 
         /* ПЛАВАЮЩИЙ ВИДЖЕТ */
-        .fab-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; display: flex; flex-direction: column; gap: 15px; align-items: flex-end; }
-        .fab-main { width: 60px; height: 60px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(184, 115, 51, 0.4); cursor: pointer; }
-        .fab-main svg { width: 28px; fill: #fff; }
-        .fab-options { display: none; flex-direction: column; gap: 10px; }
-        .fab-container:hover .fab-options { display: flex; }
-        .fab-item { width: 50px; height: 50px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-decoration: none; }
+        .fab-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; }
+        .fab-main { width: 65px; height: 65px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(184, 115, 51, 0.4); cursor: pointer; animation: fabPulse 2s infinite; }
+        @keyframes fabPulse { 0% { transform: scale(1); } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        footer { padding: 6rem 0; background: #050505; border-top: 1px solid #111; font-size: 0.8rem; }
+        footer { padding: 6rem 0; background: #050505; border-top: 1px solid #111; font-size: 0.8rem; text-align: center; }
     </style>
 </head>
 <body>
 
+    <!-- ВИДЖЕТ СВЯЗИ -->
     <div class="fab-container">
-        <div class="fab-options">
-            <a href="https://wa.me/73432663725" class="fab-item"><svg viewBox="0 0 24 24" width="22" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.431 5.63 1.432h.006c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-            <a href="tel:+73432663725" class="fab-item"><svg viewBox="0 0 24 24" width="22" fill="#000"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+        <div class="fab-main">
+            <svg width="28" fill="#fff" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
         </div>
-        <div class="fab-main"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg></div>
     </div>
 
     <header class="header">
@@ -151,241 +168,176 @@
             <nav class="nav">
                 <a href="index.html" class="logo-box">УРАЛ<span>СТРОЙ</span>ГАРАНТ</a>
                 <div class="nav-menu">
-                    <a href="index.html">На главную</a>
-                    <a href="#quiz">Рассчитать стоимость</a>
-                    <a href="#projects">Реализованные проекты</a>
+                    <a href="index.html">Главная</a>
+                    <a href="#tech">Технологии</a>
+                    <a href="#projects">Проекты</a>
+                    <a href="#team">Команда</a>
                 </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- HERO -->
+        <!-- 1. HERO -->
         <section class="hero-design">
             <div class="container">
                 <h1>Дизайн интерьера <br>и реализация «под ключ»</h1>
-                <a href="#quiz" class="btn-copper">Рассчитать стоимость проекта</a>
+                <a href="#quiz" class="btn-framed">Рассчитать стоимость проекта</a>
             </div>
         </section>
 
-        <!-- БЛОК ЦИТАТА -->
-        <section class="quote-section">
-            <div class="container">
-                <div class="quote-grid">
-                    <div class="quote-text">
-                        Существует мнение, что дизайнерский ремонт — это дорого. <br><br>
-                        На самом деле без проекта вы просто не знаете своих будущих затрат, а также неизбежно сталкиваетесь с проблемами на стройке, начинаете переплачивать и терять время, а вот это уже дорого.
-                    </div>
-                    <div class="author-box">
-                        <img src="img/author.webp" alt="Александр Батенков" class="author-img">
-                        <p><strong>Александр Батенков</strong></p>
-                        <small style="color: var(--text-muted);">Основатель студии</small>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ЧТО МЫ ДЕЛАЕМ -->
+        <!-- 2. ЧТО МЫ ДЕЛАЕМ -->
         <section class="container">
             <h2 class="title-main">Что мы делаем</h2>
             <div class="what-we-do-grid">
                 <a href="#quiz" class="do-card">
-                    <img src="img/design_1.webp" alt="Жилые">
+                    <img src="img/serv_1.webp" alt="1">
                     <div class="do-content">
                         <h3>Дизайн жилых интерьеров</h3>
-                        <p>Разработка индивидуальных проектов для квартир и домов любой площади.</p>
-                        <div class="btn-copper btn-small">Узнать стоимость</div>
+                        <p>Разработка индивидуальных проектов для квартир и домов.</p>
+                        <div class="btn-framed">Узнать стоимость</div>
+                    </div>
+                </a>
+                <a href="#quiz" class="do-card">
+                    <img src="img/serv_2.webp" alt="2">
+                    <div class="do-content">
+                        <h3>Реализация «под ключ»</h3>
+                        <p>Полный цикл работ под нашим строгим контролем.</p>
+                        <div class="btn-framed">Узнать стоимость</div>
+                    </div>
+                </a>
+                <a href="#quiz" class="do-card">
+                    <img src="img/serv_3.webp" alt="3">
+                    <div class="do-content">
+                        <h3>Дизайн коммерческих объектов</h3>
+                        <p>Интерьеры для бизнеса и прибыли.</p>
+                        <div class="btn-framed">Узнать стоимость</div>
                     </div>
                 </a>
                 <a href="capsule.html" class="do-card">
                     <div class="ribbon">Эконом</div>
-                    <img src="img/design_2.webp" alt="Капсульный">
+                    <img src="img/serv_4.webp" alt="4">
                     <div class="do-content">
                         <h3>Капсульный ремонт</h3>
-                        <p>Ремонт по фиксированной цене за м² без смет. Готовые стили и заезд в день сдачи дома.</p>
-                        <div class="btn-copper btn-small" style="background: var(--copper); color: #000;">Подробнее</div>
-                    </div>
-                </a>
-                <a href="#quiz" class="do-card">
-                    <img src="img/design_3.webp" alt="Коммерческие">
-                    <div class="do-content">
-                        <h3>Дизайн коммерческих объектов</h3>
-                        <p>Интерьеры для бизнеса, которые работают на ваш бренд и прибыль.</p>
-                        <div class="btn-copper btn-small">Узнать стоимость</div>
-                    </div>
-                </a>
-                <a href="#quiz" class="do-card">
-                    <img src="img/design_4.webp" alt="Реализация">
-                    <div class="do-content">
-                        <h3>Реализация «под ключ»</h3>
-                        <p>Полный цикл работ от А до Я под нашим строгим контролем.</p>
-                        <div class="btn-copper btn-small">Узнать стоимость</div>
+                        <p>Ремонт по фиксированной цене за м² без смет.</p>
+                        <div class="btn-framed" style="background: var(--copper); color: #000; border: none;">Подробнее</div>
                     </div>
                 </a>
             </div>
         </section>
 
-        <!-- КОМУ ПОДХОДИТ -->
-        <section class="container">
-            <h2 class="title-main">Узнайте, кому подходят наши услуги</h2>
-            <div class="who-item">
-                <div class="who-num">01</div>
-                <div class="who-text">
-                    <h3>Если вы цените эстетику</h3>
-                    <p>Над вашим проектом трудится целая команда профессионалов. Каждый специалист подбирается с учетом выбранного стиля.</p>
-                </div>
-            </div>
-            <div class="who-item">
-                <div class="who-num">02</div>
-                <div class="who-text">
-                    <h3>Вам важна экспертность</h3>
-                    <p>Мы предоставляем сервис «одного окна», где инженеры и дизайнеры работают в единой связке.</p>
-                </div>
-            </div>
-            <div class="who-item">
-                <div class="who-num">03</div>
-                <div class="who-text">
-                    <h3>Вы взыскательны к качеству</h3>
-                    <p>Никаких компромиссов. Только безупречная реализация по чертежам с гарантией на все виды работ.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- РЕАЛИЗОВАННЫЕ ПРОЕКТЫ -->
+        <!-- 3. РЕАЛИЗОВАННЫЕ ПРОЕКТЫ -->
         <section id="projects" class="container">
             <h2 class="title-main">Реализованные проекты</h2>
             <div class="projects-masonry">
-                <div class="project-item"><img src="img/design_1.webp" alt="1"><div class="project-info"><small>ЖК Кандинский</small><h3>Modern Residence</h3></div></div>
-                <div class="project-item"><img src="img/design_2.webp" alt="2"><div class="project-info"><small>ЖК Макаровский</small><h3>Luxury Penthouse</h3></div></div>
-                <div class="project-item"><img src="img/design_3.webp" alt="3"><div class="project-info"><small>БЦ Высоцкий</small><h3>Minimalist Loft</h3></div></div>
-                <div class="project-item"><img src="img/design_4.webp" alt="4"><div class="project-info"><small>Екатеринбург-Сити</small><h3>Business Office</h3></div></div>
-                <div class="project-item"><img src="img/design_1.webp" alt="5"><div class="project-info"><small>Карасьеозерский</small><h3>Private Villa</h3></div></div>
-                <div class="project-item"><img src="img/design_2.webp" alt="6"><div class="project-info"><small>ЖК Форум Сити</small><h3>Art Apartment</h3></div></div>
+                <div class="project-item"><img src="img/work_1.webp" alt="1"><div class="project-info"><small>ЖК Кандинский</small><h3>Modern Residence</h3></div></div>
+                <div class="project-item"><img src="img/work_2.webp" alt="2"><div class="project-info"><small>ЖК Макаровский</small><h3>Luxury Penthouse</h3></div></div>
+                <div class="project-item"><img src="img/work_3.webp" alt="3"><div class="project-info"><small>БЦ Высоцкий</small><h3>Minimalist Loft</h3></div></div>
+                <div class="project-item"><img src="img/work_4.webp" alt="4"><div class="project-info"><small>Екатеринбург-Сити</small><h3>Business Office</h3></div></div>
+                <div class="project-item"><img src="img/work_5.webp" alt="5"><div class="project-info"><small>Карасьеозерский</small><h3>Private Villa</h3></div></div>
+                <div class="project-item"><img src="img/work_6.webp" alt="6"><div class="project-info"><small>ЖК Форум Сити</small><h3>Art Apartment</h3></div></div>
             </div>
-            <div style="text-align: center; margin-top: 5rem;">
-                <a href="showcase.html" class="btn-copper">Смотреть всё портфолио</a>
-            </div>
-        </section>
-
-        <!-- РЕЗУЛЬТАТ КОНСУЛЬТАЦИИ -->
-        <section class="container">
-            <h2 class="title-main">Что вы получаете сразу <br>после консультации</h2>
-            <div class="bonus-grid">
-                <div class="bonus-item">
-                    <div class="check-icon">✓</div>
-                    <div>
-                        <h4>Планировочные решения</h4>
-                        <p>Рекомендации по выбору планировки, которая точно подойдет вашей семье.</p>
-                    </div>
-                </div>
-                <div class="bonus-item">
-                    <div class="check-icon">✓</div>
-                    <div>
-                        <h4>Стилистический концепт</h4>
-                        <p>Визуальный коллаж вашей будущей квартиры, составленный прямо на встрече.</p>
-                    </div>
-                </div>
-                <div class="bonus-item">
-                    <div class="check-icon">✓</div>
-                    <div>
-                        <h4>Бюджетирование</h4>
-                        <p>Предварительный расчет стоимости реализации проекта под ваш бюджет.</p>
-                    </div>
-                </div>
+            <div class="portfolio-cta">
+                <div style="font-size: 1.2rem;">Хотите увидеть больше объектов?</div>
+                <a href="showcase.html" class="btn-framed">Перейти в раздел «Портфолио»</a>
             </div>
         </section>
 
-        <!-- КВИЗ -->
+        <!-- 4. КВИЗ (ИСПРАВЛЕННАЯ ЛОГИКА) -->
         <section id="quiz" class="quiz-section">
             <div class="container">
                 <div class="quiz-container">
                     <div class="progress-bar" id="progress"></div>
                     
+                    <!-- ШАГ 1 -->
                     <div class="quiz-step active" data-step="1">
-                        <div class="quiz-header"><span>Вопрос 1 из 7</span><span>15% готово</span></div>
-                        <h2 style="text-align: center; margin-bottom: 3rem; color:#000;">Дизайн какого объекта вас интересует?</h2>
+                        <div style="display: flex; justify-content: space-between; color: #fff; margin-bottom: 2rem;">
+                            <span>Вопрос 1 из 7</span><span>15% готово</span>
+                        </div>
+                        <h2 style="text-align: center; margin-bottom: 3rem; color:#fff; font-family: 'Playfair Display', serif;">Дизайн какого объекта вас интересует?</h2>
                         <div class="quiz-grid">
-                            <div class="quiz-option" onclick="nextStep()"><img src="img/design_1.webp" alt="Квартира"><p style="color:#000; font-weight:700;">Квартира</p></div>
-                            <div class="quiz-option" onclick="nextStep()"><img src="img/hero.webp" alt="Дом"><p style="color:#000; font-weight:700;">Дом</p></div>
-                            <div class="quiz-option" onclick="nextStep()"><img src="img/design_3.webp" alt="Коммерция"><p style="color:#000; font-weight:700;">Коммерция</p></div>
+                            <div class="quiz-option" onclick="nextStep()">
+                                <img src="img/quiz_1.webp" alt="1">
+                                <p>Квартира</p>
+                            </div>
+                            <div class="quiz-option" onclick="nextStep()">
+                                <img src="img/quiz_2.webp" alt="2">
+                                <p>Дом</p>
+                            </div>
+                            <div class="quiz-option" onclick="nextStep()">
+                                <img src="img/quiz_3.webp" alt="3">
+                                <p>Коммерция</p>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- ШАГ 2 -->
                     <div class="quiz-step" data-step="2">
-                        <div class="quiz-header"><span style="color:#000">Рассчитать стоимость</span><span style="color:#000">2/7</span></div>
-                        <h2 style="margin-bottom: 2rem; color:#000">Укажите общую площадь, кв.м.</h2>
+                        <h2 style="color:#fff; margin-bottom: 2rem;">Укажите общую площадь, кв.м.</h2>
                         <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="area"> до 100</label>
-                            <label class="radio-item"><input type="radio" name="area"> от 100 до 300</label>
-                            <label class="radio-item"><input type="radio" name="area"> более 300</label>
+                            <label class="radio-item" onclick="nextStep()"><input type="radio" name="area"> до 100</label>
+                            <label class="radio-item" onclick="nextStep()"><input type="radio" name="area"> от 100 до 300</label>
+                            <label class="radio-item" onclick="nextStep()"><input type="radio" name="area"> более 300</label>
                         </div>
                     </div>
 
-                    <div class="quiz-step" data-step="3">
-                        <div class="quiz-header"><span style="color:#000">Рассчитать стоимость</span><span style="color:#000">3/7</span></div>
-                        <h2 style="margin-bottom: 2rem; color:#000">Какой вид работ Вас интересует?</h2>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="work"> Дизайн + ремонт</label>
-                            <label class="radio-item"><input type="radio" name="work"> Только дизайн-проект</label>
-                            <label class="radio-item"><input type="radio" name="work"> Не знаю, нужна консультация</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-step" data-step="4">
-                        <div class="quiz-header"><span style="color:#000">Рассчитать стоимость</span><span style="color:#000">4/7</span></div>
-                        <h2 style="margin-bottom: 2rem; color:#000">Тип недвижимости</h2>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="type"> Новостройка</label>
-                            <label class="radio-item"><input type="radio" name="type"> Вторичка</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-step" data-step="5">
-                        <div class="quiz-header"><span style="color:#000">Рассчитать стоимость</span><span style="color:#000">5/7</span></div>
-                        <h2 style="margin-bottom: 2rem; color:#000">Когда готовы обсудить проект?</h2>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="time"> В течение недели</label>
-                            <label class="radio-item"><input type="radio" name="time"> В течение месяца</label>
-                            <label class="radio-item"><input type="radio" name="time"> Ждём ключи</label>
-                        </div>
-                    </div>
-
+                    <!-- ШАГ 6 -->
                     <div class="quiz-step" data-step="6">
-                        <div class="quiz-header"><span style="color:#000">Рассчитать стоимость</span><span style="color:#000">6/7</span></div>
-                        <h2 style="margin-bottom: 2rem; color:#000">Дополнительные комментарии по объекту</h2>
-                        <textarea placeholder="Напишите здесь ваши пожелания..." style="width: 100%; min-height: 250px; padding: 1.5rem; border: 1px solid #eee; font-family: inherit; outline: none; color:#000;"></textarea>
+                        <h2 style="color:#fff; margin-bottom: 2rem;">Дополнительные комментарии</h2>
+                        <textarea placeholder="Напишите ваши пожелания..." style="width: 100%; min-height: 200px; padding: 1.5rem; background: #111; border: 1px solid #333; color: #fff; outline: none; font-family: inherit;"></textarea>
+                        <button class="btn-framed" onclick="nextStep()" style="margin-top: 2rem;">Далее →</button>
                     </div>
 
+                    <!-- ШАГ 7 -->
                     <div class="quiz-step" data-step="7">
-                        <div class="quiz-header"><span style="color:#000">Рассчитать стоимость</span><span style="color:#000">7/7</span></div>
-                        <h2 style="margin-bottom: 2rem; color:#000">Как вам удобнее получить расчёт?</h2>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="contact"> Позвонить</label>
-                            <label class="radio-item"><input type="radio" name="contact"> WhatsApp</label>
-                            <label class="radio-item"><input type="radio" name="contact"> Telegram</label>
-                        </div>
+                        <h2 style="color:#fff; margin-bottom: 2rem;">Оставьте контакты для получения расчета</h2>
+                        <input type="text" placeholder="Ваше имя" style="width: 100%; padding: 1.2rem; border: 1px solid #333; background: transparent; color: #fff; margin-bottom: 1rem;">
+                        <input type="tel" placeholder="Ваш телефон" style="width: 100%; padding: 1.2rem; border: 1px solid #333; background: transparent; color: #fff; margin-bottom: 2rem;">
+                        <button class="btn-framed" style="background: var(--copper); color: #000;" onclick="alert('Заявка отправлена!')">Узнать стоимость</button>
                     </div>
 
-                    <div class="quiz-nav" id="quiz-nav" style="display: none; justify-content: space-between; margin-top: 4rem;">
-                        <button class="btn-copper" onclick="prevStep()" style="color:#000; border-color:#000;">← Назад</button>
-                        <button class="btn-black" id="next-btn" onclick="nextStep()">Далее →</button>
+                    <div id="quiz-nav" style="display:none; margin-top: 2rem;">
+                        <button onclick="prevStep()" style="background:none; border:none; color:var(--copper); cursor:pointer; font-weight:700;">← Назад</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- КОНСУЛЬТАЦИЯ -->
+        <!-- 5. ТЕХНОЛОГИИ -->
+        <section id="tech" class="container">
+            <div class="tech-grid">
+                <div class="tech-text">
+                    <span class="section-label" style="text-align:left">Innovation</span>
+                    <h2>Используем в своей работе современные технологии</h2>
+                    <p>Мы создаем реалистичные визуализации для очков виртуальной реальности, чтобы вы заранее могли посмотреть интерьер и убедиться, что вас все устраивает.</p>
+                    <p>Чтобы клиенты лучше понимали, как будет выглядеть интерьер, мы делаем визуализацию для очков виртуальной реальности. Вот такого, как на картинке рядом.</p>
+                    <p>Надев его вы сможете оказаться в своей будущей квартире, походить по интерьеру и легко понять, тот ли это интерьер, который вы хотели? Или нужно что-то доработать и изменить.</p>
+                </div>
+                <div class="vr-img-box"><img src="img/vr_glasses.webp" alt="VR"></div>
+            </div>
+        </section>
+
+        <!-- 6. КОНСУЛЬТАЦИЯ -->
         <section id="consult" class="consult-section">
             <div class="container">
-                <div class="consult-box">
-                    <h2>Консультация с дизайнером</h2>
-                    <p>Заполните форму и мы свяжемся с вами в ближайшее время!</p>
+                <div class="consult-grid">
+                    <div>
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem;">Консультация с дизайнером</h2>
+                        <p style="margin-top: 1.5rem; color: var(--text-muted);">Заполните форму, и мы свяжемся с вами.</p>
+                    </div>
                     <form class="consult-form">
                         <input type="text" placeholder="Ваше имя" required>
                         <input type="tel" placeholder="Ваш телефон" required>
-                        <input type="text" placeholder="Площадь вашего объекта">
-                        <button type="submit" class="btn-black" style="margin-top: 3rem;">Отправить</button>
+                        <input type="text" placeholder="Площадь объекта (м²)">
+                        <button type="submit" class="btn-framed" style="margin-top: 2rem; background: var(--copper); color: #000; width: 100%;">Отправить заявку</button>
                     </form>
+                </div>
+
+                <h2 class="title-main" style="margin-top: 8rem; margin-bottom: 4rem;">Что вы получаете сразу после консультации</h2>
+                <div class="bonus-grid">
+                    <div class="bonus-card"><div class="check-circle">✓</div><h4>Планировочные решения</h4><p>Рекомендации по выбору планировки.</p></div>
+                    <div class="bonus-card"><div class="check-circle">✓</div><h4>Стилистический концепт</h4><p>Визуальный коллаж вашей квартиры.</p></div>
+                    <div class="bonus-card"><div class="check-circle">✓</div><h4>Бюджетирование</h4><p>Предварительный расчет реализации.</p></div>
                 </div>
             </div>
         </section>
@@ -399,17 +351,26 @@
 
     <script>
         let currentStep = 1;
-        const totalSteps = 7;
-        function updateQuiz() {
-            document.querySelectorAll('.quiz-step').forEach(step => step.classList.remove('active'));
-            const activeStep = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
-            if(activeStep) activeStep.classList.add('active');
-            document.getElementById('progress').style.width = `${(currentStep / totalSteps) * 100}%`;
-            document.getElementById('quiz-nav').style.display = currentStep > 1 ? 'flex' : 'none';
-            document.getElementById('next-btn').innerText = currentStep === totalSteps ? 'Отправить' : 'Далее →';
+        function nextStep() {
+            const steps = document.querySelectorAll('.quiz-step');
+            if (currentStep < steps.length) {
+                steps[currentStep - 1].style.display = 'none';
+                currentStep++;
+                steps[currentStep - 1].style.display = 'block';
+                document.getElementById('progress').style.width = (currentStep / 7 * 100) + '%';
+                document.getElementById('quiz-nav').style.display = 'block';
+            }
         }
-        function nextStep() { if (currentStep < totalSteps) { currentStep++; updateQuiz(); } else { alert('Заявка отправлена!'); } }
-        function prevStep() { if (currentStep > 1) { currentStep--; updateQuiz(); } }
+        function prevStep() {
+            if (currentStep > 1) {
+                const steps = document.querySelectorAll('.quiz-step');
+                steps[currentStep - 1].style.display = 'none';
+                currentStep--;
+                steps[currentStep - 1].style.display = 'block';
+                document.getElementById('progress').style.width = (currentStep / 7 * 100) + '%';
+                if (currentStep === 1) document.getElementById('quiz-nav').style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
