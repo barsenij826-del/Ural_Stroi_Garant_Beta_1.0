@@ -223,6 +223,32 @@
         .fab-main:hover svg {
             fill: var(--dark-bg);
         }
+/* ИСПРАВЛЕННАЯ КНОПКА ВНУТРИ КАРТОЧКИ */
+        .hover-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8); /* Центрирование */
+            opacity: 0;
+            z-index: 10;
+            padding: 1rem 2rem;
+            background-color: var(--copper);
+            color: #000;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: var(--transition);
+            pointer-events: none; /* Чтобы кнопка не мешала клику по самой карточке */
+            white-space: nowrap;
+        }
+
+        /* Показываем кнопку только при наведении на рамку */
+        .project-frame:hover .hover-btn {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
     </style>
 </head>
 <body>
@@ -383,16 +409,20 @@
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     let visibleCount = 4;
 
-    function initPortfolio() {
+   function initPortfolio() {
         let html = '';
         portfolioData.forEach((project, index) => {
             const id = index + 1;
             const isHidden = id > visibleCount ? 'hidden' : '';
+            
             html += `
                 <div class="project-frame ${isHidden}" onclick="openGallery(${index})">
                     <div class="project-card">
-                        <div class="hover-btn">Посмотреть еще</div>
+                        <!-- Кнопка теперь внутри контейнера карточки -->
+                        <div class="hover-btn">Посмотреть проект</div>
+                        
                         <img src="img/work_${id}.webp" alt="${project.title}" loading="lazy" onerror="this.src='https://placehold.co/800x500/111/B87333?text=Photo+Coming+Soon'">
+                        
                         <div class="project-info-overlay">
                             <h3>${project.title}</h3>
                             <p>${project.desc}</p>
@@ -441,6 +471,7 @@
 
     window.onclick = (e) => { if (e.target.id === 'galleryOverlay') closeGallery(); }
     initPortfolio();
+
 </script>
 </body>
 </html>
