@@ -335,61 +335,112 @@
         </div>
     </div>
 
-    <script>
-        const portfolioGrid = document.getElementById('portfolioGrid');
-        const loadMoreBtn = document.getElementById('loadMoreBtn');
-        const totalItems = 32;
-        let visibleCount = 4;
+ <script>
+    // ========================================================
+    // 1. БАЗА ДАННЫХ ОБЪЕКТОВ (РЕДАКТИРУЙ ТЕКСТ ЗДЕСЬ)
+    // ========================================================
+    // Просто меняй текст в кавычках. 
+    // title — это жирный заголовок, desc — это описание под ним.
+    const portfolioData = [
+        { title: "ЖК «Кандинский»", desc: "Премиальный пентхаус в стиле минимализм" }, // Объект 1
+        { title: "ЖК «Макаровский»", desc: "Апартаменты с видом на набережную" },    // Объект 2
+        { title: "Вилла в Карасьеозерском", desc: "Загородная резиденция 450 м²" },  // Объект 3
+        { title: "БЦ «Высоцкий»", desc: "Офис представительского класса" },        // Объект 4
+        { title: "ЖК «Форум Сити»", desc: "Лофт-пространство для жизни" },          // Объект 5
+        { title: "Название объекта 6", desc: "Здесь будет описание" },
+        { title: "Название объекта 7", desc: "Здесь будет описание" },
+        { title: "Название объекта 8", desc: "Здесь будет описание" },
+        { title: "Название объекта 9", desc: "Здесь будет описание" },
+        { title: "Название объекта 10", desc: "Здесь будет описание" },
+        { title: "Название объекта 11", desc: "Здесь будет описание" },
+        { title: "Название объекта 12", desc: "Здесь будет описание" },
+        { title: "Название объекта 13", desc: "Здесь будет описание" },
+        { title: "Название объекта 14", desc: "Здесь будет описание" },
+        { title: "Название объекта 15", desc: "Здесь будет описание" },
+        { title: "Название объекта 16", desc: "Здесь будет описание" },
+        { title: "Название объекта 17", desc: "Здесь будет описание" },
+        { title: "Название объекта 18", desc: "Здесь будет описание" },
+        { title: "Название объекта 19", desc: "Здесь будет описание" },
+        { title: "Название объекта 20", desc: "Здесь будет описание" },
+        { title: "Название объекта 21", desc: "Здесь будет описание" },
+        { title: "Название объекта 22", desc: "Здесь будет описание" },
+        { title: "Название объекта 23", desc: "Здесь будет описание" },
+        { title: "Название объекта 24", desc: "Здесь будет описание" },
+        { title: "Название объекта 25", desc: "Здесь будет описание" },
+        { title: "Название объекта 26", desc: "Здесь будет описание" },
+        { title: "Название объекта 27", desc: "Здесь будет описание" },
+        { title: "Название объекта 28", desc: "Здесь будет описание" },
+        { title: "Название объекта 29", desc: "Здесь будет описание" },
+        { title: "Название объекта 30", desc: "Здесь будет описание" },
+        { title: "Название объекта 31", desc: "Здесь будет описание" },
+        { title: "Название объекта 32", desc: "Здесь будет описание" }
+    ];
 
-        function initPortfolio() {
-            let html = '';
-            for (let i = 1; i <= totalItems; i++) {
-                const isHidden = i > visibleCount ? 'hidden' : '';
-                html += `
-                    <div class="project-frame ${isHidden}" onclick="openGallery('Объект №${i}', 'Реализация премиального интерьера')">
-                        <div class="project-card">
-                            <img src="img/work_${i}.webp" alt="Проект ${i}" onerror="this.src='https://placehold.co/800x500/111/B87333?text=Photo+Coming+Soon'">
-                            <div class="project-info-overlay">
-                                <h3>Название объекта ${i}</h3>
-                                <p>Здесь будет описание</p>
-                            </div>
+    // ========================================================
+    // 2. ЛОГИКА РАБОТЫ (НЕ ТРОГАЙ)
+    // ========================================================
+    const portfolioGrid = document.getElementById('portfolioGrid');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    let visibleCount = 4;
+
+    function initPortfolio() {
+        let html = '';
+        portfolioData.forEach((project, index) => {
+            const id = index + 1;
+            const isHidden = id > visibleCount ? 'hidden' : '';
+            html += `
+                <div class="project-frame ${isHidden}" onclick="openGallery(${index})">
+                    <div class="project-card">
+                        <div class="hover-btn">Посмотреть еще</div>
+                        <img src="img/work_${id}.webp" alt="${project.title}" loading="lazy" onerror="this.src='https://placehold.co/800x500/111/B87333?text=Photo+Coming+Soon'">
+                        <div class="project-info-overlay">
+                            <h3>${project.title}</h3>
+                            <p>${project.desc}</p>
                         </div>
-                    </div>`;
-            }
-            portfolioGrid.innerHTML = html;
-        }
+                    </div>
+                </div>`;
+        });
+        portfolioGrid.innerHTML = html;
+    }
 
-        function loadMore() {
-            const hiddenCards = Array.from(document.querySelectorAll('.project-frame.hidden'));
-            const nextBatch = hiddenCards.slice(0, 4);
-            nextBatch.forEach(card => card.classList.remove('hidden'));
-            visibleCount += 4;
-            if (visibleCount >= totalItems) loadMoreBtn.style.display = 'none';
-        }
+    function loadMore() {
+        const hiddenCards = Array.from(document.querySelectorAll('.project-frame.hidden'));
+        const nextBatch = hiddenCards.slice(0, 4);
+        nextBatch.forEach(card => card.classList.remove('hidden'));
+        visibleCount += 4;
+        if (visibleCount >= portfolioData.length) loadMoreBtn.style.display = 'none';
+    }
 
-        function openGallery(title, description) {
-            const modal = document.getElementById('galleryOverlay');
-            const grid = document.getElementById('galleryGrid');
-            const projectId = title.match(/\d+/)[0];
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDesc').innerText = description;
-            grid.innerHTML = '';
-            for (let j = 1; j <= 10; j++) {
-                grid.innerHTML += `<div class="gallery-img-wrap"><img src="img/p${projectId}_${j}.webp" onerror="this.src='https://placehold.co/800x600/111/B87333?text=Photo+Coming+Soon'"></div>`;
-            }
-            modal.style.display = 'block';
-            setTimeout(() => modal.classList.add('active'), 10);
-            document.body.classList.add('modal-open');
+    function openGallery(index) {
+        const project = portfolioData[index];
+        const id = index + 1;
+        const modal = document.getElementById('galleryOverlay');
+        const grid = document.getElementById('galleryGrid');
+        document.getElementById('modalTitle').innerText = project.title;
+        document.getElementById('modalDesc').innerText = project.desc;
+        grid.innerHTML = '';
+        for (let j = 1; j <= 10; j++) {
+            grid.innerHTML += `
+                <div class="gallery-img-wrap">
+                    <img src="img/p${id}_${j}.webp" alt="Фото" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/B87333?text=Ожидается+загрузка+фото'">
+                </div>`;
         }
+        modal.style.display = 'block';
+        setTimeout(() => modal.classList.add('active'), 10);
+        document.body.classList.add('modal-open');
+    }
 
-        function closeGallery() {
-            const modal = document.getElementById('galleryOverlay');
-            modal.classList.remove('active');
-            setTimeout(() => { modal.style.display = 'none'; document.body.classList.remove('modal-open'); }, 400);
-        }
+    function closeGallery() {
+        const modal = document.getElementById('galleryOverlay');
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }, 400);
+    }
 
-        window.onclick = (e) => { if (e.target.id === 'galleryOverlay') closeGallery(); }
-        initPortfolio();
-    </script>
+    window.onclick = (e) => { if (e.target.id === 'galleryOverlay') closeGallery(); }
+    initPortfolio();
+</script>
 </body>
 </html>
