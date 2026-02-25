@@ -141,23 +141,52 @@
         .title-main:hover { color: var(--copper); }
 
         /* СЕТКИ И ФОТО */
-        .img-box { overflow: hidden; width: 100%; background: #111; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; transition: var(--transition); }
+/* УНИВЕРСАЛЬНАЯ СЕТКА ДЛЯ ВСЕХ РАЗДЕЛОВ */
+  /* УНИВЕРСАЛЬНАЯ СЕТКА */
+        .grid-split { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 4rem; 
+            align-items: center; 
+        }
+
+        @media (min-width: 1024px) { 
+            /* Обычный порядок: фото слева (1.1), текст справа (0.9) */
+            .grid-split { grid-template-columns: 1.1fr 0.9fr; } 
+            
+            /* Реверс для 2-го блока: текст слева, фото справа */
+            .grid-split.reverse { grid-template-columns: 0.9fr 1.1fr; }
+            .grid-split.reverse .collage-grid { order: 2; }
+            .grid-split.reverse .text-block { order: 1; }
+        }
+
+        /* СЕТКА ИЗ 4 ФОТО */
+        .collage-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            width: 100%; /* Чтобы сетка не сужалась */
+        }
+        .img-box { 
+            overflow: hidden; 
+            width: 100%; 
+            background: #111; 
+            position: relative; 
+            aspect-ratio: 1/1; 
+        }
+        .img-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+            opacity: 0.85; 
+            transition: var(--transition); 
+        }
         .img-box:hover img { transform: scale(1.05); opacity: 1; }
+        
+        .text-block { display: flex; flex-direction: column; }
 
-        .grid-split { display: grid; grid-template-columns: 1fr; gap: 5rem; align-items: center; }
-        @media (min-width: 1024px) { .grid-split { grid-template-columns: 1.1fr 0.9fr; } }
-
-        .design-collage { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .design-collage .img-box { aspect-ratio: 1/1; }
-
-        .rest-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
-        @media (min-width: 768px) { .rest-grid { grid-template-columns: 1fr 1fr; } }
-        .work-list { list-style: none; font-size: 0.85rem; color: var(--text-muted); }
-        .work-list li { margin-bottom: 0.5rem; padding-left: 1.2rem; position: relative; }
-        .work-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--copper); }
-
-        /* CTA */
+     /* CTA */
         .cta { background: #000; color: #fff; text-align: center; padding: 9rem 2rem; }
         .btn-copper {
             display: inline-block; margin-top: 2rem; padding: 1.2rem 3.5rem;
@@ -166,7 +195,92 @@
         }
         .btn-copper:hover { background: var(--copper); color: #000; }
 
-        footer { padding: 6rem 0 3rem; background: #050505; border-top: 1px solid #111; font-size: 0.8rem; }
+       /* РАСШИРЕННЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР */
+        .footer-main {
+            background-color: #050505; /* Чуть темнее основного фона для глубины */
+            padding: 8rem 0 4rem;
+            border-top: 1px solid #1a1a1a;
+            color: #fff;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-label {
+            color: var(--copper);
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--copper);
+            padding-left: 5px;
+        }
+
+        /* Стиль для скачиваемых файлов */
+        .download-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff !important;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #444;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -213,65 +327,60 @@
         </div>
 
         <!-- 01: ДИЗАЙН ИНТЕРЬЕРА -->
+       <!-- 01: ДИЗАЙН ИНТЕРЬЕРА -->
+        <!-- 01: ДИЗАЙН ИНТЕРЬЕРА (Фото слева) -->
         <section id="design" class="container">
-            <a href="design.html" class="title-main">Дизайн интерьера и реализация «под ключ»</a>
             <div class="grid-split">
-                <div class="design-collage">
+                <div class="collage-grid">
                     <div class="img-box"><img src="img/design_1.webp" alt="1"></div>
                     <div class="img-box"><img src="img/design_2.webp" alt="2"></div>
                     <div class="img-box"><img src="img/design_3.webp" alt="3"></div>
                     <div class="img-box"><img src="img/design_4.webp" alt="4"></div>
                 </div>
-                <div>
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ремонт квартир, офисов и коммерческих помещений под ключ.</p>
-                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Мы создаем интерьеры, в которых продумана каждая деталь. От разработки уникального дизайн-проекта до полной реализации и комплектации объекта материалами.</p>
-                    <a href="design.html" class="btn-copper" style="padding: 1rem 2rem; font-size: 0.7rem;">Заказать дизайн-проект</a>
+                <div class="text-block">
+                    <a href="design.html" class="title-main">Дизайн интерьера и реализация «под ключ»</a>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Мы создаем интерьеры, в которых продумана каждая деталь. От разработки уникального дизайн-проекта до полной реализации.</p>
+                    <a href="design.html" class="btn-copper">Заказать дизайн-проект</a>
                 </div>
             </div>
             <div class="divider-accent"></div>
         </section>
 
-        <!-- 02: СТРОИТЕЛЬСТВО ДОМОВ -->
+        <!-- 02: СТРОИТЕЛЬСТВО ДОМОВ (Фото справа - REVERSE) -->
         <section id="cottages" class="container">
-            <h2 class="title-main">Строительство домов и коттеджей</h2>
-            <div class="grid-split">
-                <div>
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Проектирование и строительство загородных домов под ключ.</p>
-                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Берем на себя все этапы: от заливки фундамента и возведения стен до кровельных работ и фасадной отделки. Строим надежные дома для жизни с гарантией качества.</p>
-                    <a href="cottages.html" class="btn-copper" style="padding: 1rem 2rem; font-size: 0.7rem;">Рассчитать стоимость дома</a>
+            <div class="grid-split reverse">
+                <div class="collage-grid">
+                    <div class="img-box"><img src="img/cottage_1.webp" alt="1"></div>
+                    <div class="img-box"><img src="img/cottage_2.webp" alt="2"></div>
+                    <div class="img-box"><img src="img/cottage_3.webp" alt="3"></div>
+                    <div class="img-box"><img src="img/cottage_4.webp" alt="4"></div>
                 </div>
-                <div class="img-box" style="aspect-ratio: 16/10;">
-                    <img src="img/hero.webp" alt="Modern House">
+                <div class="text-block">
+                    <h2 class="title-main">Строительство домов и коттеджей</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Берем на себя все этапы: от заливки фундамента до кровельных работ и фасадной отделки. Строим надежные дома для жизни.</p>
+                    <a href="cottages.html" class="btn-copper">Рассчитать стоимость</a>
                 </div>
             </div>
             <div class="divider-accent"></div>
         </section>
 
-        <!-- 04: РЕСТАВРАЦИЯ -->
+        <!-- 03: РЕСТАВРАЦИЯ (Фото слева) -->
         <section id="restoration" class="container">
-            <h2 class="title-main">Реставрация памятников</h2>
-            <div class="rest-grid">
-                <div class="rest-card">
-                    <div class="img-box" style="aspect-ratio: 16/10;"><img src="img/rest_1.webp" alt="1"></div>
-                    <h3>Управление Свердловской железной дороги</h3>
-                    <ul class="work-list">
-                        <li>Проектные работы на реконструкцию (2006-2009 гг.)</li>
-                        <li>Замена кровли, окон, фасадные работы</li>
-                        <li>Усиление фундамента и межэтажных перекрытий</li>
-                    </ul>
+            <div class="grid-split">
+                <div class="collage-grid">
+                    <div class="img-box"><img src="img/rest_1.webp" alt="1"></div>
+                    <div class="img-box"><img src="img/rest_2.webp" alt="2"></div>
+                    <div class="img-box"><img src="img/rest_3.webp" alt="3"></div>
+                    <div class="img-box"><img src="img/rest_4.webp" alt="4"></div>
                 </div>
-                <div class="rest-card">
-                    <div class="img-box" style="aspect-ratio: 16/10;"><img src="img/rest_2.webp" alt="2"></div>
-                    <h3>Загородная дача архитектора Малахова М.П.</h3>
-                    <ul class="work-list">
-                        <li>Комплексные фасадные и отделочные работы</li>
-                        <li>Проектирование и монтаж инженерных сетей</li>
-                        <li>Реставрация декоративных элементов памятника</li>
-                    </ul>
+                <div class="text-block">
+                    <h2 class="title-main">Реставрация памятников архитектуры</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Уникальные инженерные компетенции по укреплению фундаментов и воссозданию памятников архитектуры. Лицензия Минкульта РФ.</p>
+                    <a href="restoration.html" class="btn-copper">Заказать консультацию</a>
                 </div>
             </div>
         </section>
-
+     
         <!-- CTA -->
         <section id="contact" class="cta">
             <div class="container">
@@ -282,22 +391,73 @@
         </section>
     </main>
 
-    <footer>
+  <footer class="footer-main">
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem;">
-                <div>
-                    <h4 style="color: var(--copper); margin-bottom: 1.5rem; font-size: 0.7rem; text-transform: uppercase;">Компания</h4>
-                    <p>ООО «УРАЛСТРОЙГАРАНТ»</p>
-                    <p style="color: var(--text-muted); font-size: 0.8rem;">ИНН 6670134875 | ОГРН 10696770134820</p>
+            <div class="footer-grid">
+                
+                <!-- Колонка 1: О компании -->
+                <div class="footer-col">
+                    <a href="#" class="logo-box" style="margin-bottom: 1rem;">УРАЛ<span>СТРОЙ</span>ГАРАНТ</a>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 250px;">
+                        Профессиональная реализация жилых и коммерческих объектов с 2006 года.
+                    </p>
+                    <p style="font-size: 0.8rem; color: #444;">
+                        ИНН 6670134875 <br> ОГРН 10696770134820
+                    </p>
                 </div>
-                <div>
-                    <h4 style="color: var(--copper); margin-bottom: 1.5rem; font-size: 0.7rem; text-transform: uppercase;">Контакты</h4>
-                    <p>Екатеринбург, ул. Мамина-Сибиряка, 14б</p>
-                    <p style="color: #fff;">+7 (343) 266-37-25</p>
+
+                <!-- Колонка 2: Навигация -->
+                <div class="footer-col">
+                    <span class="footer-label">Навигация</span>
+                    <ul class="footer-links">
+                        <li><a href="design.html">Дизайн интерьера</a></li>
+                        <li><a href="cottages.html">Строительство домов</a></li>
+                        <li><a href="restoration.html">Реставрация</a></li>
+                        <li><a href="showcase.html">Портфолио</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3: Документы и Карьера -->
+                <div class="footer-col">
+                    <span class="footer-label">Сотрудничество</span>
+                    <ul class="footer-links">
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Для поставщиков</a></li>
+                        <!-- Ссылка на скачивание лицензии -->
+                        <li>
+                            <a href="docs/license_minkult.pdf" download class="download-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--copper)"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                Лицензия Минкульта
+                            </a>
+                        </li>
+                        <li>
+                            <a href="docs/presentation.pdf" download class="download-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--copper)"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                Презентация компании
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4: Контакты -->
+                <div class="footer-col">
+                    <span class="footer-label">Контакты</span>
+                    <p style="font-size: 0.9rem;">Екатеринбург, <br>ул. Мамина-Сибиряка, 14б</p>
+                    <p style="font-size: 1.1rem; font-weight: 700; color: var(--copper);">+7 (343) 266-37-25</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">uralsg1@yandex.ru</p>
+                </div>
+
+            </div>
+
+            <!-- Нижняя плашка -->
+            <div class="footer-bottom">
+                <p>© 2006 — 2026 ООО «УРАЛСТРОЙГАРАНТ»</p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#" style="color: #444; text-decoration: none;">Политика конфиденциальности</a>
+                    <a href="#" style="color: #444; text-decoration: none;">Разработка сайта</a>
                 </div>
             </div>
         </div>
     </footer>
-
 </body>
 </html>
