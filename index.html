@@ -215,50 +215,32 @@ body.no-scroll { overflow: hidden; }
 
 
         /* СЕКЦИИ И РАЗДЕЛИТЕЛИ */
-        section { 
-            padding: 8rem 0; 
+      /* СЕКЦИИ И РАЗДЕЛИТЕЛИ */
+section { 
+    position: relative; 
+}
 
-         /* Базовые настройки для всех секций */
-        section { 
-            position: relative; 
-        }
+/* Отступы для контентных блоков */
+section:not(.hero) {
+    padding: 1rem 0; /* Мы уже уменьшили это значение ранее */
+}
 
-        /* Отступы ТОЛЬКО для контентных блоков (Дизайн, Дома, Реставрация) */
-        /* Мы говорим браузеру: примени это ко всем section, КРОМЕ той, у которой класс .hero */
-        section:not(.hero) {
-            padding: 8rem 0; /* Увеличивай это число (например, 15rem или 20rem), чтобы раздвинуть блоки */
-        }
+/* УДАЛИЛИ section::after (тонкую серую линию) */
 
-        
-        section::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #222, transparent);
-        }
-        
-        .divider-accent {
-            width: 60px;
-            height: 3px;
-            background: var(--copper);
-            margin: 0 auto;
-            position: absolute;
-            bottom: -1px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-        }
+/* УДАЛИЛИ .divider-accent (короткую медную полоску) */
+.divider-accent {
+    display: none;
+}
 
-        .title-main {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 3rem; color: #fff;
-            text-decoration: none; display: inline-block;
-        }
-        .title-main:hover { color: var(--copper); }
+.title-main {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); 
+    margin-bottom: 2rem; /* Немного уменьшил отступ под заголовком */
+    color: #fff;
+    text-decoration: none; 
+    display: inline-block;
+}
+.title-main:hover { color: var(--copper); }
 
         /* СЕТКИ И ФОТО */
 /* УНИВЕРСАЛЬНАЯ СЕТКА ДЛЯ ВСЕХ РАЗДЕЛОВ */
@@ -309,7 +291,7 @@ body.no-scroll { overflow: hidden; }
         }
 
      /* CTA */
-        .cta { background: #000; color: #fff; text-align: center; padding: 9rem 2rem; }
+        .cta { background: #000; color: #fff; text-align: center; padding: 18rem 2rem; }
         .btn-copper {
             display: inline-block; margin-top: 2rem; padding: 1.2rem 3.5rem;
             border: 1px solid var(--copper); color: #fff; text-decoration: none;
@@ -404,6 +386,8 @@ body.no-scroll { overflow: hidden; }
             }
         }
     </style>
+
+        
 </head>
 <body>
 
@@ -536,7 +520,7 @@ body.no-scroll { overflow: hidden; }
         </section>
      
         <!-- CTA -->
-        <section id="contact" class="cta">
+       <section id="contact" class="cta" style="padding: 12rem 0 !important;">
             <div class="container">
                 <h2 class="title-main" style="margin-bottom: 1rem;">Начните проект с экспертами</h2>
                 <p style="opacity: 0.7;">Закажите бесплатный замер и техническую консультацию на вашем объекте.</p>
@@ -613,6 +597,7 @@ body.no-scroll { overflow: hidden; }
             </div>
         </div>
     </footer>
+
 <script>
     // Логика мобильного меню
     const menuBtn = document.getElementById('mobile-menu-btn');
