@@ -385,6 +385,75 @@ section:not(.hero) {
                 text-align: center;
             }
         }
+/* ПЛАВАЮЩИЙ ВИДЖЕТ */
+/* НОВЫЙ РАСКРЫВАЮЩИЙСЯ ВИДЖЕТ */
+/* ВИДЖЕТ СВЯЗИ */
+.fab-wrapper {
+    position: fixed; bottom: 30px; right: 30px; z-index: 2000;
+    display: flex; flex-direction: column-reverse; align-items: center; gap: 15px;
+}
+
+.fab-main-trigger {
+    width: 65px; height: 65px; background: var(--copper); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 25px rgba(184, 115, 51, 0.4); cursor: pointer;
+    position: relative; transition: 0.4s;
+    animation: fabPulse 2s infinite; /* Пульсация по умолчанию */
+}
+
+/* Иконки внутри главной кнопки */
+.fab-main-trigger svg, .fab-icon-close {
+    position: absolute; width: 28px; fill: #fff; transition: 0.4s;
+}
+
+.fab-icon-close {
+    font-size: 35px; color: #fff; opacity: 0; transform: scale(0.5);
+}
+
+/* Анимация смены иконок (Трубка / Письмо) */
+@keyframes iconToggle { 0%, 45% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes iconToggleAlt { 0%, 45% { opacity: 0; } 50%, 100% { opacity: 1; } }
+
+.icon-phone-main { animation: iconToggle 4s infinite; }
+.icon-msg-main { animation: iconToggleAlt 4s infinite; }
+
+/* Пульсация */
+@keyframes fabPulse {
+    0% { box-shadow: 0 0 0 0 rgba(184, 115, 51, 0.7); transform: scale(1); }
+    70% { box-shadow: 0 0 0 15px rgba(184, 115, 51, 0); transform: scale(1.05); }
+    100% { box-shadow: 0 0 0 0 rgba(184, 115, 51, 0); transform: scale(1); }
+}
+
+/* СОСТОЯНИЕ ПРИ ОТКРЫТИИ (ACTIVE) */
+.fab-wrapper.active .fab-main-trigger {
+    animation: none; /* Выключаем пульсацию */
+    background: #222; transform: rotate(90deg);
+}
+
+.fab-wrapper.active .icon-phone-main,
+.fab-wrapper.active .icon-msg-main {
+    opacity: 0 !important; animation: none; /* Прячем трубку и письмо */
+}
+
+.fab-wrapper.active .fab-icon-close {
+    opacity: 1; transform: scale(1) rotate(-90deg); /* Показываем крестик */
+}
+
+/* Опции (маленькие кнопки) */
+.fab-options {
+    display: flex; flex-direction: column-reverse; gap: 15px;
+    opacity: 0; visibility: hidden; transform: translateY(20px); transition: 0.3s;
+}
+.fab-wrapper.active .fab-options { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.fab-sub {
+    width: 50px; height: 50px; background: #1a1a1a; border: 1px solid var(--copper);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: 0.3s;
+}
+.fab-sub svg { width: 22px; fill: var(--copper); }
+.fab-sub:hover { background: var(--copper); }
+.fab-sub:hover svg { fill: #000; }
     </style>
 
         
@@ -399,11 +468,12 @@ section:not(.hero) {
         
         <!-- Десктопное меню -->
         <div class="nav-menu">
-            <a href="design.html">Дизайн</a>
-            <a href="cottages.html">Дома</a>
-            <a href="restoration.html">Реставрация</a>
-            <a href="showcase.html">Портфолио</a>
-        </div>
+    <a href="index.html">Главная</a>
+    <a href="design.html">Дизайн</a>
+    <a href="cottages.html">Дома</a>
+    <a href="restoration.html">Реставрация</a>
+    <a href="showcase.html">Портфолио</a>
+</div>
 
         <!-- Блок контактов и мобильная кнопка -->
         <div class="nav-right">
@@ -427,14 +497,15 @@ section:not(.hero) {
 </header>
 
 <!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
+<!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
 <div class="mobile-overlay" id="mobile-menu">
+    <a href="index.html" onclick="toggleMenu()">Главная</a>
     <a href="design.html" onclick="toggleMenu()">Дизайн интерьера</a>
     <a href="cottages.html" onclick="toggleMenu()">Строительство домов</a>
     <a href="restoration.html" onclick="toggleMenu()">Реставрация</a>
     <a href="showcase.html" onclick="toggleMenu()">Портфолио</a>
     <div class="mobile-phone" onclick="openPhoneModal()">+7 (343) 266-37-25</div>
 </div>
-
 <!-- МОДАЛЬНОЕ ОКНО С ТЕЛЕФОНОМ -->
 <div class="phone-modal-overlay" id="phoneModal">
     <div class="phone-modal-card">
@@ -559,8 +630,8 @@ section:not(.hero) {
                 <div class="footer-col">
                     <span class="footer-label">Сотрудничество</span>
                     <ul class="footer-links">
-                        <li><a href="#">Вакансии</a></li>
-                        <li><a href="#">Для поставщиков</a></li>
+                        <li><a href="jobs.html">Вакансии</a></li>
+                        <li><a href="suppliers.html">Для поставщиков</a></li>
                         <!-- Ссылка на скачивание лицензии -->
                         <li>
                             <a href="docs/license_minkult.pdf" download class="download-link">
@@ -598,39 +669,90 @@ section:not(.hero) {
         </div>
     </footer>
 
+<!-- ПЛАВАЮЩИЙ ВИДЖЕТ СВЯЗИ -->
+<!-- РАСКРЫВАЮЩИЙСЯ ВИДЖЕТ СВЯЗИ -->
+<!-- РАСКРЫВАЮЩИЙСЯ ВИДЖЕТ СВЯЗИ -->
+<!-- РАСКРЫВАЮЩИЙСЯ ВИДЖЕТ СВЯЗИ -->
+<!-- РАСКРЫВАЮЩИЙСЯ ВИДЖЕТ СВЯЗИ -->
+<div class="fab-wrapper" id="fabMenu">
+    <!-- Главная кнопка-триггер -->
+    <div class="fab-main-trigger" onclick="toggleFabMenu(event)">
+        <!-- Иконки, которые меняются (видны, когда меню закрыто) -->
+        <svg class="icon-phone-main" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <svg class="icon-msg-main" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
+        
+        <!-- Крестик (виден, когда меню открыто) -->
+        <span class="fab-icon-close">&times;</span>
+    </div>
+
+    <!-- Дополнительные кнопки -->
+    <div class="fab-options">
+        <div class="fab-sub" onclick="alert('Чат в разработке')" title="Написать сообщение">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
+        </div>
+        <div class="fab-sub" onclick="openPhoneModal()" title="Позвонить">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+    </div>
+</div>
 <script>
-    // Логика мобильного меню
+    /* 1. МОДАЛЬНОЕ ОКНО ТЕЛЕФОНА */
+    function openPhoneModal() {
+        const modal = document.getElementById('phoneModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    function closePhoneModal() {
+        const modal = document.getElementById('phoneModal');
+        if (modal) {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            }, 400);
+        }
+    }
+
+    /* 2. ВИДЖЕТ СВЯЗИ (FAB) */
+    function toggleFabMenu(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        const menu = document.getElementById('fabMenu');
+        if (menu) {
+            menu.classList.toggle('active');
+            console.log("Виджет нажат, класс active добавлен:", menu.classList.contains('active'));
+        }
+    }
+
+    /* 3. МОБИЛЬНОЕ МЕНЮ */
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
     function toggleMenu() {
-        menuBtn.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
+        if (menuBtn && mobileMenu) {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        }
     }
-    menuBtn.addEventListener('click', toggleMenu);
+    if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
 
-    // Логика модального окна телефона
-    const phoneModal = document.getElementById('phoneModal');
+    /* 4. ЗАКРЫТИЕ ПРИ КЛИКЕ МИМО */
+    window.onclick = function(event) {
+        // Закрыть телефон
+        const modal = document.getElementById('phoneModal');
+        if (event.target === modal) closePhoneModal();
 
-    function openPhoneModal() {
-        phoneModal.style.display = 'flex';
-        setTimeout(() => phoneModal.classList.add('active'), 10);
-        document.body.classList.add('no-scroll');
-    }
-
-    function closePhoneModal() {
-        phoneModal.classList.remove('active');
-        setTimeout(() => {
-            phoneModal.style.display = 'none';
-            document.body.classList.remove('no-scroll');
-        }, 400);
-    }
-
-    // Закрытие по клику на темный фон
-    window.addEventListener('click', (e) => {
-        if (e.target === phoneModal) closePhoneModal();
-    });
+        // Закрыть виджет
+        const menu = document.getElementById('fabMenu');
+        if (menu && !menu.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+    };
 </script>
-</body>
-</html>
