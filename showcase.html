@@ -531,28 +531,17 @@ body.no-scroll {
     </div>
 </header>
 
-<!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
-<div class="mobile-overlay" id="mobile-menu">
-    <a href="index.html" onclick="toggleMenu()">Главная</a>
-    <a href="design.html" onclick="toggleMenu()">Дизайн интерьера</a>
-    <a href="cottages.html" onclick="toggleMenu()">Строительство домов</a>
-    <a href="restoration.html" onclick="toggleMenu()">Реставрация</a>
-    <a href="showcase.html" onclick="toggleMenu()">Портфолио</a>
-    <div class="mobile-phone" onclick="openPhoneModal()">+7 (343) 266-37-25</div>
-</div> 
-
-    <main>
+<main>
         <div class="container">
             <div class="page-intro">
                 <span class="section-label">Пространства</span>
                 <h1>Всего сделано более 1500 проектов</h1>
- <p>Здесь мы оставили самые, на наш взгляд, интересные объекты, демонстрирующие наш подход к качеству и эстетике.</p>
-    </div>
+                <p>Здесь мы оставили самые интересные объекты, демонстрирующие наш подход к качеству и эстетике.</p>
+            </div>
 
-            
-
+            <!-- СЕТКА ПОРТФОЛИО -->
             <div class="portfolio-grid" id="portfolioGrid">
-                <!-- Карточки генерируются скриптом -->
+                <!-- Карточки генерируются скриптом ниже -->
             </div>
 
             <div class="portfolio-footer">
@@ -560,16 +549,15 @@ body.no-scroll {
             </div>
         </div>
 
+        <!-- СЕКЦИЯ КОНСУЛЬТАЦИИ -->
         <section class="consult-unified">
             <div class="container">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; text-align: center;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; text-align: center; color: #fff;">
                     Запишитесь на консультацию <br>к профессиональному дизайнеру
                 </h2>
-                <p style="color: var(--copper); text-align: center; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-top: 2rem;">Что вы получаете сразу после консультации</p>
-
                 <div class="bonus-grid">
                     <div class="bonus-card"><div class="check-circle">✓</div><h4>Планировочные решения</h4><p>Рекомендации по выбору планировки под ваш сценарий жизни.</p></div>
-                    <div class="bonus-card"><div class="check-circle">✓</div><h4>Стилистический концепт</h4><p>Визуальный коллаж вашей будущей квартиры, составленный прямо на встрече.</p></div>
+                    <div class="bonus-card"><div class="check-circle">✓</div><h4>Стилистический концепт</h4><p>Визуальный коллаж вашей будущей квартиры прямо на встрече.</p></div>
                     <div class="bonus-card"><div class="check-circle">✓</div><h4>Бюджетирование</h4><p>Предварительный расчет стоимости реализации проекта под ваш бюджет.</p></div>
                 </div>
 
@@ -589,355 +577,208 @@ body.no-scroll {
         </section>
     </main>
 
+    <!-- ГАЛЕРЕЯ (МОДАЛКА) -->
     <div id="galleryOverlay" class="gallery-overlay">
         <div class="close-gallery" onclick="closeGallery()">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </div>
         <div class="gallery-content">
             <div class="gallery-header">
-                <h2 id="modalTitle">Название объекта</h2>
-                <p id="modalDesc" style="color: var(--copper); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Описание</p>
+                <h2 id="modalTitle" style="color:#fff; font-family: 'Playfair Display', serif; font-size: 2.5rem;"></h2>
+                <p id="modalDesc" style="color: var(--copper); text-transform: uppercase; letter-spacing: 2px;"></p>
             </div>
             <div class="gallery-grid" id="galleryGrid"></div>
         </div>
     </div>
 
-     <footer class="footer-main">
+    <footer class="footer-main">
         <div class="container">
             <div class="footer-grid">
-                
-                <!-- Колонка 1: О компании -->
                 <div class="footer-col">
-                    <a href="#" class="logo-box" style="margin-bottom: 1rem;">УРАЛ<span>СТРОЙ</span>ГАРАНТ</a>
-                    <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 250px;">
-                        Профессиональная реализация жилых и коммерческих объектов с 2006 года.
-                    </p>
-                    <p style="font-size: 0.8rem; color: #444;">
-                        ИНН 6670134875 <br> ОГРН 10696770134820
-                    </p>
+                    <a href="index.html" class="logo-box" style="margin-bottom: 1rem;">УРАЛ<span>СТРОЙ</span>ГАРАНТ</a>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 250px;">Профессиональная реализация жилых и коммерческих объектов с 2006 года.</p>
+                    <p style="font-size: 0.8rem; color: #444;">ИНН 6670134875 <br> ОГРН 10696770134820</p>
                 </div>
-
-                <!-- Колонка 2: Навигация -->
                 <div class="footer-col">
                     <span class="footer-label">Навигация</span>
                     <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
                         <li><a href="design.html">Дизайн интерьера</a></li>
                         <li><a href="cottages.html">Строительство домов</a></li>
-                        <li><a href="restoration.html">Реставрация</a></li>
                         <li><a href="showcase.html">Портфолио</a></li>
                     </ul>
                 </div>
-
-                <!-- Колонка 3: Документы и Карьера -->
                 <div class="footer-col">
                     <span class="footer-label">Сотрудничество</span>
                     <ul class="footer-links">
-                        <li><a href="#">Вакансии</a></li>
-                        <li><a href="#">Для поставщиков</a></li>
-                        <!-- Ссылка на скачивание лицензии -->
-                        <li>
-                            <a href="docs/license_minkult.pdf" download class="download-link">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--copper)"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                                Лицензия Минкульта
-                            </a>
-                        </li>
-                        <li>
-                            <a href="docs/presentation.pdf" download class="download-link">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--copper)"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                                Презентация компании
-                            </a>
-                        </li>
+                        <li><a href="jobs.html">Вакансии</a></li>
+                        <li><a href="suppliers.html">Для поставщиков</a></li>
+                        <li><a href="docs/license_minkult.pdf" download class="download-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--copper)"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            Лицензия Минкульта
+                        </a></li>
                     </ul>
                 </div>
-
-                <!-- Колонка 4: Контакты -->
                 <div class="footer-col">
                     <span class="footer-label">Контакты</span>
-                    <p style="font-size: 0.9rem;">Екатеринбург, <br>ул. Мамина-Сибиряка, 14б</p>
+                    <p style="font-size: 0.9rem; color:#fff;">Екатеринбург, <br>ул. Мамина-Сибиряка, 14б</p>
                     <p style="font-size: 1.1rem; font-weight: 700; color: var(--copper);">+7 (343) 266-37-25</p>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">uralsg1@yandex.ru</p>
-                </div>
-
-            </div>
-
-            <!-- Нижняя плашка -->
-            <div class="footer-bottom">
-                <p>© 2006 — 2026 ООО «УРАЛСТРОЙГАРАНТ»</p>
-                <div style="display: flex; gap: 2rem;">
-                    <a href="#" style="color: #444; text-decoration: none;">Политика конфиденциальности</a>
-                    <a href="#" style="color: #444; text-decoration: none;">Разработка сайта</a>
                 </div>
             </div>
         </div>
     </footer>
 
-
-   <!-- МОДАЛЬНОЕ ОКНО С ТЕЛЕФОНОМ -->
-<div class="phone-modal-overlay" id="phoneModal">
-    <div class="phone-modal-card">
-        <div class="close-modal" onclick="closePhoneModal()">&times;</div>
-        <span class="modal-label">Связаться с нами</span>
-        <a href="tel:+73432663725" class="modal-phone-number">+7 (343) 266-37-25</a>
-        <p>Пн-Пт: 09:00 — 18:00</p>
-        <div class="modal-divider"></div>
-        <p style="font-size: 0.7rem; opacity: 0.6;">Нажмите на номер, чтобы позвонить</p>
-    </div>
-</div>
-           
-<!-- ПЛАВАЮЩИЙ ВИДЖЕТ СВЯЗИ -->
-    <!-- РАСКРЫВАЮЩИЙСЯ ВИДЖЕТ СВЯЗИ -->
-<div class="fab-wrapper" id="fabMenu">
-    <!-- Главная кнопка-триггер -->
-    <div class="fab-main-trigger" onclick="toggleFabMenu(event)">
-        <!-- Иконки, которые меняются (видны, когда меню закрыто) -->
-        <svg class="icon-phone-main" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        <svg class="icon-msg-main" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
-        
-        <!-- Крестик (виден, когда меню открыто) -->
-        <span class="fab-icon-close">&times;</span>
-    </div>
-
-    <!-- Дополнительные кнопки (вылетают вверх) -->
-    <div class="fab-options">
-        <!-- Кнопка Сообщение -->
-        <div class="fab-sub" onclick="alert('Чат в разработке')" title="Написать сообщение">
-            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
-        </div>
-        <!-- Кнопка Звонок -->
-        <div class="fab-sub" onclick="openPhoneModal()" title="Позвонить">
-            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    <!-- МОДАЛКА ТЕЛЕФОНА -->
+    <div class="phone-modal-overlay" id="phoneModal">
+        <div class="phone-modal-card">
+            <div class="close-modal" onclick="closePhoneModal()">&times;</div>
+            <span class="modal-label">Связаться с нами</span>
+            <a href="tel:+73432663725" class="modal-phone-number">+7 (343) 266-37-25</a>
+            <p style="color:#888">Пн-Пт: 09:00 — 18:00</p>
         </div>
     </div>
-</div>
 
+    <!-- ВИДЖЕТ СВЯЗИ -->
+    <div class="fab-wrapper" id="fabMenu">
+        <div class="fab-main-trigger" onclick="toggleFabMenu(event)">
+            <svg class="icon-phone-main" viewBox="0 0 24 24" style="width:28px; height:28px; fill:#fff;"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <svg class="icon-msg-main" viewBox="0 0 24 24" style="width:28px; height:28px; fill:#fff;"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
+            <span class="fab-icon-close">&times;</span>
+        </div>
+        <div class="fab-options">
+            <div class="fab-sub" onclick="alert('Чат в разработке')"><svg viewBox="0 0 24 24" style="width:22px; fill:#B87333;"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg></div>
+            <div class="fab-sub" onclick="openPhoneModal()"><svg viewBox="0 0 24 24" style="width:22px; fill:#B87333;"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+        </div>
+    </div>
 
- <script>
-    // ========================================================
-    // 1. БАЗА ДАННЫХ ОБЪЕКТОВ (РЕДАКТИРУЙ ТЕКСТ ЗДЕСЬ)
-    // ========================================================
-    // Просто меняй текст в кавычках. 
-    // title — это жирный заголовок, desc — это описание под ним.
-   // 1. БАЗА ДАННЫХ (32 объекта)
-    const portfolioData = [
-        { title: "ЖК «Кандинский»", desc: "Премиальный пентхаус в стиле минимализм" },
-        { title: "ЖК «Макаровский»", desc: "Апартаменты с видом на набережную" },
-        { title: "Вилла в Карасьеозерском", desc: "Загородная резиденция 450 м²" },
-        { title: "БЦ «Высоцкий»", desc: "Офис представительского класса" },
-        { title: "ЖК «Форум Сити»", desc: "Лофт-пространство для жизни" },
-        { title: "Название объекта 6", desc: "Здесь будет описание" },
-        { title: "Название объекта 7", desc: "Здесь будет описание" },
-        { title: "Название объекта 8", desc: "Здесь будет описание" },
-        { title: "Название объекта 9", desc: "Здесь будет описание" },
-        { title: "Название объекта 10", desc: "Здесь будет описание" },
-        { title: "Название объекта 11", desc: "Здесь будет описание" },
-        { title: "Название объекта 12", desc: "Здесь будет описание" },
-        { title: "Название объекта 13", desc: "Здесь будет описание" },
-        { title: "Название объекта 14", desc: "Здесь будет описание" },
-        { title: "Название объекта 15", desc: "Здесь будет описание" },
-        { title: "Название объекта 16", desc: "Здесь будет описание" },
-        { title: "Название объекта 17", desc: "Здесь будет описание" },
-        { title: "Название объекта 18", desc: "Здесь будет описание" },
-        { title: "Название объекта 19", desc: "Здесь будет описание" },
-        { title: "Название объекта 20", desc: "Здесь будет описание" },
-        { title: "Название объекта 21", desc: "Здесь будет описание" },
-        { title: "Название объекта 22", desc: "Здесь будет описание" },
-        { title: "Название объекта 23", desc: "Здесь будет описание" },
-        { title: "Название объекта 24", desc: "Здесь будет описание" },
-        { title: "Название объекта 25", desc: "Здесь будет описание" },
-        { title: "Название объекта 26", desc: "Здесь будет описание" },
-        { title: "Название объекта 27", desc: "Здесь будет описание" },
-        { title: "Название объекта 28", desc: "Здесь будет описание" },
-        { title: "Название объекта 29", desc: "Здесь будет описание" },
-        { title: "Название объекта 30", desc: "Здесь будет описание" },
-        { title: "Название объекта 31", desc: "Здесь будет описание" },
-        { title: "Название объекта 32", desc: "Здесь будет описание" }
-    ];
+    <script>
+        const portfolioData = [
+            { title: "ЖК «Кандинский»", desc: "Премиальный пентхаус в стиле минимализм" },
+            { title: "ЖК «Макаровский»", desc: "Апартаменты с видом на набережную" },
+            { title: "Вилла в Карасьеозерском", desc: "Загородная резиденция 450 м²" },
+            { title: "БЦ «Высоцкий»", desc: "Офис представительского класса" },
+            { title: "ЖК «Форум Сити»", desc: "Лофт-пространство для жизни" },
+            { title: "Проект №6", desc: "Описание вашего интерьера" },
+            { title: "Проект №7", desc: "Описание вашего интерьера" },
+            { title: "Проект №8", desc: "Описание вашего интерьера" },
+            { title: "Проект №9", desc: "Описание вашего интерьера" },
+            { title: "Проект №10", desc: "Описание вашего интерьера" },
+            { title: "Проект №11", desc: "Описание вашего интерьера" },
+            { title: "Проект №12", desc: "Описание вашего интерьера" },
+            { title: "Проект №13", desc: "Описание вашего интерьера" },
+            { title: "Проект №14", desc: "Описание вашего интерьера" },
+            { title: "Проект №15", desc: "Описание вашего интерьера" },
+            { title: "Проект №16", desc: "Описание вашего интерьера" },
+            { title: "Проект №17", desc: "Описание вашего интерьера" },
+            { title: "Проект №18", desc: "Описание вашего интерьера" },
+            { title: "Проект №19", desc: "Описание вашего интерьера" },
+            { title: "Проект №20", desc: "Описание вашего интерьера" },
+            { title: "Проект №21", desc: "Описание вашего интерьера" }
+        ];
 
-    const portfolioGrid = document.getElementById('portfolioGrid');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    let visibleCount = 4;
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        let visibleCount = 4;
 
-    function initPortfolio() {
-        let html = '';
-        portfolioData.forEach((project, index) => {
-            const id = index + 1;
-            const isHidden = id > visibleCount ? 'hidden' : '';
-            html += `
-                <div class="project-frame ${isHidden}" id="project-${id}" onclick="openGallery(${index})">
-                    <div class="project-card">
-                        <div class="hover-btn">Посмотреть проект</div>
-                        <img src="img/work_${id}.webp" alt="${project.title}" loading="lazy" onerror="handleImgError(${id})">
-                        <div class="project-info-overlay">
-                            <h3>${project.title}</h3>
-                            <p>${project.desc}</p>
+        function initPortfolio() {
+            let html = '';
+            portfolioData.forEach((project, index) => {
+                const id = index + 1;
+                const isHidden = id > visibleCount ? 'hidden' : '';
+                html += `
+                    <div class="project-frame ${isHidden}" onclick="openGallery(${index})">
+                        <div class="project-card">
+                            <div class="hover-btn">Посмотреть проект</div>
+                            <img src="img/work_${id}.webp" alt="${project.title}" loading="lazy">
+                            <div class="project-info-overlay">
+                                <h3>${project.title}</h3>
+                                <p>${project.desc}</p>
+                            </div>
                         </div>
-                    </div>
-                </div>`;
-        });
-        portfolioGrid.innerHTML = html;
-        checkLoadMoreButton(); // Проверяем кнопку сразу после создания
-    }
-
-    function handleImgError(id) {
-        const card = document.getElementById('project-' + id);
-        if (card) {
-            card.remove(); // Удаляем карточку, если картинки нет
+                    </div>`;
+            });
+            portfolioGrid.innerHTML = html;
+            updateButtonVisibility();
         }
-        checkLoadMoreButton(); // Перепроверяем кнопку
-    }
 
-    function loadMore() {
-        const hiddenCards = Array.from(document.querySelectorAll('.project-frame.hidden'));
-        const nextBatch = hiddenCards.slice(0, 4);
-        nextBatch.forEach(card => card.classList.remove('hidden'));
-        checkLoadMoreButton();
-    }
-
-    function checkLoadMoreButton() {
-        const remainingHidden = document.querySelectorAll('.project-frame.hidden').length;
-        if (remainingHidden === 0) {
-            loadMoreBtn.style.display = 'none';
-        } else {
-            loadMoreBtn.style.display = 'inline-block';
+        function loadMore() {
+            const hiddenCards = Array.from(document.querySelectorAll('.project-frame.hidden'));
+            const nextBatch = hiddenCards.slice(0, 4);
+            nextBatch.forEach(card => card.classList.remove('hidden'));
+            updateButtonVisibility();
         }
-    }
 
-    // Остальные функции (openGallery, closeGallery, модалки и т.д.) оставляй как были
-    function openGallery(index) {
-        const project = portfolioData[index];
-        const id = index + 1;
-        const modal = document.getElementById('galleryOverlay');
-        const grid = document.getElementById('galleryGrid');
-        document.getElementById('modalTitle').innerText = project.title;
-        document.getElementById('modalDesc').innerText = project.desc;
-        grid.innerHTML = '';
-        for (let j = 1; j <= 10; j++) {
-            grid.innerHTML += `<div class="gallery-img-wrap"><img src="img/p${id}_${j}.webp" onerror="this.parentElement.remove()"></div>`;
+        function updateButtonVisibility() {
+            const remainingHidden = document.querySelectorAll('.project-frame.hidden').length;
+            if (loadMoreBtn) loadMoreBtn.style.display = remainingHidden === 0 ? 'none' : 'inline-block';
         }
-        modal.style.display = 'block';
-        setTimeout(() => modal.classList.add('active'), 10);
-        document.body.classList.add('no-scroll');
-    }
 
-    function closeGallery() {
-        const modal = document.getElementById('galleryOverlay');
-        if (modal) {
-            modal.classList.remove('active');
-            setTimeout(() => { modal.style.display = 'none'; document.body.classList.remove('no-scroll'); }, 400);
-        }
-    }
-
-    function toggleFabMenu(e) {
-        if (e) { e.preventDefault(); e.stopPropagation(); }
-        const menu = document.getElementById('fabMenu');
-        if (menu) menu.classList.toggle('active');
-    }
-
-    function openPhoneModal() {
-        const modal = document.getElementById('phoneModal');
-        if (modal) {
-            modal.style.display = 'flex';
+        function openGallery(index) {
+            const project = portfolioData[index];
+            const id = index + 1;
+            const modal = document.getElementById('galleryOverlay');
+            const grid = document.getElementById('galleryGrid');
+            document.getElementById('modalTitle').innerText = project.title;
+            document.getElementById('modalDesc').innerText = project.desc;
+            grid.innerHTML = '';
+            for (let j = 1; j <= 10; j++) {
+                grid.innerHTML += `<div class="gallery-img-wrap"><img src="img/p${id}_${j}.webp" onerror="this.parentElement.remove()"></div>`;
+            }
+            modal.style.display = 'block';
             setTimeout(() => modal.classList.add('active'), 10);
             document.body.classList.add('no-scroll');
         }
-    }
 
-    function closePhoneModal() {
-        const modal = document.getElementById('phoneModal');
-        if (modal) {
-            modal.classList.remove('active');
-            setTimeout(() => { modal.style.display = 'none'; document.body.classList.remove('no-scroll'); }, 400);
-        }
-    }
-
-    window.addEventListener('click', (e) => {
-        if (e.target.id === 'galleryOverlay') closeGallery();
-        if (e.target.id === 'phoneModal') closePhoneModal();
-        const fabMenu = document.getElementById('fabMenu');
-        if (fabMenu && !fabMenu.contains(e.target)) fabMenu.classList.remove('active');
-    });
-
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (menuBtn) {
-        menuBtn.onclick = function() {
-            this.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.classList.toggle('no-scroll');
-        };
-    }
-
-    initPortfolio();
-
-
-   // ОБЩИЙ ОБРАБОТЧИК КЛИКОВ (ДЛЯ ВСЕГО)
-    window.addEventListener('click', (e) => {
-        // 1. Закрытие галереи портфолио
-        const gallery = document.getElementById('galleryOverlay');
-        if (e.target === gallery) {
-            closeGallery();
+        function closeGallery() {
+            const modal = document.getElementById('galleryOverlay');
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => { modal.style.display = 'none'; document.body.classList.remove('no-scroll'); }, 400);
+            }
         }
 
-        // 2. Закрытие модалки телефона
-        const phoneModal = document.getElementById('phoneModal');
-        if (e.target === phoneModal) {
-            closePhoneModal();
+        function openPhoneModal() {
+            const modal = document.getElementById('phoneModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                setTimeout(() => modal.classList.add('active'), 10);
+                document.body.classList.add('no-scroll');
+            }
         }
 
-        // 3. Закрытие виджета FAB при клике мимо
-        const fabMenu = document.getElementById('fabMenu');
-        if (fabMenu && !fabMenu.contains(e.target)) {
-            fabMenu.classList.remove('active');
+        function closePhoneModal() {
+            const modal = document.getElementById('phoneModal');
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => { modal.style.display = 'none'; document.body.classList.remove('no-scroll'); }, 400);
+            }
         }
-    });
 
-    // ЛОГИКА ВИДЖЕТА СВЯЗИ (FAB)
-    function toggleFabMenu(e) {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
+        function toggleFabMenu(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            const menu = document.getElementById('fabMenu');
+            if (menu) menu.classList.toggle('active');
         }
-        const menu = document.getElementById('fabMenu');
-        if (menu) {
-            menu.classList.toggle('active');
-        }
-    }
 
-    // ФУНКЦИИ МОДАЛКИ ТЕЛЕФОНА
-    function openPhoneModal() {
-        const modal = document.getElementById('phoneModal');
-        if (modal) {
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('active'), 10);
-            document.body.style.overflow = 'hidden';
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        function toggleMenu() {
+            if (menuBtn && mobileMenu) {
+                menuBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            }
         }
-    }
+        if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
 
-    function closePhoneModal() {
-        const modal = document.getElementById('phoneModal');
-        if (modal) {
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-            }, 400);
-        }
-    }
+        window.addEventListener('click', (e) => {
+            if (e.target.id === 'galleryOverlay') closeGallery();
+            if (e.target.id === 'phoneModal') closePhoneModal();
+            const fabMenu = document.getElementById('fabMenu');
+            if (fabMenu && !fabMenu.contains(e.target)) fabMenu.classList.remove('active');
+        });
 
-    // Инициализация портфолио
-    initPortfolio();
-// ЛОГИКА МОБИЛЬНОГО МЕНЮ
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    function toggleMenu() {
-        if (menuBtn && mobileMenu) {
-            menuBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.classList.toggle('no-scroll');
-        }
-    }
-    if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
-</script>
+        initPortfolio();
+    </script>
 </body>
 </html>
