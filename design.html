@@ -905,16 +905,25 @@ body.no-scroll { overflow: hidden; }
             </div>
 
             <!-- ШАГ 7 -->
-            <div class="quiz-step" data-step="7">
-                <div class="quiz-header"><span>Финальный шаг</span><span class="step-percent">99% готово</span></div>
-                <h2 class="quiz-title">Оставьте контакты для получения расчета</h2>
-                <div class="quiz-options-list">
-                    <input type="text" placeholder="Ваше имя" style="width:100%; padding:1.2rem; background:#111; border:1px solid #333; color:#fff; margin-bottom:1rem;">
-                    <input type="tel" placeholder="Ваш телефон" style="width:100%; padding:1.2rem; background:#111; border:1px solid #333; color:#fff;">
-                    <p style="font-size:0.7rem; margin-top:1rem; opacity:0.5;">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
-                </div>
-            </div>
-
+            <!-- ШАГ 7 -->
+<!-- ШАГ 7 -->
+<div class="quiz-step" data-step="7">
+    <div class="quiz-header"><span>Финальный шаг</span><span class="step-percent">99% готово</span></div>
+    <h2 class="quiz-title">Оставьте контакты для получения расчета</h2>
+    <div class="quiz-options-list">
+        <input type="text" id="quizName" placeholder="Ваше имя" style="width:100%; padding:1.2rem; background:#111; border:1px solid #333; color:#fff; margin-bottom:1rem;">
+        
+        <!-- Поле телефона -->
+        <input type="tel" id="quizPhone" placeholder="Ваш телефон" style="width:100%; padding:1.2rem; background:#111; border:1px solid #333; color:#fff;">
+        <!-- Красная надпись (скрыта по умолчанию) -->
+        <div id="quizPhoneWarning" style="color: #ff4d4d; font-size: 0.7rem; margin-top: 5px; margin-bottom: 10px; display: none;">Используйте только цифры</div>
+        
+        <p style="font-size:0.7rem; margin-top:1rem; opacity:0.5; color: #fff;">
+            Нажимая кнопку, вы соглашаетесь с 
+            <a href="privacy.html" target="_blank" style="color: var(--copper); text-decoration: underline;">политикой конфиденциальности</a>
+        </p>
+    </div>
+</div>
             <!-- КНОПКИ НАВИГАЦИИ -->
             <div class="quiz-nav" id="quizNav">
                 <button class="btn-quiz" id="prevBtn" onclick="changeStep(-1)" style="visibility: hidden;">← Назад</button>
@@ -1004,20 +1013,43 @@ body.no-scroll { overflow: hidden; }
         </section>
 
         <!-- 7. КОНСУЛЬТАЦИЯ -->
-        <section id="consult" class="consult-section">
-            <div class="container">
-                <div class="consult-grid">
-                    <div>
-                        <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem;">Консультация с дизайнером</h2>
-                        <p style="margin-top: 1.5rem; color: var(--text-muted);">Заполните форму, и мы свяжемся с вами в ближайшее время.</p>
-                    </div>
-                    <form class="consult-form">
-                        <input type="text" placeholder="Ваше имя" required>
-                        <input type="tel" placeholder="Ваш телефон" required>
-                        <input type="text" placeholder="Площадь объекта (м²)">
-                        <button type="submit" class="btn-framed" style="background: var(--copper); color: #000; width: 100%; margin-top: 2rem;">Отправить заявку</button>
-                    </form>
-                </div>
+      <!-- 7. КОНСУЛЬТАЦИЯ -->
+<section id="consult" class="consult-section">
+    <div class="container">
+        <div class="consult-grid">
+            <!-- ЛЕВАЯ ЧАСТЬ: ТЕКСТ -->
+            <div>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; color: #fff; line-height: 1.1;">Консультация <br>с дизайнером</h2>
+                <p style="margin-top: 1.5rem; color: var(--text-muted);">Заполните форму, и мы свяжемся с вами в ближайшее время.</p>
+            </div>
+
+            <!-- ПРАВАЯ ЧАСТЬ: ФОРМА -->
+            <form class="consult-form" id="consultForm">
+                <input type="text" id="consultName" placeholder="Ваше имя" required>
+                
+                <input type="tel" id="consultPhone" placeholder="Ваш телефон" required>
+                <div id="consultPhoneWarning" style="color: #ff4d4d; font-size: 0.7rem; margin-top: -1.5rem; margin-bottom: 1rem; display: none;">Используйте только цифры</div>
+                
+                <input type="text" id="consultArea" placeholder="Площадь объекта (м²)">
+                
+                <button type="submit" class="btn-framed" style="width: 100%; margin-top: 2rem;">Отправить заявку</button>
+                
+                <p style="font-size: 0.7rem; opacity: 0.5; margin-top: 1rem; color: #fff; text-align: center;">
+                    Нажимая кнопку, вы соглашаетесь с 
+                    <a href="privacy.html" target="_blank" style="color: var(--copper); text-decoration: underline;">политикой конфиденциальности</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- БЛОК "ЧТО ВЫ ПОЛУЧАЕТЕ" (НИЖЕ) -->
+        <h2 class="title-main" style="margin-top: 8rem; margin-bottom: 4rem;">Что вы получаете сразу после консультации</h2>
+        <div class="bonus-grid">
+            <div class="bonus-card premium-hover"><div class="check-circle">✓</div><h4>Планировочные решения</h4><p>Рекомендации по выбору планировки под ваш сценарий жизни.</p></div>
+            <div class="bonus-card premium-hover"><div class="check-circle">✓</div><h4>Стилистический концепт</h4><p>Визуальный коллаж вашей будущей квартиры прямо на встрече.</p></div>
+            <div class="bonus-card premium-hover"><div class="check-circle">✓</div><h4>Бюджетирование</h4><p>Предварительный расчет стоимости реализации под ваш бюджет.</p></div>
+        </div>
+    </div>
+</section>
 
                 <h2 class="title-main" style="margin-top: 8rem; margin-bottom: 4rem;">Что вы получаете сразу после консультации</h2>
                 <div class="bonus-grid">
@@ -1116,29 +1148,131 @@ body.no-scroll { overflow: hidden; }
             </div>
         </div>
     </footer>
-
+<!-- МОДАЛЬНОЕ ОКНО: УСПЕШНАЯ ОТПРАВКА -->
+<div class="phone-modal-overlay" id="successModal">
+    <div class="phone-modal-card" style="max-width: 400px; text-align: center;">
+        <div class="close-modal" onclick="closeSuccessModal()">&times;</div>
+        
+        <!-- Иконка галочки -->
+        <div style="width: 80px; height: 80px; border: 2px solid var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        
+        <h2 style="font-family: 'Playfair Display', serif; color: #fff; margin-bottom: 1rem; font-size: 2rem;">Спасибо!</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Ваша заявка успешно отправлена. <br>Мы свяжемся с вами в ближайшее время.</p>
+        
+        <button onclick="closeSuccessModal()" class="btn-framed" style="width: 100%;">Закрыть</button>
+    </div>
+</div>
   <script>
-    /* ==========================================
-       1. ЛОГИКА КВИЗА (РАСЧЕТ СТОИМОСТИ)
-    ========================================== */
+    // ========================================================
+    // 1. НАСТРОЙКИ И ОБЩИЕ ПЕРЕМЕННЫЕ
+    // ========================================================
+    const TG_TOKEN = "8684787247:AAEWyzBBwvGhaHwVZVosVuRY1IQg1eyglcM";
+    const TG_CHAT_ID = "760645228";
+
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const phoneModal = document.getElementById('phoneModal');
+    const successModal = document.getElementById('successModal');
+    const zamerModal = document.getElementById('zamerModal'); // Если есть на этой странице
+
+    // ========================================================
+    // 2. ФУНКЦИИ ОТКРЫТИЯ/ЗАКРЫТИЯ ОКОН
+    // ========================================================
+    function openPhoneModal() {
+        if (phoneModal) {
+            phoneModal.style.display = 'flex';
+            setTimeout(() => phoneModal.classList.add('active'), 10);
+            document.body.classList.add('no-scroll');
+        }
+    }
+    function closePhoneModal() {
+        if (phoneModal) {
+            phoneModal.classList.remove('active');
+            setTimeout(() => { phoneModal.style.display = 'none'; document.body.classList.remove('no-scroll'); }, 400);
+        }
+    }
+
+    function openSuccessModal() {
+        if (successModal) {
+            successModal.style.display = 'flex';
+            setTimeout(() => successModal.classList.add('active'), 10);
+            document.body.classList.add('no-scroll');
+        }
+    }
+    function closeSuccessModal() {
+        if (successModal) {
+            successModal.classList.remove('active');
+            setTimeout(() => { successModal.style.display = 'none'; document.body.classList.remove('no-scroll'); }, 400);
+        }
+    }
+
+    function toggleMenu() {
+        if (menuBtn && mobileMenu) {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        }
+    }
+    if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
+
+    // ========================================================
+    // 3. ВАЛИДАЦИЯ ТЕЛЕФОНА (ДЛЯ ВСЕХ ФОРМ)
+    // ========================================================
+    function setupPhoneValidation(inputId, warningId) {
+        const input = document.getElementById(inputId);
+        const warning = document.getElementById(warningId);
+        if (input) {
+            input.addEventListener('input', function() {
+                const hasLetters = /[a-zA-Zа-яА-Я]/.test(this.value);
+                if (warning) warning.style.display = hasLetters ? 'block' : 'none';
+                this.value = this.value.replace(/[^0-9+]/g, '');
+            });
+        }
+    }
+    setupPhoneValidation('quizPhone', 'quizPhoneWarning');
+    setupPhoneValidation('consultPhone', 'consultPhoneWarning');
+
+    // ========================================================
+    // 4. ЛОГИКА КВИЗА
+    // ========================================================
     let currentQuizStep = 1;
     const totalQuizSteps = 7;
+    const quizAnswers = {};
 
     function changeStep(n) {
         const steps = document.querySelectorAll('.quiz-step');
+        if (n === 1 && !validateQuizStep(currentQuizStep)) {
+            alert("Пожалуйста, выберите вариант или заполните поля.");
+            return;
+        }
         if (currentQuizStep === totalQuizSteps && n === 1) {
-            showSuccess();
+            sendQuizToTelegram();
             return;
         }
         steps[currentQuizStep - 1].classList.remove('active');
         steps[currentQuizStep - 1].style.display = 'none';
         currentQuizStep += n;
         steps[currentQuizStep - 1].classList.add('active');
-        steps[currentQuizStep - 1].style.display = 'block';
+        steps[currentQuizStep - 1].style.display = 'flex';
         updateQuizUI();
     }
 
+    function validateQuizStep(step) {
+        if (step === 1) return quizAnswers.objType !== undefined;
+        if (step === 2) return document.querySelector('input[name="area"]:checked');
+        if (step === 3) return document.querySelector('input[name="work_type"]:checked');
+        if (step === 4) return document.querySelector('input[name="prop_type"]:checked');
+        if (step === 5) return document.querySelector('input[name="timing"]:checked');
+        if (step === 7) {
+            return document.getElementById('quizName').value.length > 1 && document.getElementById('quizPhone').value.length > 5;
+        }
+        return true;
+    }
+
     function selectOption(step, value) {
+        quizAnswers.objType = value;
         changeStep(1);
     }
 
@@ -1148,102 +1282,78 @@ body.no-scroll { overflow: hidden; }
         if (progressBar) progressBar.style.width = progress + '%';
         const prevBtn = document.getElementById('prevBtn');
         if (prevBtn) prevBtn.style.visibility = currentQuizStep === 1 ? 'hidden' : 'visible';
-        const nextBtn = document.getElementById('nextBtn');
-        if (nextBtn) {
-            nextBtn.innerText = currentQuizStep === totalQuizSteps ? 'Узнать стоимость' : 'Далее →';
-        }
-        const quizNav = document.getElementById('quizNav');
-        if (quizNav) quizNav.style.display = 'flex';
     }
 
-    function showSuccess() {
+    function sendQuizToTelegram() {
+        const message = `<b>💎 НОВЫЙ КВИЗ: ДИЗАЙН</b>\n` +
+            `<b>Объект:</b> ${quizAnswers.objType}\n` +
+            `<b>Имя:</b> ${document.getElementById('quizName').value}\n` +
+            `<b>Телефон:</b> ${document.getElementById('quizPhone').value}`;
+
+        fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: message, parse_mode: 'html' })
+        }).then(res => { if (res.ok) showQuizSuccess(); });
+    }
+
+    function showQuizSuccess() {
         document.querySelectorAll('.quiz-step').forEach(s => s.style.display = 'none');
-        const quizNav = document.getElementById('quizNav');
-        if (quizNav) quizNav.style.display = 'none';
-        const progressWrapper = document.querySelector('.quiz-progress-wrapper');
-        if (progressWrapper) progressWrapper.style.display = 'none';
-        const successBlock = document.getElementById('quizSuccess');
-        if (successBlock) successBlock.style.display = 'block';
+        document.getElementById('quizNav').style.display = 'none';
+        document.querySelector('.quiz-progress-wrapper').style.display = 'none';
+        document.getElementById('quizSuccess').style.display = 'block';
     }
 
-    /* ==========================================
-       2. ЛОГИКА МОБИЛЬНОГО МЕНЮ
-    ========================================== */
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
+    // ========================================================
+    // 5. ОТПРАВКА ФОРМЫ КОНСУЛЬТАЦИИ
+    // ========================================================
+    const consultForm = document.getElementById('consultForm');
+    if (consultForm) {
+        consultForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // ЭТО ОСТАНАВЛИВАЕТ ПЕРЕЗАГРУЗКУ
 
-    function toggleMenu() {
-        if (!menuBtn || !mobileMenu) return;
-        menuBtn.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
+            const name = document.getElementById('consultName').value;
+            const phone = document.getElementById('consultPhone').value;
+            const area = document.getElementById('consultArea').value;
+
+            const message = `<b>🎨 ЗАЯВКА НА КОНСУЛЬТАЦИЮ</b>\n` +
+                            `<b>Имя:</b> ${name}\n` +
+                            `<b>Телефон:</b> ${phone}\n` +
+                            `<b>Площадь:</b> ${area || 'Не указана'} м²`;
+
+            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_CHAT_ID, text: message, parse_mode: 'html' })
+            })
+            .then(res => {
+                if (res.ok) {
+                    openSuccessModal(); 
+                    consultForm.reset();
+                } else {
+                    alert("Ошибка бота. Проверьте Token/ID.");
+                }
+            })
+            .catch(() => alert("Ошибка сети."));
+        });
     }
 
-    if (menuBtn) {
-        menuBtn.addEventListener('click', toggleMenu);
-    }
-
-    /* ==========================================
-       3. ЛОГИКА МОДАЛЬНОГО ОКНА ТЕЛЕФОНА
-    ========================================== */
-    const phoneModal = document.getElementById('phoneModal');
-
-    function openPhoneModal() {
-        if (!phoneModal) return;
-        phoneModal.style.display = 'flex';
-        setTimeout(() => phoneModal.classList.add('active'), 10);
-        document.body.classList.add('no-scroll');
-    }
-
-    function closePhoneModal() {
-        if (!phoneModal) return;
-        phoneModal.classList.remove('active');
-        setTimeout(() => {
-            phoneModal.style.display = 'none';
-            if (!mobileMenu || !mobileMenu.classList.contains('active')) {
-                document.body.classList.remove('no-scroll');
-            }
-        }, 400);
-    }
-
-    /* ==========================================
-       4. ОБЩИЕ ОБРАБОТЧИКИ (КЛИК МИМО И ESC)
-    ========================================== */
+    // ========================================================
+    // 6. ОБЩИЙ ОБРАБОТЧИК КЛИКОВ (ЗАКРЫТИЕ ПО ФОНУ)
+    // ========================================================
     window.addEventListener('click', (e) => {
-        // Закрытие модалки телефона
-        if (e.target === phoneModal) {
-            closePhoneModal();
-        }
-
-        // Закрытие виджета FAB
+        if (e.target === phoneModal) closePhoneModal();
+        if (e.target === successModal) closeSuccessModal();
+        if (e.target === zamerModal) closeZamerModal(); // Если есть функция
+        
         const menu = document.getElementById('fabMenu');
-        if (menu && !menu.contains(e.target)) {
-            menu.classList.remove('active');
-        }
+        if (menu && !menu.contains(e.target)) menu.classList.remove('active');
     });
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") {
-            closePhoneModal();
-            if (mobileMenu && mobileMenu.classList.contains('active')) toggleMenu();
-            const menu = document.getElementById('fabMenu');
-            if (menu) menu.classList.remove('active');
-        }
-    });
-
-    /* ==========================================
-       5. ЛОГИКА ВИДЖЕТА СВЯЗИ (FAB)
-    ========================================== */
     function toggleFabMenu(e) {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        const menu = document.getElementById('fabMenu');
-        if (menu) {
-            menu.classList.toggle('active');
-        }
+        e.stopPropagation();
+        document.getElementById('fabMenu').classList.toggle('active');
     }
-    </script>
+</script>
 </body>
 </html>
