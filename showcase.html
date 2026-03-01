@@ -773,25 +773,36 @@ body.no-scroll {
         portfolioGrid.innerHTML = html;
     }
 
-    function hideBrokenProject(id) {
+   function hideBrokenProject(id) {
         const card = document.getElementById('project-' + id);
         if (card) {
-            card.remove();
-            console.log('Проект ' + id + ' удален, так как фото не найдено');
+            card.remove(); // Удаляем карточку, если фото нет
         }
+        // Сразу проверяем, нужно ли скрыть кнопку
         checkLoadMoreButton();
     }
 
     function loadMore() {
+        // Находим все карточки, которые еще скрыты
         const hiddenCards = Array.from(document.querySelectorAll('.project-frame.hidden'));
+        
+        // Показываем следующие 4
         const nextBatch = hiddenCards.slice(0, 4);
         nextBatch.forEach(card => card.classList.remove('hidden'));
+        
+        // После показа проверяем, осталось ли что-то еще скрытое
         checkLoadMoreButton();
     }
 
     function checkLoadMoreButton() {
-        const remainingHidden = document.querySelectorAll('.project-frame.hidden');
-        if (remainingHidden.length === 0) {
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        if (!loadMoreBtn) return;
+
+        // Считаем, сколько в коде осталось карточек с классом .hidden
+        const remainingHidden = document.querySelectorAll('.project-frame.hidden').length;
+        
+        // Если скрытых карточек больше нет — удаляем кнопку
+        if (remainingHidden === 0) {
             loadMoreBtn.style.display = 'none';
         }
     }
