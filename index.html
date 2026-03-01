@@ -680,38 +680,41 @@ section:not(.hero) {
         padding: 2rem 0 !important;
     }
      /* ИСПРАВЛЕНИЕ БЛОКА "НАЧНИТЕ ПРОЕКТ" */
+    /* ИСПРАВЛЕНИЕ БЛОКА "НАЧНИТЕ ПРОЕКТ" И МОДАЛОК */
     .cta {
-        padding: 5rem 1rem !important;
+        padding: 3rem 1rem !important;
     }
 
     .cta .title-main {
         line-height: 1.2 !important;
-        font-size: 2.2rem !important;
-        margin-bottom: 1.5rem !important;
+        font-size: 1.7rem !important; 
+        margin-bottom: 1rem !important;
+        hyphens: none !important; /* ЗАПРЕТ ПЕРЕНОСОВ */
+        word-break: normal !important;
     }
 
-   /* МАКСИМАЛЬНО КОМПАКТНЫЙ БЛОК "НАЧНИТЕ ПРОЕКТ" */
-    .cta {
-        padding: 2rem 1rem !important; /* Уменьшили отступы в 2.5 раза */
+    .phone-modal-card {
+        width: 95% !important;
+        max-height: 90vh !important; /* ОГРАНИЧЕНИЕ ВЫСОТЫ */
+        overflow-y: auto !important; /* СКРОЛЛ ВНУТРИ */
+        padding: 40px 20px 30px !important;
     }
 
-    .cta .title-main {
-        line-height: 1.1 !important;
-        font-size: 1.8rem !important; /* Чуть уменьшили шрифт */
-        margin-bottom: 1rem !important; /* Уменьшили отступ под заголовком */
-        margin-top: 0 !important;
+    .modal-form-premium {
+        gap: 1rem !important;
+    }
+    /* Убираем синий цвет у номеров телефонов и ИНН на мобилках */
+    .footer-main a[href^="tel"], 
+    .footer-col p,
+    .footer-main a {
+        color: inherit !important; /* Наследовать цвет текста от родителя */
+        text-decoration: none !important;
     }
 
-    .cta p {
-        font-size: 0.9rem !important;
-        line-height: 1.4 !important;
-        margin-bottom: 1.5rem !important; /* Уменьшили отступ до кнопки */
-    }
-
-    .cta .btn-copper {
-        padding: 1rem 2rem !important; /* Сделали саму кнопку чуть изящнее */
-        margin-bottom: 0 !important; /* Убрали гигантский отступ снизу */
-    }
+    /* Если ИНН и ОГРН всё равно синие, красим их принудительно в серый */
+    .footer-col p {
+        color: var(--text-muted) !important;
+    } 
 }
         
     </style>
