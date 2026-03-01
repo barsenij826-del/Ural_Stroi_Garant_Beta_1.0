@@ -292,12 +292,26 @@ section:not(.hero) {
 
      /* CTA */
         .cta { background: #000; color: #fff; text-align: center; padding: 18rem 2rem; }
-        .btn-copper {
-            display: inline-block; margin-top: 2rem; padding: 1.2rem 3.5rem;
-            border: 1px solid var(--copper); color: #fff; text-decoration: none;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition);
-        }
-        .btn-copper:hover { background: var(--copper); color: #000; }
+      /* КНОПКА: ПРОЗРАЧНАЯ -> ОРАНЖЕВАЯ ПРИ НАВЕДЕНИИ */
+.btn-copper {
+    display: inline-block; 
+    padding: 1.2rem 3.5rem;
+    border: 1px solid var(--copper); 
+    color: #fff; 
+    text-decoration: none;
+    background: transparent; /* Изначально прозрачная */
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn-copper:hover { 
+    background: var(--copper) !important; 
+    color: #000 !important; /* Текст становится черным для читаемости */
+    box-shadow: 0 0 20px rgba(184, 115, 51, 0.4);
+}
 
        /* РАСШИРЕННЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР */
         .footer-main {
@@ -454,6 +468,52 @@ section:not(.hero) {
 .fab-sub svg { width: 22px; fill: var(--copper); }
 .fab-sub:hover { background: var(--copper); }
 .fab-sub:hover svg { fill: #000; }
+
+/* СТИЛИ ФОРМЫ В МОДАЛЬНОМ ОКНЕ */
+.modal-form-premium {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.modal-form-premium input, 
+.modal-form-premium select, 
+.modal-form-premium textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.8rem 0;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.modal-form-premium input:focus, 
+.modal-form-premium select:focus, 
+.modal-form-premium textarea:focus {
+    border-bottom-color: var(--copper);
+}
+
+/* Стилизация выпадающего списка */
+.modal-form-premium select option {
+    background: var(--dark-card);
+    color: #fff;
+}
+
+.modal-form-premium textarea {
+    resize: none;
+}
+
+/* Улучшение для кнопки внутри формы */
+.modal-form-premium .btn-copper:hover {
+    background: var(--copper) !important;
+    color: #000 !important;
+}
+
     </style>
 
         
@@ -591,13 +651,15 @@ section:not(.hero) {
         </section>
      
         <!-- CTA -->
-       <section id="contact" class="cta" style="padding: 12rem 0 !important;">
-            <div class="container">
-                <h2 class="title-main" style="margin-bottom: 1rem;">Начните проект с экспертами</h2>
-                <p style="opacity: 0.7;">Закажите бесплатный замер и техническую консультацию на вашем объекте.</p>
-                <a href="tel:+73432663725" class="btn-copper">Заказать замер</a>
-            </div>
-        </section>
+       <!-- CTA -->
+<section id="contact" class="cta" style="padding: 12rem 0 !important;">
+    <div class="container">
+        <h2 class="title-main" style="margin-bottom: 1rem;">Начните проект с экспертами</h2>
+        <p style="opacity: 0.7;">Закажите бесплатный замер и техническую консультацию на вашем объекте.</p>
+        <!-- ИСПРАВЛЕННАЯ КНОПКА -->
+      <button onclick="openZamerModal()" class="btn-copper" style="display: inline-block; margin-top: 2rem;">Заказать замер</button>
+    </div>
+</section>
     </main>
 
   <footer class="footer-main">
@@ -695,6 +757,53 @@ section:not(.hero) {
         </div>
     </div>
 </div>
+<!-- МОДАЛЬНОЕ ОКНО: ЗАКАЗАТЬ ЗАМЕР -->
+<div class="phone-modal-overlay" id="zamerModal">
+    <div class="phone-modal-card" style="max-width: 500px;">
+        <div class="close-modal" onclick="closeZamerModal()">&times;</div>
+        <span class="modal-label">Заявка на технический замер</span>
+        <h2 style="font-family: 'Playfair Display', serif; color: #fff; margin-bottom: 2rem; font-size: 1.8rem;">Начните проект правильно</h2>
+        
+        <form class="modal-form-premium" id="zamerForm">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="tel" placeholder="Ваш телефон" required><div id="phoneWarning" style="color: #ff4d4d; font-size: 0.7rem; margin-top: -1rem; margin-bottom: 1rem; display: none;">Используйте только цифры</div>
+            
+            <select required>
+                <option value="" disabled selected>Что вас интересует?</option>
+                <option value="design">Дизайн-проект + Ремонт под ключ</option>
+                <option value="build">Дизайн-проект</option>
+                <option value="complex">Строительство дома</option>
+                <option value="other">Другое</option>
+            </select>
+            
+            <textarea placeholder="Комментарий (необязательно)" rows="3"></textarea>
+            
+            <button type="submit" class="btn-copper" style="width: 100%; margin-top: 1rem; background: none; cursor: pointer;">Отправить заявку</button>
+        </form>
+        
+        <p style="font-size: 0.6rem; opacity: 0.5; margin-top: 1.5rem; color: #fff;">
+    Нажимая кнопку, вы соглашаетесь с 
+    <a href="privacy.html" target="_blank" style="color: var(--copper); text-decoration: underline;">политикой конфиденциальности</a>
+</p>
+    </div>
+</div>
+<!-- МОДАЛЬНОЕ ОКНО: УСПЕШНАЯ ОТПРАВКА -->
+<div class="phone-modal-overlay" id="successModal">
+    <div class="phone-modal-card" style="max-width: 400px; text-align: center;">
+        <div class="close-modal" onclick="closeSuccessModal()">&times;</div>
+        
+        <!-- Иконка галочки -->
+        <div style="width: 80px; height: 80px; border: 2px solid var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        
+        <h2 style="font-family: 'Playfair Display', serif; color: #fff; margin-bottom: 1rem; font-size: 2rem;">Спасибо!</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Ваша заявка успешно отправлена. <br>Мы перезвоним вам в течение 30 минут.</p>
+        
+        <button onclick="closeSuccessModal()" class="btn-copper" style="width: 100%; background: none; cursor: pointer;">Закрыть</button>
+    </div>
+</div>
+
 <script>
     /* 1. МОДАЛЬНОЕ ОКНО ТЕЛЕФОНА */
     function openPhoneModal() {
@@ -755,4 +864,119 @@ section:not(.hero) {
             menu.classList.remove('active');
         }
     };
+
+// 1. Логика окон (Замер и Успех)
+    const zamerModal = document.getElementById('zamerModal');
+    const successModal = document.getElementById('successModal');
+
+    function openZamerModal() {
+        if (zamerModal) {
+            zamerModal.style.display = 'flex';
+            setTimeout(() => zamerModal.classList.add('active'), 10);
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    function closeZamerModal() {
+        if (zamerModal) {
+            zamerModal.classList.remove('active');
+            setTimeout(() => {
+                zamerModal.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            }, 400);
+        }
+    }
+
+    function openSuccessModal() {
+        if (successModal) {
+            successModal.style.display = 'flex';
+            setTimeout(() => successModal.classList.add('active'), 10);
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    function closeSuccessModal() {
+        if (successModal) {
+            successModal.classList.remove('active');
+            setTimeout(() => {
+                successModal.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            }, 400);
+        }
+    }
+
+    // 2. Валидация телефона с предупреждением
+    const phoneInput = document.querySelector('#zamerForm input[type="tel"]');
+    const phoneWarning = document.getElementById('phoneWarning');
+
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function() {
+            const hasLetters = /[a-zA-Zа-яА-Я]/.test(this.value);
+            if (hasLetters) {
+                phoneWarning.style.display = 'block'; // Показываем текст ошибки
+            } else {
+                phoneWarning.style.display = 'none'; // Прячем
+            }
+            // Очищаем поле от всего, кроме цифр и +
+            this.value = this.value.replace(/[^0-9+]/g, '');
+        });
+    }
+
+    // 3. Настройка Telegram и отправка
+    const TG_TOKEN = "8684787247:AAEWyzBBwvGhaHwVZVosVuRY1IQg1eyglcM";
+    const TG_CHAT_ID = "760645228";
+    const zamerForm = document.getElementById('zamerForm');
+
+    if (zamerForm) {
+        zamerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Словарь для перевода услуг на русский
+            const serviceNames = {
+                'design': 'Дизайн-проект',
+                'build': 'Строительство дома',
+                'complex': 'Дизайн-проект + Ремонт',
+                'other': 'Другое'
+            };
+
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const serviceValue = this.querySelector('select').value;
+            const serviceRussian = serviceNames[serviceValue] || serviceValue; // Переводим
+            const comment = this.querySelector('textarea').value;
+
+            const message = `<b>🔥 НОВАЯ ЗАЯВКА С САЙТА</b>\n` +
+                            `<b>Страница:</b> Главная\n` +
+                            `<b>Имя:</b> ${name}\n` +
+                            `<b>Телефон:</b> ${phone}\n` +
+                            `<b>Услуга:</b> ${serviceRussian}\n` +
+                            `<b>Комментарий:</b> ${comment || 'Нет'}`;
+
+            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TG_CHAT_ID,
+                    text: message,
+                    parse_mode: 'html'
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    closeZamerModal();
+                    setTimeout(openSuccessModal, 500);
+                    zamerForm.reset();
+                } else {
+                    alert('Ошибка отправки. Проверьте настройки бота.');
+                }
+            })
+            .catch(() => alert('Ошибка сети. Проверьте интернет.'));
+        });
+    }
+
+    // 4. Закрытие окон по клику на фон
+    window.addEventListener('click', (e) => {
+        if (e.target === zamerModal) closeZamerModal();
+        if (e.target === successModal) closeSuccessModal();
+    });
 </script>
