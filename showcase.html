@@ -121,21 +121,32 @@
         }
         .project-frame.hidden { display: none; }
 
-        .project-card {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/10;
-            overflow: hidden;
-            background: #111;
-        }
+       /* КАРТОЧКА ТЕПЕРЬ ПОДСТРАИВАЕТСЯ ПОД ФОТО */
+.project-card {
+    position: relative;
+    width: 100%;
+    height: auto; /* Убираем фиксированную высоту */
+    aspect-ratio: auto !important; /* Отключаем принудительное соотношение сторон */
+    overflow: hidden;
+    background: transparent !important; /* Убираем черный фон */
+}
 
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: var(--transition);
-        }
+.project-card img {
+    width: 100%;
+    height: auto !important; /* Картинка сама диктует высоту карточки */
+    display: block;
+    object-fit: contain; /* Гарантирует, что фото не обрежется */
+}
+
+/* Чтобы карточки в одном ряду не "плясали" по высоте слишком сильно, 
+   можно добавить выравнивание в сетку */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start; /* Карточки будут выровнены по верхнему краю */
+    margin-bottom: 4rem;
+}
 
 
         .project-info-overlay {
