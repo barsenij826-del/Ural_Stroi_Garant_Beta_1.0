@@ -1284,17 +1284,46 @@ body.no-scroll { overflow: hidden; }
         if (prevBtn) prevBtn.style.visibility = currentQuizStep === 1 ? 'hidden' : 'visible';
     }
 
-    function sendQuizToTelegram() {
-        const message = `<b>💎 НОВЫЙ КВИЗ: ДИЗАЙН</b>\n` +
-            `<b>Объект:</b> ${quizAnswers.objType}\n` +
-            `<b>Имя:</b> ${document.getElementById('quizName').value}\n` +
-            `<b>Телефон:</b> ${document.getElementById('quizPhone').value}`;
+   function sendQuizToTelegram() {
+        // Собираем данные из радио-кнопок и текстовых полей
+        const area = document.querySelector('input[name="area"]:checked')?.parentElement.textContent.trim() || 'Не указана';
+        const workType = document.querySelector('input[name="work_type"]:checked')?.parentElement.textContent.trim() || 'Не указан';
+        const propType = document.querySelector('input[name="prop_type"]:checked')?.parentElement.textContent.trim() || 'Не указан';
+        const timing = document.querySelector('input[name="timing"]:checked')?.parentElement.textContent.trim() || 'Не указаны';
+        const comment = document.querySelector('.quiz-textarea').value.trim() || 'Нет';
+        const name = document.getElementById('quizName').value;
+        const phone = document.getElementById('quizPhone').value;
+
+        // Формируем полный текст сообщения
+        const message = `
+<b>💎 НОВЫЙ КВИЗ: ДИЗАЙН</b>
+<b>Страница:</b> Дизайн и реализация
+------------------------
+<b>Объект:</b> ${quizAnswers.objType || 'Не выбран'}
+<b>Площадь:</b> ${area}
+<b>Вид работ:</b> ${workType}
+<b>Тип недвижимости:</b> ${propType}
+<b>Сроки:</b> ${timing}
+<b>Комментарий:</b> ${comment}
+------------------------
+<b>Имя:</b> ${name}
+<b>Телефон:</b> ${phone}
+        `;
 
         fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: message, parse_mode: 'html' })
-        }).then(res => { if (res.ok) showQuizSuccess(); });
+            body: JSON.stringify({
+                chat_id: TG_CHAT_ID,
+                text: message,
+                parse_mode: 'html'
+            })
+        })
+        .then(res => { 
+            if (res.ok) showQuizSuccess(); 
+            else alert("Ошибка отправки боту.");
+        })
+        .catch(() => alert("Ошибка сети."));
     }
 
     function showQuizSuccess() {
