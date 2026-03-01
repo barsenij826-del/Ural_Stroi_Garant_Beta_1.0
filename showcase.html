@@ -208,17 +208,20 @@
         .gallery-header { text-align: center; margin-bottom: 60px; color: #fff; }
         .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
        .gallery-img-wrap {
-    border: none;
-    padding: 0;
-    background: transparent; /* Убираем черный фон подложки */
+    aspect-ratio: 16/10; /* Задаем пропорции для фото в галерее */
+    border: 1px solid #222;
+    padding: 0; /* Убираем внутренний отступ, чтобы фото прилегало к краям */
+    background: #000;
+    overflow: hidden;
 }
 
 .gallery-img-wrap img {
     width: 100%;
-    height: auto;
-    object-fit: contain; /* Фото не обрезается */
+    height: 100%;
+    /* Убираем черные полосы внутри галереи */
+    object-fit: cover; 
     display: block;
-    border: 1px solid #222; /* Рамка только вокруг самого фото */
+    transition: 0.5s;
 }
         .gallery-img-wrap:hover img { transform: scale(1.05); }
         .close-gallery { position: fixed; top: 30px; right: 30px; width: 50px; height: 50px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10000; }
