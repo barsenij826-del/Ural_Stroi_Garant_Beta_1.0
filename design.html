@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
     <title>Дизайн и реализация | Уралстройгарант</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -672,6 +673,385 @@ body.no-scroll { overflow: hidden; }
                 text-align: center;
             }
         }
+      /* ==========================================
+   ОБЩИЙ АДАПТИВ ДЛЯ ВСЕХ СТРАНИЦ
+========================================== */
+
+/* 1. Глобальные настройки */
+* { max-width: 100%; box-sizing: border-box; }
+body { overflow-x: hidden; width: 100%; }
+
+/* 2. Резиновые отступы секций (вместо фиксированных 10rem) */
+section { 
+    padding: clamp(3rem, 10vw, 8rem) 0 !important; 
+}
+
+/* 3. Адаптив Шапки (Header) */
+@media (max-width: 1024px) {
+    .header { height: 70px; }
+    .nav-menu { display: none; } /* Прячем десктопное меню */
+    .menu-toggle { display: flex; } /* Показываем гамбургер */
+    .logo-box { font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+    .logo-box { font-size: 0.85rem !important; letter-spacing: 0.5px; }
+    .nav-right { gap: 1rem !important; }
+    .header-contacts { gap: 10px !important; }
+    .contact-icon svg { width: 18px; height: 18px; }
+}
+
+/* 4. Исправление синих цифр в футере */
+.footer-main a[href^="tel"], 
+.footer-col p,
+.footer-main a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+        padding: 0 25px !important;
+    }
+    .footer-grid { grid-template-columns: 1fr !important; gap: 2rem; }
+    .footer-col { text-align: center; align-items: center; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  /* Hero блок на мобилке */
+    .hero-design {
+        height: auto !important;
+        min-height: 80vh;
+        padding: 4rem 1rem !important;
+    }
+    .hero-design h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+    }
+  /* Раздел "Что мы делаем" на мобилке */
+/* Раздел "Что мы делаем" — переходим в 1 колонку для премиального вида */
+    .what-we-do-grid {
+        grid-template-columns: 1fr !important; /* Одна колонка */
+        gap: 30px !important; /* Увеличиваем зазор между блоками */
+    }
+
+    .do-card {
+        max-width: 100% !important;
+        padding: 10px !important;
+        border-radius: 20px !important;
+        border: 1px solid rgba(184, 115, 51, 0.3) !important;
+        background: var(--dark-card) !important;
+    }
+
+    .do-card img {
+        aspect-ratio: 16/9 !important; /* На мобилке в одну колонку лучше смотрятся широкие фото */
+        border-radius: 15px !important;
+    }
+
+    .do-content h3 {
+        font-size: 1.3rem !important; /* Увеличиваем шрифт, теперь места много */
+        min-height: auto !important;
+        margin: 1rem 0 !important;
+    }
+
+    .do-content p {
+        font-size: 0.95rem !important; /* Текст теперь читается легко */
+        line-height: 1.5 !important;
+        -webkit-line-clamp: unset !important; /* Убираем ограничение строк */
+        margin-bottom: 1.5rem !important;
+    }
+
+    .do-content .btn-framed {
+        padding: 1rem 2rem !important;
+        font-size: 0.8rem !important;
+        width: auto !important; /* Кнопка не на весь экран, а по контенту */
+        align-self: center; /* Центрируем кнопку */
+    }
+  /* ДЕЛАЕМ БЛОК "БОЛЬШЕ ОБЪЕКТОВ" БЕСШОВНЫМ */
+    .portfolio-cta {
+        background: transparent !important;
+        border: none !important;
+        margin-top: 0 !important;
+        padding: 2rem 1rem 4rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+    }
+
+    .portfolio-cta div {
+        font-size: 1.1rem !important;
+        color: var(--text-muted) !important;
+        text-align: center !important;
+    }
+
+    .portfolio-cta .btn-framed {
+        width: auto !important;
+        padding: 1rem 2.5rem !important;
+    }
+  /* ЭЛЕГАНТНЫЙ ПЕРЕХОД К ПРОЕКТАМ */
+    #projects {
+        padding-top: 4rem !important; /* Создаем большую паузу после карточек */
+        border-top: 1px solid rgba(255, 255, 255, 0.05); /* Едва заметная линия-разделитель */
+    }
+
+    #projects .title-main {
+        font-size: 1.8rem !important; /* Уменьшаем заголовок, чтобы он не "кричал" */
+        margin-bottom: 3rem !important;
+        letter-spacing: 1px;
+    }
+
+    /* СЕТКА ПРОЕКТОВ — ДЕЛАЕМ 1 В РЯД ДЛЯ ВАУ-ЭФФЕКТА */
+    .projects-masonry {
+        grid-template-columns: 1fr !important; /* Одно большое фото на экран */
+        gap: 25px !important;
+    }
+
+    .project-item {
+        aspect-ratio: 1/1 !important; /* Делаем их квадратными и стильными */
+        border-radius: 20px;
+        border: 1px solid rgba(184, 115, 51, 0.2) !important;
+        overflow: hidden;
+    }
+
+    .project-info {
+        bottom: 1.5rem !important;
+        left: 1.5rem !important;
+    }
+
+    .project-info h3 {
+        font-size: 1.3rem !important;
+    }
+  /* --- КОМПАКТНЫЙ АДАПТИВ КВИЗА --- */
+    .quiz-section {
+        padding: 2rem 0 !important; /* Уменьшили внешние отступы секции */
+    }
+
+    .quiz-container {
+        width: 95% !important; /* Даем небольшие отступы от краев экрана */
+        margin: 0 auto !important;
+        min-height: auto !important;
+        border-radius: 15px;
+    }
+
+    .quiz-step {
+        padding: 1.5rem 1rem !important; /* Уменьшили внутреннюю "подушку" */
+    }
+
+    .quiz-title {
+        font-size: 1.2rem !important; /* Уменьшили шрифт вопроса */
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Шаг 1: Компактные плашки */
+    .quiz-grid {
+        gap: 0.8rem !important;
+    }
+
+   /* УЛЬТРА-КОМПАКТНЫЙ ПЕРВЫЙ ШАГ КВИЗА */
+    .quiz-option {
+        display: flex !important;
+        flex-direction: row !important; /* Фото слева, текст справа */
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 8px 15px !important; /* Минимальная высота плашки */
+        gap: 15px !important;
+        margin-bottom: 5px !important;
+        height: 70px !important; /* Фиксируем высоту, чтобы не раздувало */
+    }
+
+    .quiz-option img {
+        width: 50px !important; /* Маленькая аккуратная иконка */
+        height: 50px !important;
+        margin: 0 !important;
+        border-radius: 8px;
+        object-fit: cover; /* Чтобы фото не искажалось */
+    }
+
+    .quiz-option p {
+        font-size: 0.85rem !important;
+        margin: 0 !important;
+        text-align: left !important;
+        font-weight: 600;
+    }
+
+    /* Шаги с кнопками (радио) */
+    .quiz-radio {
+        padding: 0.8rem 1rem !important; /* Сделали кнопки выбора ниже */
+        font-size: 0.85rem !important;
+    }
+
+    /* Навигация (кнопки Назад/Далее) */
+    .quiz-nav {
+        padding: 1rem !important; /* Уменьшили высоту подвала квиза */
+    }
+
+    .btn-quiz {
+        padding: 0.8rem 1rem !important; /* Кнопки стали изящнее */
+        font-size: 0.65rem !important;
+    }
+  /* --- АДАПТИВ ПРЕИМУЩЕСТВ --- */
+    .adv-list {
+        gap: 2rem !important; /* Уменьшаем расстояние между пунктами */
+    }
+
+    .adv-item {
+        gap: 1.2rem !important; /* Придвигаем текст ближе к цифре */
+        align-items: flex-start;
+    }
+
+    .adv-num {
+        width: 45px !important; /* Уменьшаем размер кружка */
+        height: 45px !important;
+        font-size: 1.1rem !important; /* Цифра внутри поменьше */
+        border-width: 1px;
+    }
+
+    .adv-content h4 {
+        font-size: 1.05rem !important;
+        line-height: 1.4 !important; /* Добавили воздуха между строками */
+        margin-bottom: 0.8rem !important;
+        font-weight: 800; /* Оставляем жирным для акцента */
+        color: var(--copper); /* Можно подкрасить заголовки в медь, чтобы отделить от основного текста */
+    }
+    .adv-content p {
+        font-size: 0.85rem !important; /* Текст описания компактнее */
+        line-height: 1.5;
+    }
+  /* УМЕНЬШАЕМ ЗАГОЛОВОК СЕКЦИИ ДЛЯ МОБИЛОК */
+     /* ПРЕМИАЛЬНЫЙ ЗАГОЛОВОК С ЛЕВЫМ ВЫРАВНИВАНИЕМ */
+    .title-main {
+        text-align: left !important; /* Выравниваем по левому краю, как и пункты ниже */
+        font-size: 1.3rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 3rem !important;
+        padding-left: 15px !important;
+        border-left: 3px solid var(--copper); /* Медная полоска слева для стиля */
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        max-width: 100%;
+        display: block !important;
+    }
+}
+ /* СТИЛЬНЫЙ НАДЗАГОЛОВОК "INNOVATION" */
+.section-label {
+    display: inline-block; /* Чтобы линия была только под текстом */
+    color: var(--copper);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 6px; /* Широкий отступ между буквами */
+    font-weight: 300;    /* Тонкий шрифт */
+    margin-bottom: 2.5rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--copper); /* Тонкая стильная линия */
+    opacity: 0.8;
+}
+
+/* ОТСТУП ОТ ПРЕДЫДУЩЕГО БЛОКА (ОТ ПУНКТА 05) */
+#tech {
+    padding-top: 10rem !important; /* Создаем большое пространство сверху */
+}
+
+@media (max-width: 768px) {
+    #tech {
+        padding-top: 6rem !important; /* На мобилках отступ чуть меньше */
+    }
+/* --- АДАПТИВ БЛОКА ТЕХНОЛОГИЙ (ИННОВАЦИИ) --- */
+    .tech-grid {
+        display: flex !important;
+        flex-direction: column !important; /* Выстраиваем всё в один столбик */
+        gap: 0 !important;
+    }
+
+    /* Магия: позволяем заголовку, фото и тексту меняться местами */
+    .tech-text {
+        display: contents !important; 
+    }
+
+    .section-label { 
+        order: 1 !important; 
+        margin-bottom: 1.5rem !important; 
+        align-self: flex-start; /* Прижимаем тонкую линию к левому краю */
+    }
+
+    .tech-text h2 { 
+        order: 2 !important; 
+        text-align: left !important;
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
+        padding-left: 15px !important;
+        border-left: 3px solid var(--copper);
+        margin-bottom: 2rem !important;
+    }
+    
+    .vr-img-box { 
+        order: 3 !important; /* ФОТО ТЕПЕРЬ ПОСЕРЕДИНЕ */
+        margin-bottom: 2.5rem !important; 
+        aspect-ratio: 16/9 !important;
+        width: 100% !important;
+    }
+
+    .tech-text p { 
+        order: 4 !important; /* ТЕКСТ УХОДИТ ВНИЗ */
+        text-align: left !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.7 !important;
+        color: var(--text-muted);
+    }
+
+    /* Выделяем первый абзац (лид-текст) */
+    .tech-text p:first-of-type {
+        color: #fff !important;
+        font-weight: 500;
+        font-size: 1.05rem !important;
+    }
+  /* СТИЛИЗАЦИЯ ОРАНЖЕВОЙ ПОДСКАЗКИ */
+    .tech-text p[style*="color: var(--copper)"] {
+        background: rgba(184, 115, 51, 0.05) !important; /* Очень легкий медный фон */
+        padding: 1.5rem !important;
+        border-radius: 15px;
+        border-left: 3px solid var(--copper);
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+        margin-top: 2rem !important;
+        color: #fff !important; /* Текст сделаем белым для читаемости */
+        font-weight: 400 !important;
+    }
+
+    /* АДАПТИВ СЕТКИ 3D ТУРОВ */
+    .tours-grid {
+        grid-template-columns: 1fr !important; /* Одно большое фото на экран */
+        gap: 20px !important;
+        margin-top: 3rem !important;
+    }
+
+    .tour-item {
+        border-radius: 20px !important; /* Наши закругленные углы */
+        border: 1px solid rgba(184, 115, 51, 0.3) !important; /* Медная рамка */
+        aspect-ratio: 16/9 !important; /* Прямоугольный формат лучше для туров */
+        overflow: hidden;
+        position: relative;
+    }
+
+    .tour-item img {
+        opacity: 0.5 !important; /* Затемняем, чтобы текст был виден без наведения */
+        transform: scale(1) !important;
+    }
+
+    .tour-overlay h5 {
+        font-size: 1.1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Кнопка тура на мобилке должна быть видна сразу */
+    .btn-tour {
+        opacity: 1 !important; 
+        transform: translateY(0) !important;
+        padding: 0.7rem 1.5rem !important;
+        font-size: 0.65rem !important;
+        background: var(--copper) !important;
+        color: #000 !important;
+    }
+}     
     </style>
 </head>
 <body>
@@ -810,7 +1190,8 @@ body.no-scroll { overflow: hidden; }
 
         <!-- 3. РЕАЛИЗОВАННЫЕ ПРОЕКТЫ -->
         <section id="projects" class="container">
-            <h2 class="title-main">Реализованные проекты</h2>
+           <span style="display: block; text-align: center; color: var(--copper); text-transform: uppercase; letter-spacing: 5px; font-size: 0.7rem; margin-bottom: 1rem; opacity: 0.8;">Портфолио</span>
+<h2 class="title-main">Реализованные проекты</h2>
             <div class="projects-masonry">
                 <div class="project-item premium-hover"><img src="img/workk_1.webp" alt="1"><div class="project-info"><small> </small><h3>Салон красоты</h3></div></div>
                 <div class="project-item premium-hover"><img src="img/workk_2.webp" alt="2"><div class="project-info"><small></small><h3>Стоматология</h3></div></div>
@@ -943,7 +1324,7 @@ body.no-scroll { overflow: hidden; }
 
         <!-- 5. ПРЕИМУЩЕСТВА -->
         <section class="container">
-            <h2 class="title-main">На рынке много дизайнеров и студий. <br>Чем мы лучше конкурентов?</h2>
+            <h2 class="title-main"> <br>Почему выбирают именно нас?</h2>
             <div class="adv-list">
                 <div class="adv-item">
                     <div class="adv-num">01</div>
@@ -1051,14 +1432,10 @@ body.no-scroll { overflow: hidden; }
     </div>
 </section>
 
-                <h2 class="title-main" style="margin-top: 8rem; margin-bottom: 4rem;">Что вы получаете сразу после консультации</h2>
-                <div class="bonus-grid">
-                    <div class="bonus-card premium-hover"><div class="check-circle">✓</div><h4>Планировочные решения</h4><p>Рекомендации по выбору планировки под ваш сценарий жизни.</p></div>
-                    <div class="bonus-card premium-hover"><div class="check-circle">✓</div><h4>Стилистический концепт</h4><p>Визуальный коллаж вашей будущей квартиры прямо на встрече.</p></div>
-                    <div class="bonus-card premium-hover"><div class="check-circle">✓</div><h4>Бюджетирование</h4><p>Предварительный расчет стоимости реализации под ваш бюджет.</p></div>
-                </div>
-            </div>
-        </section>
+                
+                
+            
+    
 
         <!-- 8. КОМАНДА (10 ЧЕЛОВЕК) -->
         <section id="team" class="container">
