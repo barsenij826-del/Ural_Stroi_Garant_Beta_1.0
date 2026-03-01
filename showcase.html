@@ -580,12 +580,21 @@ body.no-scroll {
                         <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; line-height: 1.1; color: #fff;">Консультация <br>с дизайнером</h2>
                         <p style="margin-top: 2rem; color: var(--text-muted);">Заполните форму, и мы свяжемся с вами в ближайшее время.</p>
                     </div>
-                    <form class="consult-form">
-                        <input type="text" placeholder="Ваше имя" required>
-                        <input type="tel" placeholder="Ваш телефон" required>
-                        <input type="text" placeholder="Площадь объекта (м²)">
-                        <button type="submit" class="btn-submit">Отправить заявку</button>
-                    </form>
+                   <form class="consult-form" id="consultForm">
+    <input type="text" id="consultName" placeholder="Ваше имя" required>
+    
+    <!-- Поле телефона с предупреждением -->
+    <input type="tel" id="consultPhone" placeholder="Ваш телефон" required>
+    <div id="consultPhoneWarning" style="color: #ff4d4d; font-size: 0.7rem; margin-top: -1.5rem; margin-bottom: 1rem; display: none;">Используйте только цифры</div>
+    
+    <input type="text" id="consultArea" placeholder="Площадь объекта (м²)">
+    <button type="submit" class="btn-submit">Отправить заявку</button>
+    
+    <p style="font-size: 0.7rem; opacity: 0.5; margin-top: 1rem; color: #fff; text-align: center;">
+        Нажимая кнопку, вы соглашаетесь с 
+        <a href="privacy.html" target="_blank" style="color: var(--copper); text-decoration: underline;">политикой конфиденциальности</a>
+    </p>
+</form>
                 </div>
             </div>
         </section>
@@ -696,6 +705,19 @@ body.no-scroll {
             <div class="fab-sub" onclick="openPhoneModal()"><svg viewBox="0 0 24 24" style="width:22px; fill:#B87333;"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
         </div>
     </div>
+
+<!-- МОДАЛЬНОЕ ОКНО: УСПЕШНАЯ ОТПРАВКА -->
+<div class="phone-modal-overlay" id="successModal">
+    <div class="phone-modal-card" style="max-width: 400px; text-align: center;">
+        <div class="close-modal" onclick="closeSuccessModal()">&times;</div>
+        <div style="width: 80px; height: 80px; border: 2px solid var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif; color: #fff; margin-bottom: 1rem; font-size: 2rem;">Спасибо!</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Ваша заявка успешно отправлена. <br>Мы свяжемся с вами в ближайшее время.</p>
+        <button onclick="closeSuccessModal()" class="btn-submit" style="width: 100%;">Закрыть</button>
+    </div>
+</div>
 
     <script>
         const portfolioData = [
@@ -825,6 +847,66 @@ body.no-scroll {
         });
 
         initPortfolio();
+// --- НАСТРОЙКИ TELEGRAM ---
+    const TG_TOKEN = "8684787247:AAEWyzBBwvGhaHwVZVosVuRY1IQg1eyglcM";
+    const TG_CHAT_ID = "760645228";
+
+    // --- ВАЛИДАЦИЯ ТЕЛЕФОНА ---
+    const consultPhone = document.getElementById('consultPhone');
+    const consultWarning = document.getElementById('consultPhoneWarning');
+    if (consultPhone) {
+        consultPhone.addEventListener('input', function() {
+            const hasLetters = /[a-zA-Zа-яА-Я]/.test(this.value);
+            consultWarning.style.display = hasLetters ? 'block' : 'none';
+            this.value = this.value.replace(/[^0-9+]/g, '');
+        });
+    }
+
+    // --- ОТПРАВКА ФОРМЫ ---
+    const consultForm = document.getElementById('consultForm');
+    if (consultForm) {
+        consultForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('consultName').value;
+            const phone = document.getElementById('consultPhone').value;
+            const area = document.getElementById('consultArea').value;
+
+            const message = `<b>🎨 ЗАЯВКА ИЗ ПОРТФОЛИО</b>\n<b>Имя:</b> ${name}\n<b>Телефон:</b> ${phone}\n<b>Площадь:</b> ${area || 'Не указана'} м²`;
+
+            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_CHAT_ID, text: message, parse_mode: 'html' })
+            })
+            .then(res => {
+                if (res.ok) {
+                    openSuccessModal();
+                    consultForm.reset();
+                }
+            });
+        });
+    }
+
+    // --- УПРАВЛЕНИЕ ОКНАМИ ---
+    function openSuccessModal() {
+        const m = document.getElementById('successModal');
+        m.style.display = 'flex';
+        setTimeout(() => m.classList.add('active'), 10);
+        document.body.classList.add('no-scroll');
+    }
+    function closeSuccessModal() {
+        const m = document.getElementById('successModal');
+        m.classList.remove('active');
+        setTimeout(() => { m.style.display = 'none'; document.body.classList.remove('no-scroll'); }, 400);
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target.id === 'galleryOverlay') closeGallery();
+        if (e.target.id === 'phoneModal') closePhoneModal();
+        if (e.target.id === 'successModal') closeSuccessModal();
+        const fabMenu = document.getElementById('fabMenu');
+        if (fabMenu && !fabMenu.contains(e.target)) fabMenu.classList.remove('active');
+    });
     </script>
 </body>
 </html>
