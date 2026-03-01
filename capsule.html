@@ -993,6 +993,22 @@
 .modal-phone-number { font-size: 1.8rem; font-weight: 800; text-decoration: none; display: block; margin-bottom: 10px; }
 .modal-divider { height: 1px; background: #eee; margin: 20px 0; }
 body.no-scroll { overflow: hidden; }
+
+/* СТИЛИ СВЕТЛОЙ МОДАЛКИ ДЛЯ БРОНИРОВАНИЯ */
+#bookModal .phone-modal-card {
+    background: #fff;
+    border: none;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.modal-form-light input:focus {
+    border-color: var(--orange-brand) !important;
+}
+
+#bookModal .close-modal {
+    color: #ccc;
+}
+
     </style>
 </head>
 <body>
@@ -1449,7 +1465,7 @@ body.no-scroll { overflow: hidden; }
             <div class="calc-right">
                 <p>Общая стоимость строительных работ:</p>
                 <div class="result-price" id="totalDisplay">₽ 0</div>
-                <button class="btn-book-now">Забронировать ремонт</button>
+               <button class="btn-book-now" onclick="openBookModal()">Забронировать ремонт</button>
             </div>
         </div>
     </div>
@@ -1531,28 +1547,38 @@ body.no-scroll { overflow: hidden; }
 
         <!-- 9. ХОТИТЕ ТАКЖЕ? -->
 <!-- 9. ХОТИТЕ ТАКЖЕ? -->
-    <section class="want-same-section">
-        <div class="container">
-            <div class="want-same-box">
-                <div class="want-same-text">
-                    <h2>Хотите также?</h2>
-                    <p>Оставьте заявку и наш менеджер свяжется с вами в ближайшее время</p>
-                </div>
-                <form class="want-same-form">
-                    <input type="text" placeholder="Ваше имя" required>
-                    <input type="tel" placeholder="Номер телефона" required>
-                    <div class="contact-choice">
-                        <span>Как связаться:</span>
-                        <label><input type="radio" name="contact" checked> WhatsApp</label>
-                        <label><input type="radio" name="contact"> По телефону</label>
-                    </div>
-                    <button type="submit" class="btn-submit-black">Рассчитать стоимость</button>
-                </form>
-            </div>
+<!-- 9. ХОТИТЕ ТАКЖЕ? -->
+<section class="container" style="margin-bottom: 80px;">
+    <div class="want-same-box">
+        <div class="want-same-text">
+            <h2>Хотите также?</h2>
+            <p>Оставьте заявку и наш менеджер свяжется с вами в ближайшее время</p>
         </div>
-    </section>
+        <form class="want-same-form" id="wantSameForm">
+            <div style="flex: 1; min-width: 200px;">
+                <input type="text" id="wantName" placeholder="Ваше имя" required style="width: 100%;">
+            </div>
+            
+            <div style="flex: 1; min-width: 200px; position: relative;">
+                <input type="tel" id="wantPhone" placeholder="Номер телефона" required style="width: 100%;">
+                <!-- Красное предупреждение -->
+                <div id="wantPhoneWarning" style="color: #fff; font-size: 0.6rem; background: #ff4d4d; padding: 2px 10px; border-radius: 5px; position: absolute; bottom: -20px; left: 0; display: none;">Используйте только цифры</div>
+            </div>
 
-    <!-- 10. ОСТАЛИСЬ ВОПРОСЫ? -->
+            <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 10px;">
+                <button type="submit" class="btn-submit-black">Рассчитать стоимость</button>
+                
+                <!-- Юридический текст -->
+                <p style="font-size: 0.65rem; opacity: 0.8; color: #fff; text-align: center; max-width: 400px; line-height: 1.2;">
+                    Нажимая кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с 
+                    <a href="privacy.html" target="_blank" style="color: #000; text-decoration: underline;">политикой конфиденциальности</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</section>
+  
+ <!-- 10. ОСТАЛИСЬ ВОПРОСЫ? -->
     <section class="questions-premium">
         <div class="container">
             <div class="q-action-card">
@@ -1625,7 +1651,8 @@ body.no-scroll { overflow: hidden; }
                 <a href="#" style="color: #444; text-decoration: none;">Политика конфиденциальности</a>
             </div>
         </div>
-    </footer><!-- МОДАЛЬНОЕ ОКНО (СВЕТЛАЯ ВЕРСИЯ) -->
+    </footer>
+<!-- МОДАЛЬНОЕ ОКНО (СВЕТЛАЯ ВЕРСИЯ) -->
 <div class="phone-modal-overlay" id="phoneModal">
     <div class="phone-modal-card">
         <div class="close-modal" onclick="closePhoneModal()">&times;</div>
@@ -1655,6 +1682,58 @@ body.no-scroll { overflow: hidden; }
     </div>
 </div>
     </section></main>
+<!-- МОДАЛЬНОЕ ОКНО: ЗАБРОНИРОВАТЬ КАПСУЛЬНЫЙ РЕМОНТ -->
+<!-- МОДАЛЬНОЕ ОКНО: ЗАБРОНИРОВАТЬ КАПСУЛЬНЫЙ РЕМОНТ -->
+<div class="phone-modal-overlay" id="bookModal">
+    <div class="phone-modal-card" id="bookModalCard">
+        <div class="close-modal" onclick="closeBookModal()">&times;</div>
+        
+        <!-- 1. КОНТЕНТ С ФОРМОЙ -->
+        <div id="bookInitialContent">
+            <span class="modal-label" style="color: var(--orange-brand);">Бронирование</span>
+            <h2 style="font-family: 'Playfair Display', serif; color: #000; margin-bottom: 1rem; font-size: 1.8rem;">Забронировать капсульный ремонт</h2>
+            <p style="color: #666; margin-bottom: 2rem; font-size: 0.9rem;">Оставьте заявку, и мы закрепим за вами текущую стоимость работ.</p>
+            
+            <form class="modal-form-light" id="bookForm">
+                <input type="text" id="bookName" placeholder="Ваше имя" required style="width: 100%; padding: 1rem; border: 1px solid #eee; border-radius: 10px; margin-bottom: 1rem; outline: none;">
+                
+                <input type="tel" id="bookPhone" placeholder="Ваш телефон" required style="width: 100%; padding: 1rem; border: 1px solid #eee; border-radius: 10px; outline: none;">
+                <div id="bookPhoneWarning" style="color: #ff4d4d; font-size: 0.7rem; margin-top: 5px; margin-bottom: 1rem; display: none; text-align: left;">Используйте только цифры</div>
+                
+                <button type="submit" class="btn-submit-black" style="width: 100%; margin-top: 1rem; padding: 1.2rem;">Отправить заявку</button>
+            </form>
+            
+            <p style="font-size: 0.65rem; opacity: 0.7; margin-top: 1.5rem; color: #333; line-height: 1.4;">
+                Нажимая кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с 
+                <a href="privacy.html" target="_blank" style="color: var(--orange-brand); text-decoration: underline;">политикой конфиденциальности</a>
+            </p>
+        </div>
+
+        <!-- 2. КОНТЕНТ С ГАЛОЧКОЙ (СКРЫТ ПО УМОЛЧАНИЮ) -->
+        <div id="bookSuccessContent" style="display: none; padding: 20px 0;">
+            <div style="width: 80px; height: 80px; border: 2px solid var(--orange-brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--orange-brand)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h2 style="font-family: 'Playfair Display', serif; color: #000; margin-bottom: 1rem; font-size: 2rem;">Спасибо!</h2>
+            <p style="color: #666; margin-bottom: 2rem; font-size: 1rem;">Ваша заявка принята. <br>Мы свяжемся с вами в ближайшее время.</p>
+            <button onclick="closeBookModal()" class="btn-submit-black" style="width: 100%; padding: 1.2rem;">Закрыть</button>
+        </div>
+    </div>
+</div>
+<!-- МОДАЛЬНОЕ ОКНО: УСПЕХ (ОБЩЕЕ) -->
+<div class="phone-modal-overlay" id="successModal">
+    <div class="phone-modal-card" style="background:#fff; border-radius:30px; text-align:center;">
+        <div class="close-modal" onclick="closeSuccessModal()">&times;</div>
+        <div style="width: 80px; height: 80px; border: 2px solid var(--orange-brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--orange-brand)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif; color: #000; margin-bottom: 1rem; font-size: 2rem;">Спасибо!</h2>
+        <p style="color: #666; margin-bottom: 2rem;">Ваша заявка принята. <br>Мы свяжемся с вами в ближайшее время.</p>
+        <button onclick="closeSuccessModal()" class="btn-submit-black" style="width: 100%; padding: 1.2rem;">Закрыть</button>
+    </div>
+</div>
+
+
 <script>
     // 1. Данные для вкладок "Что входит" (ОБНОВЛЕНО ПО СКРИНШОТАМ)
     const tabData = {
@@ -1777,6 +1856,78 @@ body.no-scroll { overflow: hidden; }
             display.innerText = '₽ 0';
         }
     }
+// --- ЛОГИКА БРОНИРОВАНИЯ (ВОЗВРАЩЕНА) ---
+    function openBookModal() {
+        const modal = document.getElementById('bookModal');
+        const initialContent = document.getElementById('bookInitialContent');
+        const successContent = document.getElementById('bookSuccessContent');
+
+        // Сброс окна на форму
+        if (initialContent) initialContent.style.display = 'block';
+        if (successContent) successContent.style.display = 'none';
+
+        if (modal) {
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    function closeBookModal() {
+        const modal = document.getElementById('bookModal');
+        if (modal) {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            }, 400);
+        }
+    }
+
+    const bookForm = document.getElementById('bookForm');
+    if (bookForm) {
+        bookForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('bookName').value;
+            const phone = document.getElementById('bookPhone').value;
+            const price = typeof currentPrice !== 'undefined' ? currentPrice : 'Не указан';
+
+            const message = `<b>🔥 БРОНЬ: КАПСУЛЬНЫЙ РЕМОНТ</b>\n<b>Имя:</b> ${name}\n<b>Телефон:</b> ${phone}\n<b>Тариф:</b> ${price} ₽/м²`;
+
+            fetch(`https://api.telegram.org/bot8684787247:AAEWyzBBwvGhaHwVZVosVuRY1IQg1eyglcM/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: "760645228", text: message, parse_mode: 'html' })
+            })
+            .then(res => {
+                if (res.ok) {
+                    document.getElementById('bookInitialContent').style.display = 'none';
+                    document.getElementById('bookSuccessContent').style.display = 'block';
+                    bookForm.reset();
+                }
+            });
+        });
+    }
+
+    // Валидация телефона для бронирования (ИСПРАВЛЕНО: добавлена красная надпись)
+    const bookPhone = document.getElementById('bookPhone');
+    const bookWarning = document.getElementById('bookPhoneWarning');
+
+    if (bookPhone) {
+        bookPhone.addEventListener('input', function() {
+            // Проверяем на наличие букв
+            const hasLetters = /[a-zA-Zа-яА-Я]/.test(this.value);
+            
+            if (hasLetters) {
+                if (bookWarning) bookWarning.style.display = 'block'; // Показываем красную надпись
+            } else {
+                if (bookWarning) bookWarning.style.display = 'none'; // Прячем
+            }
+
+            // Очищаем поле от букв
+            this.value = this.value.replace(/[^0-9+]/g, '');
+        });
+    }
 // --- ЛОГИКА ВИДЖЕТА FAB ---
     function toggleFabMenu(e) {
         if (e) {
@@ -1808,18 +1959,78 @@ body.no-scroll { overflow: hidden; }
         }
     }
 
-    // --- ОБРАБОТЧИК КЛИКОВ (ЗАКРЫТИЕ ВСЕГО) ---
+ // --- ОБРАБОТЧИК КЛИКОВ (ЗАКРЫТИЕ ВСЕГО) ---
     window.addEventListener('click', (e) => {
-        // Закрыть телефон
-        const phoneModal = document.getElementById('phoneModal');
-        if (e.target === phoneModal) closePhoneModal();
+        if (e.target.id === 'phoneModal') closePhoneModal();
+        if (e.target.id === 'bookModal') closeBookModal();
+        if (e.target.id === 'successModal') closeSuccessModal();
 
-        // Закрыть виджет
         const fabMenu = document.getElementById('fabMenu');
         if (fabMenu && !fabMenu.contains(e.target)) {
             fabMenu.classList.remove('active');
         }
     });
+
+    // --- ФУНКЦИИ ДЛЯ ОКНА УСПЕХА ---
+    function openSuccessModal() {
+        const modal = document.getElementById('successModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    function closeSuccessModal() {
+        const modal = document.getElementById('successModal');
+        if (modal) {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            }, 400);
+        }
+    }
+
+    // --- ЛОГИКА ФОРМЫ "ХОТИТЕ ТАКЖЕ?" ---
+    const wantSameForm = document.getElementById('wantSameForm');
+    if (wantSameForm) {
+        wantSameForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('wantName').value;
+            const phone = document.getElementById('wantPhone').value;
+
+            const message = `<b>📩 ХОТИТЕ ТАКЖЕ? (КАПСУЛА)</b>\n<b>Имя:</b> ${name}\n<b>Телефон:</b> ${phone}`;
+
+            fetch(`https://api.telegram.org/bot8684787247:AAEWyzBBwvGhaHwVZVosVuRY1IQg1eyglcM/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: "760645228", text: message, parse_mode: 'html' })
+            })
+            .then(res => {
+                if (res.ok) {
+                    openSuccessModal(); // ТЕПЕРЬ ЭТА ФУНКЦИЯ ЕСТЬ
+                    wantSameForm.reset();
+                } else {
+                    alert("Ошибка отправки.");
+                }
+            });
+        });
+    }
+
+    // Валидация телефона для "Хотите также"
+    const wantPhone = document.getElementById('wantPhone');
+    const wantWarning = document.getElementById('wantPhoneWarning');
+    if (wantPhone) {
+        wantPhone.addEventListener('input', function() {
+            const hasLetters = /[a-zA-Zа-яА-Я]/.test(this.value);
+            if (wantWarning) wantWarning.style.display = hasLetters ? 'block' : 'none';
+            this.value = this.value.replace(/[^0-9+]/g, '');
+        });
+    }
+
+
 </script>
 </body>
 </html>
