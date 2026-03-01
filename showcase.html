@@ -121,32 +121,21 @@
         }
         .project-frame.hidden { display: none; }
 
-       /* КАРТОЧКА ТЕПЕРЬ ПОДСТРАИВАЕТСЯ ПОД ФОТО */
-.project-card {
-    position: relative;
-    width: 100%;
-    height: auto; /* Убираем фиксированную высоту */
-    aspect-ratio: auto !important; /* Отключаем принудительное соотношение сторон */
-    overflow: hidden;
-    background: transparent !important; /* Убираем черный фон */
-}
+        .project-card {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: #111;
+        }
 
-.project-card img {
-    width: 100%;
-    height: auto !important; /* Картинка сама диктует высоту карточки */
-    display: block;
-    object-fit: contain; /* Гарантирует, что фото не обрежется */
-}
-
-/* Чтобы карточки в одном ряду не "плясали" по высоте слишком сильно, 
-   можно добавить выравнивание в сетку */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start; /* Карточки будут выровнены по верхнему краю */
-    margin-bottom: 4rem;
-}
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
 
 
         .project-info-overlay {
@@ -218,8 +207,19 @@
         .gallery-overlay.active .gallery-content { transform: scale(1); }
         .gallery-header { text-align: center; margin-bottom: 60px; color: #fff; }
         .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .gallery-img-wrap { border: 1px solid #222; padding: 10px; background: #000; overflow: hidden; }
-        .gallery-img-wrap img { width: 100%; height: auto; display: block; transition: 0.5s; }
+       .gallery-img-wrap {
+    border: none;
+    padding: 0;
+    background: transparent; /* Убираем черный фон подложки */
+}
+
+.gallery-img-wrap img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Фото не обрезается */
+    display: block;
+    border: 1px solid #222; /* Рамка только вокруг самого фото */
+}
         .gallery-img-wrap:hover img { transform: scale(1.05); }
         .close-gallery { position: fixed; top: 30px; right: 30px; width: 50px; height: 50px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10000; }
 
