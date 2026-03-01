@@ -181,11 +181,19 @@
         /* КНОПКА СМОТРЕТЬ ЕЩЕ */
         .portfolio-footer { text-align: center; padding: 4rem 0 8rem; clear: both; }
         .btn-load-more {
-            background: transparent; color: #fff; border: 1px solid var(--copper);
-            padding: 1.2rem 4rem; font-family: 'Montserrat', sans-serif;
-            font-weight: 600; font-size: 0.75rem; text-transform: uppercase;
-            letter-spacing: 4px; cursor: pointer; transition: var(--transition);
-        }
+    display: none; /* Кнопка скрыта, пока JS не найдет реальные фото */
+    background: transparent; 
+    color: #fff; 
+    border: 1px solid var(--copper);
+    padding: 1.2rem 4rem; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; 
+    font-size: 0.75rem; 
+    text-transform: uppercase;
+    letter-spacing: 4px; 
+    cursor: pointer; 
+    transition: var(--transition);
+}
         .btn-load-more:hover { background: var(--copper); color: #000; box-shadow: 0 0 30px rgba(184, 115, 51, 0.3); }
 
         /* ГАЛЕРЕЯ (MODAL) */
@@ -757,12 +765,15 @@ body.no-scroll {
             const id = index + 1;
             const isHidden = id > visibleCount ? 'hidden' : '';
             
-            // ВАЖНО: здесь добавлен id="project-${id}"
             html += `
                 <div class="project-frame ${isHidden}" id="project-${id}" onclick="openGallery(${index})">
                     <div class="project-card">
                         <div class="hover-btn">Посмотреть проект</div>
-                        <img src="img/work_${id}.webp" alt="${project.title}" loading="lazy" onerror="hideBrokenProject(${id})">
+                        <img src="img/work_${id}.webp" 
+                             alt="${project.title}" 
+                             loading="lazy" 
+                             onload="handleImgLoad(${id})" 
+                             onerror="handleImgError(${id})">
                         <div class="project-info-overlay">
                             <h3>${project.title}</h3>
                             <p>${project.desc}</p>
@@ -773,41 +784,40 @@ body.no-scroll {
         portfolioGrid.innerHTML = html;
     }
 
-   function hideBrokenProject(id) {
-        const card = document.getElementById('project-' + id);
-        if (card) {
-            card.remove(); // Удаляем карточку, если фото нет
+    // Если картинка загрузилась успешно
+    function handleImgLoad(id) {
+        // Если это картинка из "скрытых" (больше 4), показываем кнопку
+        if (id > visibleCount) {
+            loadMoreBtn.style.display = 'inline-block';
         }
-        // Сразу проверяем, нужно ли скрыть кнопку
-        checkLoadMoreButton();
     }
 
-    function loadMore() {
-        // Находим все карточки, которые еще скрыты
-        const hiddenCards = Array.from(document.querySelectorAll('.project-frame.hidden'));
+    // Если картинки нет в папке
+    function handleImgError(id) {
+        const card = document.getElementById('project-' + id);
+        if (card) card.remove(); // Удаляем пустую карточку
         
-        // Показываем следующие 4
-        const nextBatch = hiddenCards.slice(0, 4);
-        nextBatch.forEach(card => card.classList.remove('hidden'));
-        
-        // После показа проверяем, осталось ли что-то еще скрытое
-        checkLoadMoreButton();
-    }
-
-    function checkLoadMoreButton() {
-        const loadMoreBtn = document.getElementById('loadMoreBtn');
-        if (!loadMoreBtn) return;
-
-        // Считаем, сколько в коде осталось карточек с классом .hidden
+        // Проверяем, нужно ли оставить кнопку
         const remainingHidden = document.querySelectorAll('.project-frame.hidden').length;
-        
-        // Если скрытых карточек больше нет — удаляем кнопку
         if (remainingHidden === 0) {
             loadMoreBtn.style.display = 'none';
         }
     }
 
-    // Запускаем один раз
+    function loadMore() {
+        const hiddenCards = Array.from(document.querySelectorAll('.project-frame.hidden'));
+        const nextBatch = hiddenCards.slice(0, 4);
+        
+        nextBatch.forEach(card => {
+            card.classList.remove('hidden');
+        });
+
+        // Если после нажатия скрытых больше нет — прячем кнопку
+        if (document.querySelectorAll('.project-frame.hidden').length === 0) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
     initPortfolio();
 
    // ОБЩИЙ ОБРАБОТЧИК КЛИКОВ (ДЛЯ ВСЕГО)
