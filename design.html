@@ -111,15 +111,59 @@
 }
 
 /* МОБИЛЬНОЕ МЕНЮ */
+/* ПОЛНОЭКРАННАЯ ПОДЛОЖКА МЕНЮ */
+/* ПОДЛОЖКА МЕНЮ */
 .mobile-overlay {
-    position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-    background: var(--dark-bg); display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 2rem;
-    transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    
+    /* ЭФФЕКТ МАТОВОГО СТЕКЛА */
+    background: rgba(10, 10, 10, 0.9); /* Черный на 90%, остальное прозрачно */
+    backdrop-filter: blur(15px);       /* Размытие заднего фона */
+    -webkit-backdrop-filter: blur(15px); /* Поддержка для Safari (iPhone) */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    z-index: 10001;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
 }
-.mobile-overlay.active { right: 0; }
-.mobile-overlay a { color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
-.mobile-phone { color: var(--copper); font-weight: 800; margin-top: 2rem; font-size: 1.1rem; }
+
+/* КОГДА МЕНЮ ОТКРЫТО */
+.mobile-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* КРАСИВЫЙ ТЕКСТ */
+.mobile-overlay a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Тот самый стильный отступ */
+    transition: 0.3s;
+}
+
+.mobile-overlay a:active {
+    color: var(--copper); /* Медный цвет при нажатии */
+}
+
+.mobile-phone {
+    margin-top: 20px;
+    color: var(--copper) !important;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
 
 /* МОДАЛЬНОЕ ОКНО ТЕЛЕФОНА */
 .phone-modal-overlay {
@@ -1051,6 +1095,81 @@ section {
         background: var(--copper) !important;
         color: #000 !important;
     }
+  /* ИСПРАВЛЕНИЕ БЛОКА КОНСУЛЬТАЦИИ */
+    .consult-grid {
+        grid-template-columns: 1fr !important; /* Переключаем в одну колонку */
+        gap: 3rem !important;
+    }
+
+   /* ЗАГОЛОВОК КОНСУЛЬТАЦИИ С ПОЛОСКОЙ */
+    .consult-section h2 {
+        font-size: 1.6rem !important; /* Немного уменьшили для изящности */
+        line-height: 1.2 !important;
+        text-align: left !important;
+        padding-left: 15px !important; /* Отступ от полоски до текста */
+        border-left: 3px solid var(--copper) !important; /* Та самая медная полоска */
+        margin-bottom: 1.5rem !important;
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+    }
+
+    /* Поправим описание под заголовком, чтобы оно не прилипало */
+    .consult-section p {
+        text-align: left !important;
+        padding-left: 0 !important;
+        margin-bottom: 2rem !important;
+        color: var(--text-muted);
+    }
+
+    .consult-form {
+        width: 100% !important;
+    }
+
+    /* Блок "Что вы получаете" — тоже в одну колонку */
+    .bonus-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        margin-top: 3rem !important;
+    }
+
+    .bonus-card {
+        padding: 2rem 1.5rem !important;
+    }
+  /* АДАПТИВ БЛОКА КОМАНДЫ */
+    #team .title-main {
+        text-align: left !important;
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
+        padding-left: 15px !important;
+        border-left: 3px solid var(--copper) !important; /* Полоска для единства стиля */
+        margin-bottom: 3rem !important;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr 1fr !important; /* Строго 2 колонки */
+        gap: 25px 15px !important; /* Расстояние между карточками */
+    }
+
+    .team-card {
+        text-align: left !important;
+    }
+
+    .team-img {
+        filter: grayscale(0) !important; /* На мобилках лучше сразу показывать в цвете */
+        border-radius: 15px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .team-card h4 {
+        font-size: 0.9rem !important; /* Имена чуть меньше, чтобы не переносились криво */
+        line-height: 1.2;
+        margin-bottom: 5px !important;
+    }
+
+    .team-card p {
+        font-size: 0.75rem !important; /* Должности поменьше */
+        color: var(--text-muted);
+    }
 }     
     </style>
 </head>
@@ -1121,9 +1240,12 @@ section {
 <!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
 <!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
 <div class="mobile-overlay" id="mobile-menu">
+    <!-- Кнопка закрытия (крестик) -->
+    <div style="position: absolute; top: 30px; right: 30px; color: #B87333; font-size: 40px; cursor: pointer;" onclick="toggleMenu()">&times;</div>
+    
     <a href="index.html" onclick="toggleMenu()">Главная</a>
-    <a href="design.html" onclick="toggleMenu()">Дизайн интерьера</a>
-    <a href="cottages.html" onclick="toggleMenu()">Строительство домов</a>
+    <a href="design.html" onclick="toggleMenu()">Дизайн</a>
+    <a href="cottages.html" onclick="toggleMenu()">Дома</a>
     <a href="restoration.html" onclick="toggleMenu()">Реставрация</a>
     <a href="showcase.html" onclick="toggleMenu()">Портфолио</a>
     <div class="mobile-phone" onclick="openPhoneModal()">+7 (343) 266-37-25</div>
