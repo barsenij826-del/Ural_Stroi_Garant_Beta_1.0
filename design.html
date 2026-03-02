@@ -631,7 +631,11 @@ body.no-scroll { overflow: hidden; }
 .fab-sub:hover { background: var(--copper); }
 .fab-sub:hover svg { fill: #000; }
 
-        /* РАСШИРЕННЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР */
+         /* РАСШИРЕННЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР */
+      /* ==========================================
+   ПРИНУДИТЕЛЬНЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР
+========================================== */
+ /* РАСШИРЕННЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР */
         .footer-main {
             background-color: #050505; /* Чуть темнее основного фона для глубины */
             padding: 8rem 0 4rem;
@@ -700,6 +704,21 @@ body.no-scroll { overflow: hidden; }
             font-size: 0.75rem;
         }
 
+/* Адаптив для мобилок (чтобы не разъехалось) */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
+    }
+    .footer-col {
+        text-align: left !important;
+        align-items: flex-start !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+}
         @media (max-width: 1024px) {
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
@@ -708,15 +727,23 @@ body.no-scroll { overflow: hidden; }
         }
 
         @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
-            }
-        }
+           /* ВЫРАВНИВАНИЕ ФУТЕРА ПО ЛЕВОМУ КРАЮ (КАК НА ГЛАВНОЙ) */
+    .footer-grid { 
+        grid-template-columns: 1fr !important; 
+        gap: 2.5rem !important; 
+    }
+
+    .footer-col { 
+        text-align: left !important; /* Меняем center на left */
+        align-items: flex-start !important; /* Меняем center на flex-start */
+    }
+
+    .footer-bottom { 
+        flex-direction: column; 
+        gap: 1.5rem; 
+        text-align: left !important; /* Меняем center на left */
+        align-items: flex-start !important;
+    }
       /* ==========================================
    ОБЩИЙ АДАПТИВ ДЛЯ ВСЕХ СТРАНИЦ
 ========================================== */
@@ -1171,6 +1198,7 @@ section {
         color: var(--text-muted);
     }
 }     
+          
     </style>
 </head>
 <body>
@@ -1579,7 +1607,7 @@ section {
         </section>
     </main>
 
-    <footer class="footer-main">
+   <footer class="footer-main">
         <div class="container">
             <div class="footer-grid">
                 
