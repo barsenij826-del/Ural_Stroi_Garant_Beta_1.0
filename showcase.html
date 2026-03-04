@@ -164,41 +164,43 @@
         }
         /* СЕТКА ПОРТФОЛИО */
      /* ПРЕМИАЛЬНАЯ МЭЙСОНРИ-СЕТКА */
+/* ВОЗВРАТ К СТРОГОЙ СЕТКЕ */
 .portfolio-grid {
-    display: block;
-    column-count: 2;
-    column-gap: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 колонки на ПК */
+    gap: 40px;
     margin-bottom: 4rem;
 }
 
 .project-frame {
-    display: inline-block; /* Оставляем для Masonry на ПК */
-    width: 100%;
-    margin-bottom: 40px;
-    break-inside: avoid;
     border: 1px solid rgba(184, 115, 51, 0.3);
     padding: 15px;
     transition: var(--transition);
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
-      /* ФИКС КНОПКИ "СМОТРЕТЬ ЕЩЕ": принудительное скрытие */
-.project-frame.hidden {
-    display: none !important;
+
+/* Фикс кнопки "Смотреть еще" */
+.project-frame.hidden { 
+    display: none !important; 
 }
+
 .project-card {
     position: relative;
     width: 100%;
+    aspect-ratio: 16/10; /* ЖЕСТКАЯ РАМКА ДЛЯ ВСЕХ */
     overflow: hidden;
     background: #111;
 }
 
 .project-card img {
     width: 100%;
-    height: auto; /* На ПК фото без обрезки */
+    height: 100%;
+    object-fit: cover; /* Фото заполняет рамку без искажений */
     display: block;
     transition: var(--transition);
 }
-
 
 
         .project-info-overlay {
@@ -637,6 +639,32 @@ body.no-scroll {
 
     .project-info-overlay {
         padding: 20px 15px !important;
+    }
+}
+      @media (max-width: 768px) {
+    /* Компактный текст на карточках портфолио */
+    .project-info-overlay {
+        padding: 20px 15px !important; /* Уменьшили отступы от краев (было 40/20) */
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%) !important;
+    }
+
+    .project-info-overlay h3 {
+        font-size: 1.1rem !important; /* Уменьшили размер названия проекта */
+        margin-bottom: 4px !important;
+        line-height: 1.2;
+    }
+
+    .project-info-overlay p {
+        font-size: 0.7rem !important; /* Мелкое, аккуратное описание */
+        line-height: 1.3;
+        letter-spacing: 1px !important;
+        opacity: 0.8;
+        
+        /* ОГРАНИЧЕНИЕ: не более 2-х строк, чтобы не закрывать фото */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 }
 }     
