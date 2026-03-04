@@ -323,7 +323,23 @@
 }   
         .bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 4rem 0 8rem; }
         .bonus-card { padding: 3rem 2rem; border: 1px solid #222; border-left: 3px solid var(--copper); background: var(--dark-card); }
-        .check-circle { width: 40px; height: 40px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 2.5rem; color: #000; font-weight: 800; font-size: 1.2rem; }
+        .check-circle {
+    width: 32px; /* Чуть уменьшили размер для изящности */
+    height: 32px;
+    background: var(--copper);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: #000; /* Цвет самой галочки */
+    flex-shrink: 0;
+}
+
+.check-circle svg {
+    width: 16px;
+    height: 16px;
+}
         .consult-form-container { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
         .consult-form { display: grid; gap: 2.5rem; }
         .consult-form input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #333; padding: 1.2rem 0; color: #fff; font-family: inherit; outline: none; }
@@ -652,25 +668,30 @@ body.no-scroll {
             .hover-btn { display: none !important; }
 
             /* 3. КОНСУЛЬТАЦИЯ: ВЫРАВНИВАНИЕ ВЛЕВО И ПОЛОСКА */
-            .consult-header-box { 
-                text-align: left !important; 
-                margin-bottom: 2.5rem !important; 
-                padding: 0 !important;
-            }
-           /* 2. Делаем секцию консультации заметнее */
-    .consult-main-title {
-        font-size: 1.7rem !important; /* Увеличили (было 1.35) */
-        line-height: 1.2 !important;
-        border-left: 4px solid var(--copper) !important;
-        padding-left: 20px !important;
+            /* Добавляем "дыхание" по бокам только для блока формы и заголовка консультации */
+   /* 1. Общий контейнер секции */
+    .consult-header-box, 
+    .consult-form-container {
+        text-align: left !important;
+        padding-left: 15px !important; /* Уменьшили общий край до 15px */
+        padding-right: 15px !important;
     }
 
+    /* 2. Сам заголовок */
+    .consult-main-title {
+        font-size: 1.7rem !important; 
+        line-height: 1.2 !important;
+        border-left: 4px solid var(--copper) !important;
+        padding-left: 12px !important; /* ПРИЖАЛИ ТЕКСТ К ПОЛОСКЕ (было 20px) */
+        margin-left: 0 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* 3. Оранжевый подзаголовок */
     .consult-subtitle { 
-        font-size: 0.9rem !important; /* Увеличили (было 0.75) */
-      color: var(--copper); /* ДОБАВЬ ЭТУ СТРОКУ */
-        padding-left: 24px !important; 
-        letter-spacing: 0.5px !important;
-        font-weight: 600;
+        font-size: 0.85rem !important;
+        padding-left: 16px !important; /* Выровняли в одну линию с основным текстом */
+        text-align: left !important;
     }
 
             /* 4. СЕТКИ И ФУТЕР */
@@ -759,11 +780,33 @@ body.no-scroll {
 
         <div class="bonus-grid">
             <!-- Твои карточки .bonus-card оставляем без изменений -->
-            <div class="bonus-card"><div class="check-circle">✓</div><h4>Планировочные решения</h4><p>Рекомендации по выбору планировки под ваш сценарий жизни.</p></div>
-            
-                    <div class="bonus-card"><div class="check-circle">✓</div><h4>Стилистический концепт</h4><p>Визуальный коллаж вашей будущей квартиры прямо на встрече.</p></div>
-                    <div class="bonus-card"><div class="check-circle">✓</div><h4>Бюджетирование</h4><p>Предварительный расчет стоимости реализации проекта под ваш бюджет.</p></div>
-                </div>
+            <!-- Карточка 1 -->
+<div class="bonus-card">
+    <div class="check-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h4>Планировочные решения</h4>
+    <p>Рекомендации по выбору планировки под ваш сценарий жизни.</p>
+</div>
+
+<!-- Карточка 2 -->
+<div class="bonus-card">
+    <div class="check-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h4>Стилистический концепт</h4>
+    <p>Визуальный коллаж вашей будущей квартиры прямо на встрече.</p>
+</div>
+
+<!-- Карточка 3 -->
+<div class="bonus-card">
+    <div class="check-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h4>Бюджетирование</h4>
+    <p>Предварительный расчет стоимости реализации проекта под ваш бюджет.</p>
+</div>
+                
 
                 <div class="consult-form-container" id="consult">
                     <div>
