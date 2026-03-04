@@ -626,13 +626,22 @@ body.no-scroll {
             .logo-box { font-size: 1rem; }
 
             /* 2. ПОРТФОЛИО: МАЛЕНЬКИЕ БУКВЫ НА ФОТО */
-            .portfolio-grid { 
-                display: grid !important; 
-                grid-template-columns: 1fr !important; 
-                gap: 20px !important; 
-            }
-            .project-frame { padding: 8px !important; margin-bottom: 0; }
-            .project-card { aspect-ratio: 16/10 !important; }
+          /* 1. Делаем контейнер шире, чтобы картинки стали больше */
+    .container { padding: 0 15px !important; }
+
+    .portfolio-grid { 
+        display: grid !important; 
+        grid-template-columns: 1fr !important; 
+        gap: 25px !important; 
+    }
+
+    .project-frame { 
+        padding: 5px !important; /* Уменьшили рамку, увеличив саму область фото */
+    }
+
+    .project-card { 
+        aspect-ratio: 3/2 !important; /* Сделали фото чуть выше (было 16/10), теперь они крупнее */
+    }
             
             .project-info-overlay { 
                 padding: 12px 15px !important; 
@@ -661,19 +670,20 @@ body.no-scroll {
                 margin-bottom: 2.5rem !important; 
                 padding: 0 !important;
             }
-            .consult-main-title {
-                font-size: 1.35rem !important;
-                line-height: 1.3 !important;
-                border-left: 3px solid var(--copper) !important;
-                padding-left: 15px !important;
-                text-align: left !important;
-                margin-left: 0 !important;
-            }
-            .consult-subtitle { 
-                font-size: 0.75rem !important; 
-                padding-left: 18px !important; 
-                text-align: left !important; 
-            }
+           /* 2. Делаем секцию консультации заметнее */
+    .consult-main-title {
+        font-size: 1.7rem !important; /* Увеличили (было 1.35) */
+        line-height: 1.2 !important;
+        border-left: 4px solid var(--copper) !important;
+        padding-left: 20px !important;
+    }
+
+    .consult-subtitle { 
+        font-size: 0.9rem !important; /* Увеличили (было 0.75) */
+        padding-left: 24px !important; 
+        letter-spacing: 0.5px !important;
+        font-weight: 600;
+    }
 
             /* 4. СЕТКИ И ФУТЕР */
             .bonus-grid, .consult-form-container { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
