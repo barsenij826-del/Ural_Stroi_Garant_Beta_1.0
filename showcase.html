@@ -163,38 +163,39 @@
             opacity: 0.8;
         }
         /* СЕТКА ПОРТФОЛИО */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 4rem;
-        }
+     /* ПРЕМИАЛЬНАЯ МЭЙСОНРИ-СЕТКА */
+.portfolio-grid {
+    display: block; /* Отключаем старый grid */
+    column-count: 2; /* Делаем 2 колонки */
+    column-gap: 50px; /* Увеличиваем расстояние для "воздуха" */
+    margin-bottom: 4rem;
+}
 
-        .project-frame {
-            border: 1px solid rgba(184, 115, 51, 0.3);
-            padding: 15px;
-            transition: var(--transition);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-        .project-frame.hidden { display: none; }
+.project-frame {
+    display: inline-block; /* Важно для работы колонок */
+    width: 100%;
+    margin-bottom: 40px; /* Расстояние между фото по вертикали */
+    break-inside: avoid; /* Запрещаем разрыв карточки между колонками */
+    border: 1px solid rgba(184, 115, 51, 0.3);
+    padding: 15px;
+    transition: var(--transition);
+    cursor: pointer;
+}
 
-        .project-card {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/10;
-            overflow: hidden;
-            background: #111;
-        }
+.project-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: auto; /* УБИРАЕМ фиксированное соотношение 16/10 */
+    overflow: hidden;
+    background: #111;
+}
 
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: var(--transition);
-        }
+.project-card img {
+    width: 100%;
+    height: auto; /* Фото сохраняет свои пропорции */
+    display: block;
+    transition: var(--transition);
+}
 
 
         .project-info-overlay {
@@ -644,6 +645,21 @@ body.no-scroll {
     .hover-btn {
         display: none !important;
     }
+   @media (max-width: 768px) {
+    .portfolio-grid {
+        column-count: 1; /* На телефоне в одну колонку */
+        column-gap: 0;
+    }
+
+    .project-frame {
+        margin-bottom: 30px; /* Чуть меньше отступ на мобилке */
+        padding: 10px;
+    }
+
+    .project-info-overlay {
+        padding: 20px 15px !important;
+    }
+}
 }     
     </style>
 </head>
