@@ -287,6 +287,27 @@
 
         /* КОНСУЛЬТАЦИЯ */
         .consult-unified { padding: 8rem 0; background: var(--dark-bg); border-top: 1px solid #1a1a1a; }
+      .consult-header-box {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.consult-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.consult-subtitle {
+    color: var(--copper);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    opacity: 0.9;
+}
         .bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 4rem 0 8rem; }
         .bonus-card { padding: 3rem 2rem; border: 1px solid #222; border-left: 3px solid var(--copper); background: var(--dark-card); }
         .check-circle { width: 40px; height: 40px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 2.5rem; color: #000; font-weight: 800; font-size: 1.2rem; }
@@ -564,7 +585,66 @@ body.no-scroll { overflow: hidden; }
 body.no-scroll { 
     overflow: hidden; 
 }
-      
+      /* Секция консультации на мобильном */
+    .consult-header-box {
+        text-align: left;
+        margin-bottom: 3rem;
+        padding: 0 5px;
+    }
+
+.consult-main-title {
+        font-size: 1.55rem !important; /* Уменьшили с 1.8rem */
+        line-height: 1.3 !important;
+        border-left: 3px solid var(--copper);
+        padding-left: 20px !important;
+        margin-bottom: 1.2rem !important;
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        hyphens: none;
+    }
+
+    .consult-subtitle {
+        font-size: 0.85rem !important;
+        line-height: 1.4;
+        padding-left: 23px;
+        letter-spacing: 1px !important;
+    }
+ @media (max-width: 768px) {
+    /* Сетка и карточки портфолио */
+    .portfolio-grid { 
+        gap: 20px !important; 
+    }
+
+    .project-frame {
+        padding: 8px !important; /* Уменьшили рамку вокруг фото */
+    }
+
+    .project-info-overlay {
+        padding: 20px 15px !important; /* Урезали отступы внутри текста */
+    }
+
+    .project-info-overlay h3 {
+        font-size: 1.2rem !important; /* Был огромный, стал компактный */
+        margin-bottom: 5px !important;
+        line-height: 1.2;
+    }
+
+    .project-info-overlay p {
+        font-size: 0.75rem !important; /* Мелкое аккуратное описание */
+        line-height: 1.4;
+        opacity: 0.8;
+        /* Магия: обрезаем текст после 2-й строки, чтобы не раздувать карточку */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Скрываем кнопку "Посмотреть проект", на мобилках она только мешает */
+    .hover-btn {
+        display: none !important;
+    }
+}     
     </style>
 </head>
 <body>
@@ -625,14 +705,22 @@ body.no-scroll {
             </div>
         </div>
 
-        <!-- СЕКЦИЯ КОНСУЛЬТАЦИИ -->
         <section class="consult-unified">
-            <div class="container">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; text-align: center; color: #fff;">
-                    Запишитесь на консультацию <br>к профессиональному дизайнеру
-                </h2>
-                <div class="bonus-grid">
-                    <div class="bonus-card"><div class="check-circle">✓</div><h4>Планировочные решения</h4><p>Рекомендации по выбору планировки под ваш сценарий жизни.</p></div>
+    <div class="container">
+        <!-- БЛОК ЗАГОЛОВКА -->
+        <div class="consult-header-box">
+            <h2 class="consult-main-title">
+        Запишитесь на консультацию <br> к&nbsp;профессиональному дизайнеру
+    </h2>
+            <p class="consult-subtitle">
+                Что вы получаете сразу после консультации:
+            </p>
+        </div>
+
+        <div class="bonus-grid">
+            <!-- Твои карточки .bonus-card оставляем без изменений -->
+            <div class="bonus-card"><div class="check-circle">✓</div><h4>Планировочные решения</h4><p>Рекомендации по выбору планировки под ваш сценарий жизни.</p></div>
+            
                     <div class="bonus-card"><div class="check-circle">✓</div><h4>Стилистический концепт</h4><p>Визуальный коллаж вашей будущей квартиры прямо на встрече.</p></div>
                     <div class="bonus-card"><div class="check-circle">✓</div><h4>Бюджетирование</h4><p>Предварительный расчет стоимости реализации проекта под ваш бюджет.</p></div>
                 </div>
