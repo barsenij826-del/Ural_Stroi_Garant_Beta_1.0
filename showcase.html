@@ -165,37 +165,40 @@
         /* СЕТКА ПОРТФОЛИО */
      /* ПРЕМИАЛЬНАЯ МЭЙСОНРИ-СЕТКА */
 .portfolio-grid {
-    display: block; /* Отключаем старый grid */
-    column-count: 2; /* Делаем 2 колонки */
-    column-gap: 50px; /* Увеличиваем расстояние для "воздуха" */
+    display: block;
+    column-count: 2;
+    column-gap: 50px;
     margin-bottom: 4rem;
 }
 
 .project-frame {
-    display: inline-block; /* Важно для работы колонок */
+    display: inline-block; /* Оставляем для Masonry на ПК */
     width: 100%;
-    margin-bottom: 40px; /* Расстояние между фото по вертикали */
-    break-inside: avoid; /* Запрещаем разрыв карточки между колонками */
+    margin-bottom: 40px;
+    break-inside: avoid;
     border: 1px solid rgba(184, 115, 51, 0.3);
     padding: 15px;
     transition: var(--transition);
     cursor: pointer;
 }
-
+      /* ФИКС КНОПКИ "СМОТРЕТЬ ЕЩЕ": принудительное скрытие */
+.project-frame.hidden {
+    display: none !important;
+}
 .project-card {
     position: relative;
     width: 100%;
-    aspect-ratio: auto; /* УБИРАЕМ фиксированное соотношение 16/10 */
     overflow: hidden;
     background: #111;
 }
 
 .project-card img {
     width: 100%;
-    height: auto; /* Фото сохраняет свои пропорции */
+    height: auto; /* На ПК фото без обрезки */
     display: block;
     transition: var(--transition);
 }
+
 
 
         .project-info-overlay {
@@ -610,50 +613,26 @@ body.no-scroll {
         padding-left: 23px;
         letter-spacing: 1px !important;
     }
- @media (max-width: 768px) {
-    /* Сетка и карточки портфолио */
-    .portfolio-grid { 
-        gap: 20px !important; 
-    }
-
-    .project-frame {
-        padding: 8px !important; /* Уменьшили рамку вокруг фото */
-    }
-
-    .project-info-overlay {
-        padding: 20px 15px !important; /* Урезали отступы внутри текста */
-    }
-
-    .project-info-overlay h3 {
-        font-size: 1.2rem !important; /* Был огромный, стал компактный */
-        margin-bottom: 5px !important;
-        line-height: 1.2;
-    }
-
-    .project-info-overlay p {
-        font-size: 0.75rem !important; /* Мелкое аккуратное описание */
-        line-height: 1.4;
-        opacity: 0.8;
-        /* Магия: обрезаем текст после 2-й строки, чтобы не раздувать карточку */
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    /* Скрываем кнопку "Посмотреть проект", на мобилках она только мешает */
-    .hover-btn {
-        display: none !important;
-    }
-   @media (max-width: 768px) {
+ /* АДАПТИВ ДЛЯ МОБИЛЬНЫХ */
+@media (max-width: 768px) {
     .portfolio-grid {
-        column-count: 1; /* На телефоне в одну колонку */
+        column-count: 1; /* Один столбец */
         column-gap: 0;
     }
 
     .project-frame {
-        margin-bottom: 30px; /* Чуть меньше отступ на мобилке */
+        margin-bottom: 30px;
         padding: 10px;
+    }
+
+    /* ВОЗВРАЩАЕМ ЖЕСТКИЕ РАМКИ НА МОБИЛКЕ */
+    .project-card {
+        aspect-ratio: 16/10 !important; /* Все фото одинаковые по высоте */
+    }
+
+    .project-card img {
+        height: 100% !important;
+        object-fit: cover !important; /* Заполняем рамку без искажений */
     }
 
     .project-info-overlay {
