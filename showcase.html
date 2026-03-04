@@ -292,27 +292,26 @@
         .close-gallery { position: fixed; top: 30px; right: 30px; width: 50px; height: 50px; background: var(--copper); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10000; }
 
         /* КОНСУЛЬТАЦИЯ */
-        .consult-unified { padding: 8rem 0; background: var(--dark-bg); border-top: 1px solid #1a1a1a; }
-      .consult-header-box {
+      /* КОНСУЛЬТАЦИЯ НА ПК */
+.consult-unified { 
+    padding: 3rem 0 8rem; /* Параметр 1 (3rem) — убирает "воздух" сверху */
+    background: var(--dark-bg); 
+    border-top: 1px solid #1a1a1a; 
+}
+
+.consult-header-box {
     margin-bottom: 4rem;
-    text-align: center;
+    text-align: center; /* Выравнивание по центру */
 }
 
 .consult-main-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.2;
+    font-size: 4rem; /* ПАРАМЕТР ДЛЯ ГИБКОГО РАЗМЕРА НА ПК */
+    line-height: 1.1;
     color: #fff;
     margin-bottom: 1.5rem;
-}
-
-.consult-subtitle {
-    color: var(--copper);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    opacity: 0.9;
+    border-left: none; /* Убираем черту на ПК */
+    padding-left: 0;
 }
         .bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 4rem 0 8rem; }
         .bonus-card { padding: 3rem 2rem; border: 1px solid #222; border-left: 3px solid var(--copper); background: var(--dark-card); }
@@ -591,30 +590,7 @@ body.no-scroll { overflow: hidden; }
 body.no-scroll { 
     overflow: hidden; 
 }
-      /* Секция консультации на мобильном */
-    .consult-header-box {
-        text-align: left;
-        margin-bottom: 3rem;
-        padding: 0 5px;
-    }
-
-.consult-main-title {
-        font-size: 1.55rem !important; /* Уменьшили с 1.8rem */
-        line-height: 1.3 !important;
-        border-left: 3px solid var(--copper);
-        padding-left: 20px !important;
-        margin-bottom: 1.2rem !important;
-        font-family: 'Playfair Display', serif;
-        font-weight: 700;
-        hyphens: none;
-    }
-
-    .consult-subtitle {
-        font-size: 0.85rem !important;
-        line-height: 1.4;
-        padding-left: 23px;
-        letter-spacing: 1px !important;
-    }
+     
 /* ==========================================
            ЕДИНЫЙ АДАПТИВНЫЙ БЛОК (768px)
         ========================================== */
@@ -627,7 +603,9 @@ body.no-scroll {
 
             /* 2. ПОРТФОЛИО: МАЛЕНЬКИЕ БУКВЫ НА ФОТО */
           /* 1. Делаем контейнер шире, чтобы картинки стали больше */
-    .container { padding: 0 15px !important; }
+    .container { 
+        padding: 0 8px !important; /* Уменьшили с 15px до 8px, фото стали шире */
+    }
 
     .portfolio-grid { 
         display: grid !important; 
@@ -680,6 +658,7 @@ body.no-scroll {
 
     .consult-subtitle { 
         font-size: 0.9rem !important; /* Увеличили (было 0.75) */
+      color: var(--copper); /* ДОБАВЬ ЭТУ СТРОКУ */
         padding-left: 24px !important; 
         letter-spacing: 0.5px !important;
         font-weight: 600;
@@ -695,6 +674,7 @@ body.no-scroll {
             .fab-main-trigger svg, .fab-icon-close { position: absolute !important; }
             .fab-wrapper.active .fab-main-trigger { animation: none !important; }
             .fab-wrapper.active .icon-phone-main, .fab-wrapper.active .icon-msg-main { opacity: 0 !important; animation: none !important; }
+          
         }
     </style>
 </head>
