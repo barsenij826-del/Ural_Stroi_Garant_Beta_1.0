@@ -734,35 +734,34 @@ body.no-scroll {
           
         }
       @media (max-width: 768px) {
-    /* ФИКС ФОТО ВНУТРИ ГАЛЕРЕИ НА ТЕЛЕФОНЕ */
-    .gallery-img-wrap {
-        aspect-ratio: auto !important; /* Отменяем рамку 16/10 */
-        margin-bottom: 15px !important;
-        display: block !important;
-        width: 100% !important;
+    /* ФОТО ВНУТРИ ПРОЕКТА: БЕЗ ОБРЕЗКИ (ЗОЛОТАЯ СЕРЕДИНА) */
+    .gallery-overlay {
+        padding: 40px 0 !important;
     }
 
-    .gallery-img-wrap img {
-        height: auto !important; /* Фото не растягивается */
-        object-fit: contain !important; /* Показываем фото целиком без обрезки */
-    }
-
-    .gallery-grid {
-        column-count: 1 !important; /* На мобилке строго в один ряд */
+    .gallery-grid { 
+        column-count: 1 !important; /* На мобилке строго одна колонка */
         padding: 0 10px !important;
     }
 
-    .gallery-header {
-        padding-top: 40px; /* Даем место сверху, чтобы текст не лез на крестик */
-        text-align: left !important;
-        padding-right: 70px; /* Чтобы длинный заголовок не залез под кнопку */
+    .gallery-img-wrap {
+        display: block !important;
+        width: 100% !important;
+        aspect-ratio: auto !important; /* УБИРАЕМ РАМКУ */
+        height: auto !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #222;
     }
 
-    .close-gallery { 
-        top: 20px; 
-        right: 15px; /* Отодвинули от края */
-        width: 45px; 
-        height: 45px; 
+    .gallery-img-wrap img {
+        width: 100% !important;
+        height: auto !important; /* ФОТО ПРИНИМАЕТ СВОЙ РАЗМЕР */
+        object-fit: contain !important; /* ГАРАНТИЯ: фото видно целиком */
+    }
+
+    .gallery-header {
+        padding: 0 15px 30px !important;
+        text-align: left !important;
     }
 }
     </style>
