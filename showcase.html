@@ -734,8 +734,22 @@ body.no-scroll {
           
         }
       @media (max-width: 768px) {
-    .gallery-grid { 
-        column-count: 1; /* На мобилке фото в одну колонку во весь экран */
+    /* ФИКС ФОТО ВНУТРИ ГАЛЕРЕИ НА ТЕЛЕФОНЕ */
+    .gallery-img-wrap {
+        aspect-ratio: auto !important; /* Отменяем рамку 16/10 */
+        margin-bottom: 15px !important;
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .gallery-img-wrap img {
+        height: auto !important; /* Фото не растягивается */
+        object-fit: contain !important; /* Показываем фото целиком без обрезки */
+    }
+
+    .gallery-grid {
+        column-count: 1 !important; /* На мобилке строго в один ряд */
+        padding: 0 10px !important;
     }
 
     .gallery-header {
