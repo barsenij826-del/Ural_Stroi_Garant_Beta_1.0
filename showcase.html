@@ -735,10 +735,9 @@ body.no-scroll {
         }
       @media (max-width: 768px) {
     /* ФОТО ВНУТРИ ПРОЕКТА: БЕЗ ОБРЕЗКИ (ЗОЛОТАЯ СЕРЕДИНА) */
-    .gallery-overlay {
-        padding: 40px 0 !important;
+   .gallery-overlay {
+        padding: 20px 0 !important; /* Уменьшили отступ сверху всей модалки */
     }
-
     .gallery-grid { 
         column-count: 1 !important; /* На мобилке строго одна колонка */
         padding: 0 10px !important;
@@ -759,10 +758,26 @@ body.no-scroll {
         object-fit: contain !important; /* ГАРАНТИЯ: фото видно целиком */
     }
 
-    .gallery-header {
-        padding: 0 15px 30px !important;
+     .gallery-header {
+        padding-top: 10px !important; /* Прижали текст выше */
+        padding-right: 75px !important; /* Жесткий зазор справа, чтобы текст не залез под крестик */
+        margin-bottom: 25px !important; /* Уменьшили расстояние до первой фотки (было 60) */
         text-align: left !important;
+        padding-left: 15px !important;
     }
+    #modalTitle {
+        font-size: 1.3rem !important; /* Уменьшили шрифт, чтобы длинные названия влезали */
+        line-height: 1.2;
+        margin-bottom: 8px !important;
+        display: block;
+        word-wrap: break-word;
+    }
+
+    #modalDesc {
+        font-size: 0.7rem !important;
+        line-height: 1.4;
+        opacity: 0.8;
+    }      
 }
     </style>
 </head>
