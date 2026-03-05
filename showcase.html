@@ -742,42 +742,32 @@ body.no-scroll {
       @media (max-width: 768px) {
     /* ФОТО ВНУТРИ ПРОЕКТА: БЕЗ ОБРЕЗКИ (ЗОЛОТАЯ СЕРЕДИНА) */
    /* ФИКС ГАЛЕРЕИ: ТЕКСТ И ОТСТУПЫ */
+     /* РЕЗКО УВЕЛИЧИВАЕМ ФОТО В ГАЛЕРЕЕ */
     .gallery-overlay {
-        padding: 20px 0 !important; /* Уменьшили отступ сверху всей модалки */
+        padding: 20px 0 !important;
     }
 
+    .gallery-grid { 
+        padding: 0 !important; /* Убрали боковые отступы — фото теперь от края до края */
+        column-gap: 0 !important;
+    }
+
+    .gallery-img-wrap {
+        margin-bottom: 5px !important; /* Минимальный зазор между фото для эффекта монолита */
+        border: none !important; /* Убрали рамку, она визуально уменьшает фото */
+        padding: 0 !important;
+    }
+
+    .gallery-img-wrap img {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 0 !important; /* Убираем скругления, если были, чтобы фото было больше */
+    }
+
+    /* Текст заголовка в галерее оставляем с отступом, чтобы не прилипал к краям */
     .gallery-header {
-        padding: 0 20px !important;
-        padding-right: 75px !important; /* ЖЕСТКИЙ ЗАЗОР, чтобы текст не залез под крестик */
-        margin-bottom: 20px !important; /* Уменьшили дыру между текстом и фото */
-        text-align: left !important; /* Прижали к левому краю для стиля */
+        padding: 0 15px 20px !important;
     }
-
-    #modalTitle {
-        font-size: 1.35rem !important; /* Оптимальный размер, чтобы влезало */
-        line-height: 1.2;
-        margin-bottom: 8px !important;
-        display: block;
-        word-wrap: break-word; /* Чтобы длинные слова не резали экран */
-    }
-
-    #modalDesc {
-        font-size: 0.75rem !important;
-        line-height: 1.4;
-        opacity: 0.8;
-    }
-
-    .gallery-grid {
-        padding: 0 10px !important;
-    }
-
-    .close-gallery { 
-        top: 15px !important; 
-        right: 15px !important; 
-        width: 42px !important; 
-        height: 42px !important; 
-    }
-}
 }
     </style>
 </head>
