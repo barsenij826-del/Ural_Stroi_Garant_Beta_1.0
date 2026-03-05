@@ -373,21 +373,35 @@ body {
     width: 16px;
     height: 16px;
 }
-        .consult-form-container { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-        .consult-form { display: grid; gap: 2.5rem; }
+       .consult-form-container { 
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; /* Правая колонка с формой чуть шире */
+    gap: 8rem; /* Увеличили расстояние между текстом и формой для воздуха */
+    align-items: start; 
+    margin-top: 5rem;
+}
+       /* 2. Растягиваем форму на всю ширину правой колонки */
+.consult-form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 2.5rem; 
+    width: 100%; 
+}
+
         .consult-form input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #333; padding: 1.2rem 0; color: #fff; font-family: inherit; outline: none; }
         /* КНОПКА В КОНСУЛЬТАЦИИ (ПРОЗРАЧНАЯ -> ОРАНЖЕВАЯ) */
+/* 3. Кнопка на всю ширину формы */
 .btn-submit { 
-    background: transparent !important; /* Убрали заливку */
-    color: #fff !important; /* Текст белый */
-    border: 1px solid var(--copper) !important; /* Медная рамка */
+    width: 100% !important; /* Кнопка теперь не сжата, а растянута */
+    background: transparent !important; 
+    color: #fff !important; 
+    border: 1px solid var(--copper) !important; 
     padding: 1.5rem; 
     font-weight: 800; 
     text-transform: uppercase; 
     letter-spacing: 2px; 
     cursor: pointer; 
     transition: all 0.4s ease; 
-    width: 100%; 
     outline: none;
 }
 
@@ -741,6 +755,7 @@ body.no-scroll {
 <!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
 <!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
 <div class="mobile-overlay" id="mobile-menu">
+  <div style="position: absolute; top: 30px; right: 30px; color: #B87333; font-size: 40px; cursor: pointer;" onclick="toggleMenu()">&times;</div>
     <a href="index.html" onclick="toggleMenu()">Главная</a>
     <a href="design.html" onclick="toggleMenu()">Дизайн интерьера</a>
     <a href="cottages.html" onclick="toggleMenu()">Строительство домов</a>
@@ -818,7 +833,7 @@ body.no-scroll {
     <h4>Бюджетирование</h4>
     <p>Предварительный расчет стоимости реализации проекта под ваш бюджет.</p>
 </div>
-                
+  </div>              
 
                 <div class="consult-form-container" id="consult">
                     <div>
@@ -833,12 +848,11 @@ body.no-scroll {
     <div id="consultPhoneWarning" style="color: #ff4d4d; font-size: 0.7rem; margin-top: -1.5rem; margin-bottom: 1rem; display: none;">Используйте только цифры</div>
     
     <input type="text" id="consultArea" placeholder="Площадь объекта (м²)">
-    <button type="submit" class="btn-submit">Отправить заявку</button>
-    
-    <p style="font-size: 0.7rem; opacity: 0.5; margin-top: 1rem; color: #fff; text-align: center;">
-        Нажимая кнопку, вы соглашаетесь с 
-        <a href="privacy.html" target="_blank" style="color: var(--copper); text-decoration: underline;">политикой конфиденциальности</a>
-    </p>
+<button type="submit" class="btn-submit">Отправить заявку</button>
+<p style="font-size: 0.7rem; opacity: 0.5; margin-top: 1.5rem; color: #fff; text-align: center;">
+    Нажимая кнопку, вы соглашаетесь с 
+    <a href="privacy.html" target="_blank" style="color: var(--copper); text-decoration: underline;">политикой конфиденциальности</a>
+</p>
 </form>
 </div>
 </div>
