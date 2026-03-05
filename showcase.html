@@ -288,7 +288,13 @@ body {
         .gallery-overlay.active { display: block; opacity: 1; }
         .gallery-content { max-width: 1000px; margin: 0 auto; padding: 0 20px; transform: scale(0.9); transition: 0.5s; }
         .gallery-overlay.active .gallery-content { transform: scale(1); }
-        .gallery-header { text-align: center; margin-bottom: 60px; color: #fff; }
+        .gallery-header { 
+    text-align: center; 
+    margin-bottom: 30px; /* Уменьшили отступ до фото */
+    color: #fff; 
+    width: 100%;
+    box-sizing: border-box;
+}
         .gallery-grid { 
     display: block !important;
     column-count: 2; 
@@ -735,71 +741,63 @@ body.no-scroll {
         }
       @media (max-width: 768px) {
     /* ФОТО ВНУТРИ ПРОЕКТА: БЕЗ ОБРЕЗКИ (ЗОЛОТАЯ СЕРЕДИНА) */
-   .gallery-overlay {
+   /* ФИКС ГАЛЕРЕИ: ТЕКСТ И ОТСТУПЫ */
+    .gallery-overlay {
         padding: 20px 0 !important; /* Уменьшили отступ сверху всей модалки */
     }
-    .gallery-grid { 
-        column-count: 1 !important; /* На мобилке строго одна колонка */
-        padding: 0 10px !important;
+
+    .gallery-header {
+        padding: 0 20px !important;
+        padding-right: 75px !important; /* ЖЕСТКИЙ ЗАЗОР, чтобы текст не залез под крестик */
+        margin-bottom: 20px !important; /* Уменьшили дыру между текстом и фото */
+        text-align: left !important; /* Прижали к левому краю для стиля */
     }
 
-    .gallery-img-wrap {
-        display: block !important;
-        width: 100% !important;
-        aspect-ratio: auto !important; /* УБИРАЕМ РАМКУ */
-        height: auto !important;
-        margin-bottom: 15px !important;
-        border: 1px solid #222;
-    }
-
-    .gallery-img-wrap img {
-        width: 100% !important;
-        height: auto !important; /* ФОТО ПРИНИМАЕТ СВОЙ РАЗМЕР */
-        object-fit: contain !important; /* ГАРАНТИЯ: фото видно целиком */
-    }
-
-     .gallery-header {
-        padding-top: 10px !important; /* Прижали текст выше */
-        padding-right: 75px !important; /* Жесткий зазор справа, чтобы текст не залез под крестик */
-        margin-bottom: 25px !important; /* Уменьшили расстояние до первой фотки (было 60) */
-        text-align: left !important;
-        padding-left: 15px !important;
-    }
     #modalTitle {
-        font-size: 1.3rem !important; /* Уменьшили шрифт, чтобы длинные названия влезали */
+        font-size: 1.35rem !important; /* Оптимальный размер, чтобы влезало */
         line-height: 1.2;
         margin-bottom: 8px !important;
         display: block;
-        word-wrap: break-word;
+        word-wrap: break-word; /* Чтобы длинные слова не резали экран */
     }
 
     #modalDesc {
-        font-size: 0.7rem !important;
+        font-size: 0.75rem !important;
         line-height: 1.4;
         opacity: 0.8;
-    }      
+    }
+
+    .gallery-grid {
+        padding: 0 10px !important;
+    }
+
+    .close-gallery { 
+        top: 15px !important; 
+        right: 15px !important; 
+        width: 42px !important; 
+        height: 42px !important; 
+    }
+}
 }
     </style>
 </head>
 <body>
 
-    <!-- ШАПКА САЙТА -->
+  <!-- ШАПКА САЙТА -->
 <header class="header">
     <div class="container nav">
         <!-- Логотип -->
         <a href="index.html" class="logo-box">УРАЛ<span>СТРОЙ</span>ГАРАНТ</a>
         
-       <!-- МОБИЛЬНОЕ МЕНЮ -->
-<div class="mobile-overlay" id="mobile-menu">
-    <div style="position: absolute; top: 30px; right: 30px; color: #B87333; font-size: 40px; cursor: pointer;" onclick="toggleMenu()">&times;</div>
-    
-    <a href="index.html" onclick="toggleMenu()">Главная</a>
-    <a href="design.html" onclick="toggleMenu()">Дизайн</a>
-    <a href="cottages.html" onclick="toggleMenu()">Дома</a>
-    <a href="restoration.html" onclick="toggleMenu()">Реставрация</a>
-    <a href="showcase.html" onclick="toggleMenu()">Портфолио</a>
-    <div class="mobile-phone" onclick="openPhoneModal(); toggleMenu()">+7 (343) 266-37-25</div>
+        <!-- Десктопное меню -->
+        <div class="nav-menu">
+    <a href="index.html">Главная</a>
+    <a href="design.html">Дизайн</a>
+    <a href="cottages.html">Дома</a>
+    <a href="restoration.html">Реставрация</a>
+    <a href="showcase.html">Портфолио</a>
 </div>
+
         <!-- Блок контактов и мобильная кнопка -->
         <div class="nav-right">
             <div class="header-contacts">
@@ -807,13 +805,13 @@ body.no-scroll {
                 <a href="https://t.me/your_account" class="contact-icon" title="Telegram">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.91-1.27 4.85-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
                 </a>
-                <!-- Телефон -->
+                <!-- Телефон (открывает модальное окно) -->
                 <div class="contact-icon" onclick="openPhoneModal()" title="Позвонить" style="cursor: pointer;">
                     <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 </div>
             </div>
             
-            <!-- Кнопка гамбургер -->
+            <!-- Кнопка гамбургер (для мобилок) -->
             <div class="menu-toggle" id="mobile-menu-btn">
                 <span></span><span></span><span></span>
             </div>
@@ -821,7 +819,29 @@ body.no-scroll {
     </div>
 </header>
 
-<main>
+<!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
+<!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
+<div class="mobile-overlay" id="mobile-menu">
+    <a href="index.html" onclick="toggleMenu()">Главная</a>
+    <a href="design.html" onclick="toggleMenu()">Дизайн интерьера</a>
+    <a href="cottages.html" onclick="toggleMenu()">Строительство домов</a>
+    <a href="restoration.html" onclick="toggleMenu()">Реставрация</a>
+    <a href="showcase.html" onclick="toggleMenu()">Портфолио</a>
+    <div class="mobile-phone" onclick="openPhoneModal()">+7 (343) 266-37-25</div>
+</div>
+<!-- МОДАЛЬНОЕ ОКНО С ТЕЛЕФОНОМ -->
+<div class="phone-modal-overlay" id="phoneModal">
+    <div class="phone-modal-card">
+        <div class="close-modal" onclick="closePhoneModal()">&times;</div>
+        <span class="modal-label">Связаться с нами</span>
+        <a href="tel:+73432663725" class="modal-phone-number">+7 (343) 266-37-25</a>
+        <p>Пн-Пт: 09:00 — 18:00</p>
+        <div class="modal-divider"></div>
+        <p style="font-size: 0.7rem; opacity: 0.6;">Нажмите на номер, чтобы позвонить</p>
+    </div>
+</div>
+    <main>
+
         <div class="container">
             <div class="page-intro">
                 <span class="section-label">Пространства</span>
