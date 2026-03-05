@@ -299,18 +299,19 @@ body {
     box-sizing: border-box;
 }
        .gallery-img-wrap {
-    aspect-ratio: 16/10; /* Задаем пропорции для фото в галерее */
+    display: inline-block; /* Чтобы фото не разрывались между колонками */
+    width: 100%;
+    aspect-ratio: auto; /* УБРАЛИ 16/10 — теперь рамки нет */
+    margin-bottom: 20px;
+    break-inside: avoid;
     border: 1px solid #222;
-    padding: 0; /* Убираем внутренний отступ, чтобы фото прилегало к краям */
     background: #000;
     overflow: hidden;
 }
 
 .gallery-img-wrap img {
     width: 100%;
-    height: 100%;
-    /* Убираем черные полосы внутри галереи */
-    object-fit: cover; 
+    height: auto !important; /* Фото будет своей родной высоты */
     display: block;
     transition: 0.5s;
 }
@@ -874,7 +875,7 @@ body.no-scroll {
 </form>
 </div>
 </div>
-
+</section>
 
     <!-- ГАЛЕРЕЯ (МОДАЛКА) -->
     <div id="galleryOverlay" class="gallery-overlay">
