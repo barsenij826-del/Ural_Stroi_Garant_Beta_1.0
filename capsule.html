@@ -26,44 +26,145 @@
 
         /* ШАПКА */
       /* ШАПКА */
+/* --- ОБНОВЛЕННЫЕ СТИЛИ ШАПКИ (КАК В ДИЗАЙНЕ) --- */
+/* --- ОБНОВЛЕННЫЕ СТИЛИ ШАПКИ --- */
 .header {
-    position: sticky; top: 0; z-index: 1000;
-    background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--copper); height: 90px; display: flex; align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(184, 115, 51, 0.3);
+    height: 90px;
+    display: flex;
+    align-items: center;
 }
-.nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-.logo-box { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; text-decoration: none; color: #fff; }
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-box {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    color: #fff !important;
+}
 .logo-box span { color: var(--copper); }
-.nav-menu { display: flex; gap: 2rem; }
-.nav-menu a { text-decoration: none; color: #E0E0E0; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+
+.nav-menu {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-menu a {
+    text-decoration: none !important;
+    color: var(--text-light);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
 .nav-menu a:hover { color: var(--copper); }
-.nav-right { display: flex; align-items: center; gap: 2rem; }
-.header-contacts { display: flex; gap: 20px; }
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.header-contacts {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-icon {
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.contact-icon:hover { transform: translateY(-2px); }
+.contact-icon svg { width: 22px; height: 22px; fill: #fff; }
 
 /* ГАМБУРГЕР */
-.menu-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
 .menu-toggle span { width: 28px; height: 2px; background: var(--copper); transition: 0.3s; }
-@media (max-width: 1024px) { .nav-menu { display: none; } .menu-toggle { display: flex; } }
+
+@media (max-width: 1024px) {
+    .nav-menu { display: none; }
+    .menu-toggle { display: flex; }
+}
 
 /* МОБИЛЬНОЕ МЕНЮ */
+/* ПОЛНОЭКРАННАЯ ПОДЛОЖКА МЕНЮ */
+/* ПОДЛОЖКА МЕНЮ */
 .mobile-overlay {
-    position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-    background: var(--dark-bg); display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 2rem;
-    transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    
+    /* ЭФФЕКТ МАТОВОГО СТЕКЛА */
+    background: rgba(10, 10, 10, 0.9); /* Черный на 90%, остальное прозрачно */
+    backdrop-filter: blur(15px);       /* Размытие заднего фона */
+    -webkit-backdrop-filter: blur(15px); /* Поддержка для Safari (iPhone) */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    z-index: 10001;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
 }
-.mobile-overlay.active { right: 0; }
-.mobile-overlay a { color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; }
-.mobile-phone { color: var(--copper); font-weight: 800; margin-top: 2rem; }
 
-        /* ТОНКИЙ РАЗДЕЛИТЕЛЬ */
-        .subtle-divider { border: 0; border-top: 1px solid #eee; margin: 0; width: 100%; }
+/* КОГДА МЕНЮ ОТКРЫТО */
+.mobile-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
 
-        /* ВЕРХНЯЯ ПАНЕЛЬ КНОПОК */
-        .sub-header { padding: 1.5rem 0; border-bottom: 1px solid #eee; display: flex; justify-content: flex-end; gap: 1rem; background: #fff; }
-        .btn-sub { padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; gap: 10px; transition: var(--transition); }
-        .btn-download { background: var(--blue-brand); color: #fff; }
-        .btn-book { background: var(--orange-brand); color: #fff; }
+/* КРАСИВЫЙ ТЕКСТ */
+.mobile-overlay a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Тот самый стильный отступ */
+    transition: 0.3s;
+}
+
+.mobile-overlay a:active {
+    color: var(--copper); /* Медный цвет при нажатии */
+}
+
+.mobile-phone {
+    margin-top: 20px;
+    color: var(--copper) !important;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
 
         /* 1. HERO BLOCK */
         .hero-capsule { padding: 4rem 0 6rem; background: #fff; }
@@ -1015,13 +1116,15 @@ body.no-scroll { overflow: hidden; }
     .container { padding: 0 15px !important; }
     
     /* 1. HERO BLOCK */
-    .hero-capsule { padding: 2rem 0 4rem; }
+    .hero-capsule { padding: 4rem 0 4rem !important; }
     .hero-grid { grid-template-columns: 1fr !important; gap: 2.5rem; text-align: center; }
     .hero-left-content h1 { font-size: 2.2rem !important; margin-bottom: 1.5rem; }
     .hero-left-content .border-box { padding: 1.2rem; font-size: 1.1rem; }
     .badge-group { justify-content: center; }
-    .action-btns { align-items: center; }
-
+    .action-btns { 
+        margin-top: 3rem !important; /* Отодвигаем кнопки калькулятора ниже от текста */
+        gap: 1.5rem !important; 
+    }
     /* 2. VIDEO */
     .video-section { padding: 3rem 0; }
     .video-wrapper { height: 350px !important; padding: 1.5rem !important; border-radius: 20px; }
@@ -1104,53 +1207,86 @@ body.no-scroll { overflow: hidden; }
     
     /* Фикс виджета (чтобы иконки не двоились) */
     .fab-main-trigger svg, .fab-icon-close { position: absolute !important; }
+  
+}
+      @media (max-width: 480px) {
+    /* Расстояние между ТГ и Телефоном на малых экранах */
+    .header-contacts {
+        gap: 12px !important; 
+    }
+    /* Расстояние между блоком контактов и гамбургером */
+    .nav-right {
+        gap: 1rem !important;
+    }
+    .logo-box {
+        font-size: 0.85rem !important;
+        letter-spacing: 0.5px !important;
+    }
 }
     </style>
 </head>
 <body>
 
-   <!-- ШАПКА САЙТА -->
-<header class="header">
+   <header class="header">
     <div class="container nav">
         <!-- Логотип -->
         <a href="index.html" class="logo-box">УРАЛ<span>СТРОЙ</span>ГАРАНТ</a>
         
         <!-- Десктопное меню -->
         <div class="nav-menu">
-            <a href="index.html">Главная</a>
-            <a href="design.html">Дизайн</a>
-            <a href="cottages.html">Дома</a>
-            <a href="restoration.html">Реставрация</a>
-            <a href="showcase.html">Портфолио</a>
-        </div>
+    <a href="index.html">Главная</a>
+    <a href="design.html">Дизайн</a>
+    <a href="cottages.html">Дома</a>
+    <a href="restoration.html">Реставрация</a>
+    <a href="showcase.html">Портфолио</a>
+</div>
 
         <!-- Блок контактов и мобильная кнопка -->
         <div class="nav-right">
             <div class="header-contacts">
+                <!-- Telegram -->
                 <a href="https://t.me/your_account" class="contact-icon" title="Telegram">
-                    <svg viewBox="0 0 24 24" width="22" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.91-1.27 4.85-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.91-1.27 4.85-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
                 </a>
+                <!-- Телефон (открывает модальное окно) -->
                 <div class="contact-icon" onclick="openPhoneModal()" title="Позвонить" style="cursor: pointer;">
-                    <svg viewBox="0 0 24 24" width="22" fill="#fff"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 </div>
             </div>
-            <div class="menu-toggle" id="mobile-menu-btn">
-                <span></span><span></span><span></span>
-            </div>
+            
+            <!-- Кнопка гамбургер (для мобилок) -->
+          <div class="menu-toggle" id="mobile-menu-btn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+</div>
+          
         </div>
     </div>
 </header>
 
-<!-- МОБИЛЬНОЕ МЕНЮ -->
+<!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
+<!-- МОБИЛЬНОЕ МЕНЮ (ВЫЕЗЖАЕТ) -->
 <div class="mobile-overlay" id="mobile-menu">
+    <!-- Кнопка закрытия (крестик) -->
+    <div style="position: absolute; top: 30px; right: 30px; color: #B87333; font-size: 40px; cursor: pointer;" onclick="toggleMenu()">&times;</div>
+    
     <a href="index.html" onclick="toggleMenu()">Главная</a>
-    <a href="design.html" onclick="toggleMenu()">Дизайн интерьера</a>
-    <a href="cottages.html" onclick="toggleMenu()">Строительство домов</a>
+    <a href="design.html" onclick="toggleMenu()">Дизайн</a>
+    <a href="cottages.html" onclick="toggleMenu()">Дома</a>
     <a href="restoration.html" onclick="toggleMenu()">Реставрация</a>
     <a href="showcase.html" onclick="toggleMenu()">Портфолио</a>
     <div class="mobile-phone" onclick="openPhoneModal()">+7 (343) 266-37-25</div>
 </div>
-
+<!-- МОДАЛЬНОЕ ОКНО С ТЕЛЕФОНОМ -->
+<div class="phone-modal-overlay" id="phoneModal">
+    <div class="phone-modal-card">
+        <div class="close-modal" onclick="closePhoneModal()">&times;</div>
+        <span class="modal-label">Связаться с нами</span>
+        <a href="tel:+73432663725" class="modal-phone-number">+7 (343) 266-37-25</a>
+        <p>Пн-Пт: 09:00 — 18:00</p>
+        <div class="modal-divider"></div>
+        <p style="font-size: 0.7rem; opacity: 0.6;">Нажмите на номер, чтобы позвонить</p>
+    </div>
+</div>
     <main>
         <!-- 1. HERO -->
         <section class="container hero-capsule">
@@ -1777,7 +1913,7 @@ body.no-scroll { overflow: hidden; }
         </div>
     </div>
 </div>
-    </section></main>
+</main>
 <!-- МОДАЛЬНОЕ ОКНО: ЗАБРОНИРОВАТЬ КАПСУЛЬНЫЙ РЕМОНТ -->
 <!-- МОДАЛЬНОЕ ОКНО: ЗАБРОНИРОВАТЬ КАПСУЛЬНЫЙ РЕМОНТ -->
 <div class="phone-modal-overlay" id="bookModal">
@@ -2125,9 +2261,14 @@ body.no-scroll { overflow: hidden; }
             this.value = this.value.replace(/[^0-9+]/g, '');
         });
     }
-
+function toggleMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    }
+}
 
 </script>
 </body>
 </html>
-
