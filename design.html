@@ -770,6 +770,94 @@ body.no-scroll { overflow: hidden; }
 .review-project-link:hover svg {
     transform: translateX(5px);
 }
+      /* --- БЛОК FAQ (DARK PREMIUM) --- */
+.faq-section {
+    padding: 8rem 0; /* Отступ для десктопа */
+    max-width: 900px; /* Делаем блок не на всю ширину экрана для эстетики */
+    margin: 0 auto;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    border-bottom-color: var(--copper);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.faq-question h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    margin-right: 2rem;
+    transition: color 0.3s;
+    line-height: 1.4;
+}
+
+.faq-question:hover h3 {
+    color: var(--copper);
+}
+
+.faq-icon {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--copper);
+    transition: transform 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+
+/* Современная анимация аккордеона через Grid */
+.faq-answer-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+}
+
+.faq-answer {
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    transition: padding 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+}
+
+/* Состояние при открытии */
+.faq-item.active .faq-answer-wrapper {
+    grid-template-rows: 1fr;
+}
+
+.faq-item.active .faq-answer {
+    padding-top: 0.5rem;
+    padding-bottom: 2rem;
+    opacity: 1;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg); /* Плюсик превращается в крестик */
+    color: #fff;
+}
          /* РАСШИРЕННЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР */
       /* ==========================================
    ПРИНУДИТЕЛЬНЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР
@@ -1348,6 +1436,23 @@ section {
     border-left: 3px solid var(--copper);
     padding-left: 15px;
 }
+  /* Адаптив FAQ */
+    .faq-section {
+        padding: 4rem 20px !important; /* Уменьшаем отступы на мобилках */
+    }
+    
+    .faq-question {
+        padding: 1.5rem 0 !important;
+    }
+    
+    .faq-question h3 {
+        font-size: 1rem !important; /* Уменьшаем шрифт для телефонов */
+        margin-right: 1rem !important;
+    }
+    
+    .faq-answer {
+        font-size: 0.85rem !important;
+    }
 }     
           
     </style>
@@ -1836,6 +1941,80 @@ section {
         </div>
     </div>
 </section>
+
+  <!-- БЛОК FAQ (ВОПРОС-ОТВЕТ) -->
+<section class="faq-section container">
+    <div class="section-header-center" style="margin-bottom: 3rem;">
+        <h2 class="title-playfair">Ответы на <span>частые вопросы</span></h2>
+    </div>
+
+    <div class="faq-list">
+        <!-- Вопрос 1 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <h3>Вы только разрабатываете дизайн или сами делаете ремонт?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer-wrapper">
+                <div class="faq-answer">
+                    <p>Мы предлагаем реализацию проекта «под ключ». У нас в штате работают проверенные строительные бригады, а архитекторы ведут строгий авторский надзор. Вам не придется искать сторонних подрядчиков и переживать за качество ремонта.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вопрос 2 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <h3>А если предложенный дизайн будет слишком дорогим в реализации?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer-wrapper">
+                <div class="faq-answer">
+                    <p>Мы создаем дизайн-проекты строго под ваш бюджет. Еще до начала 3D-визуализации мы обсуждаем финансовые рамки и подбираем материалы, мебель и отделку, которые будут смотреться премиально, но не выйдут за пределы оговоренной суммы. Вы получаете подробный журнал комплектации.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вопрос 3 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <h3>Что такое авторский надзор и зачем он нужен?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer-wrapper">
+                <div class="faq-answer">
+                    <p>Авторский надзор — это гарантия того, что строители реализуют проект в точности до миллиметра так, как он нарисован на визуализации. Наш специалист регулярно выезжает на объект, контролирует ход работ, решает технические вопросы и вносит корректировки в чертежи, экономя ваше время и нервы.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вопрос 4 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <h3>Сколько времени занимает разработка дизайн-проекта?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer-wrapper">
+                <div class="faq-answer">
+                    <p>В среднем разработка полного дизайн-проекта для квартиры площадью 100 м² занимает от 1,5 до 2 месяцев. Сроки зависят от площади объекта, сложности стилистических решений и скорости согласования этапов с вашей стороны.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вопрос 5 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <h3>Как происходит оплата?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer-wrapper">
+                <div class="faq-answer">
+                    <p>Мы работаем по официальному договору. Оплата разбивается на комфортные этапы. Вы платите только за ту часть работы, которая выполнена и согласована с вами.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
   
    <footer class="footer-main">
         <div class="container">
@@ -2139,6 +2318,23 @@ section {
     function toggleFabMenu(e) {
         e.stopPropagation();
         document.getElementById('fabMenu').classList.toggle('active');
+    }
+    // ========================================================
+    // 7. ЛОГИКА АККОРДЕОНА FAQ
+    // ========================================================
+    function toggleFaq(element) {
+        const item = element.parentElement;
+        
+        // Закрываем все остальные открытые вопросы (опционально)
+        const allItems = document.querySelectorAll('.faq-item');
+        allItems.forEach(faq => {
+            if (faq !== item) {
+                faq.classList.remove('active');
+            }
+        });
+
+        // Открываем/закрываем текущий
+        item.classList.toggle('active');
     }
 </script>
 </body>
