@@ -1206,15 +1206,15 @@ body.no-scroll { overflow: hidden; }
    /* Выравниваем иконки вкладок по одной линии с текстом */
      /* 2. Обнуляем боковые отступы у навигации вкладок (теперь работает отступ контейнера) */
   /* 2. Навигация вкладок: выравниваем иконку по тексту */
+   /* 2. Навигация вкладок: выравниваем иконку по тексту */
     .tabs-nav { 
         display: flex !important; 
         overflow-x: auto; 
         gap: 12px; 
-        padding: 0 15px 15px 15px !important; /* 15px — отступ слева для иконок */
+        padding: 0 0 15px 0 !important; /* УБРАЛИ боковые 15px, чтобы кнопки прижались к левому краю */
         width: 100%;
         box-sizing: border-box;
     }
-
     /* Убираем лишние маржины у кнопок, чтобы они не ломали выравнивание */
     .tab-item { 
         flex: 0 0 auto; 
@@ -1233,25 +1233,115 @@ body.no-scroll { overflow: hidden; }
     .styles-footer { display: none !important; } /* Прячем общую кнопку */
     .mobile-expand-wrapper { display: block !important; } /* Показываем кнопки в колонках */
 
-    /* 5. ТАРИФЫ */
+  /* 5. ТАРИФЫ (Мобильная таблица как на скрине) */
     .tariffs-section { padding: 4rem 0; }
-    .tariffs-header-grid { display: none !important; } /* Прячем сложную шапку */
-    .tariff-row-main { grid-template-columns: 1fr 50px !important; padding: 1.2rem 0 !important; }
-    .tariff-row-main h4 { font-size: 1.2rem !important; }
     
-    /* Делаем пункты работ списком */
+    .tariffs-header-grid { 
+        display: grid !important; 
+        grid-template-columns: 1fr 45px 45px 45px !important; 
+        gap: 0;
+        padding: 0 0 1rem 0 !important;
+        align-items: end !important;
+        border-bottom: 2px solid #000 !important;
+    }
+    .tariffs-header-grid > div:last-child { display: none !important; }
+    
+    .t-head-title h2 { font-size: 2.2rem !important; margin-bottom: 0.5rem; }
+    .t-head-title p { font-size: 0.7rem !important; line-height: 1.2; padding-right: 15px; color: #666; }
+    
+    /* Вертикальные заголовки */
+    .t-head-item {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        height: 140px;
+        text-align: left; /* Физический верх, который после поворота станет визуальным низом */
+        padding-top: 15px; /* Отодвигаем от черной линии */
+        margin: 0 auto;
+        width: 100%;
+        border-right: 1px solid #f0f0f0; /* После поворота на 180 это будет визуально левая граница */
+    }
+    .tariffs-header-grid > .t-head-item:nth-child(2) { border-right: none; } /* У первого тарифа убираем линию */
+
+    .t-head-item span { 
+        display: block;
+        font-size: 0.8rem; 
+        font-weight: 700; 
+        color: #000; 
+        margin-bottom: 0; 
+        margin-left: 5px; /* Раздвигает две вертикальные строчки */
+        text-transform: none;
+        letter-spacing: 0;
+    }
+    .t-head-item strong { 
+        display: block;
+        font-size: 0.8rem; 
+        font-weight: 500;
+        color: #000;
+        white-space: nowrap;
+    }
+    .t-head-item small { display: none !important; } /* Скрываем описание под ключ для экономии места */
+    
+    /* Основная строка "Полы", "Стены" и т.д. */
+    .tariff-row-main { 
+        grid-template-columns: 1fr 45px !important; 
+        padding: 1.2rem 0 !important; 
+    }
+    .tariff-row-main > div:not(.t-plus) { display: none !important; } /* Прячем пустые колонки */
+    .tariff-row-main h4 { font-size: 1.1rem !important; font-weight: 700; }
+    
+    /* Кнопка плюса (как на макете - без кружка) */
+    .t-plus { 
+        width: 100%; 
+        height: 30px; 
+        font-size: 1.8rem; 
+        background: transparent !important; 
+        border: none !important; 
+        color: #000 !important; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .tariff-row.active .t-plus { 
+        transform: rotate(45deg); 
+        background: transparent !important;
+        color: #000 !important;
+        border: none !important;
+    }
+
+    /* Строки с галочками */
     .t-detail-item { 
-        grid-template-columns: 1fr !important; 
+        grid-template-columns: 1fr 45px 45px 45px !important; 
+        gap: 0;
         padding: 1rem 0 !important; 
         border-bottom: 1px solid #f0f0f0 !important; 
+        align-items: center;
     }
-    .t-detail-name { padding-left: 0 !important; font-weight: 600; color: #000; }
-    .t-check { text-align: left; font-size: 1rem; color: var(--orange-brand); margin-top: 5px; }
-    .t-check::before { content: 'Включено в тариф'; font-size: 0.7rem; color: #999; margin-right: 10px; font-weight: 400; }
+    .t-detail-item > div:last-child { display: none !important; } /* Прячем 5-й технический блок */
     
-    .tariffs-footer-line { grid-template-columns: 1fr !important; gap: 10px; text-align: center; }
+    .t-detail-name { 
+        padding-left: 0 !important; 
+        font-size: 0.8rem !important; 
+        font-weight: 400; 
+        color: #333; 
+        line-height: 1.3;
+        padding-right: 10px;
+    }
+    
+    /* Сами галочки */
+    .t-check { 
+        text-align: center; 
+        font-size: 1.2rem !important; 
+        color: #000 !important; 
+        margin-top: 0 !important; 
+        font-weight: 300;
+    }
+    .t-check::before { content: none !important; } /* Убираем надпись "Включено в тариф" */
+    
+    .tariffs-footer-line { 
+        display: none !important; /* Убираем дублирование цен в самом низу на мобилках */
+    }
 
-    /* 6. КАЛЬКУЛЯТОР */
+/* 6. КАЛЬКУЛЯТОР */
     .calc-tabs { flex-wrap: wrap; justify-content: center; }
     .calc-tab { padding: 10px 15px; font-size: 0.8rem; }
     .calc-main-box { flex-direction: column !important; border-radius: 20px; }
@@ -1260,6 +1350,14 @@ body.no-scroll { overflow: hidden; }
     .calc-input-row { flex-direction: column !important; }
     .calc-input-row input { width: 100% !important; }
     .result-price { font-size: 2.2rem !important; }
+    
+    /* Делаем кнопку красивой и широкой на мобилках */
+    .btn-calc-trigger { 
+        width: 100% !important; 
+        padding: 18px 20px !important; /* Выравниваем высоту с полем ввода */
+        font-size: 14px !important; 
+        letter-spacing: 1px; /* Добавляем премиального "воздуха" между буквами */
+    }
 
     /* 7. ПОРТФОЛИО */
     .portfolio-section-white { padding: 4rem 0; }
@@ -1310,8 +1408,9 @@ body.no-scroll { overflow: hidden; }
 
  /* 3. Обнуляем боковые отступы у текста (теперь работает отступ контейнера) */
 /* 3. Текст (список работ): отводим от краев */
+   /* 3. Обнуляем боковые отступы у текста (теперь работает отступ контейнера) */
     .tab-content {
-        padding: 0 15px !important; /* Возвращаем 15px по бокам */
+        padding: 0 !important; /* УБРАЛИ 15px по бокам, чтобы точки встали в одну линию с кнопками */
     }
 
     .work-list li {
@@ -1931,10 +2030,9 @@ body.no-scroll { overflow: hidden; }
  <!-- 10. ОСТАЛИСЬ ВОПРОСЫ? -->
     <section class="questions-premium">
         <div class="container">
-            <div class="q-action-card">
-                <h3>Остались вопросы? <span>Свяжитесь с нами удобным способом</span></h3>
-                <div class="q-buttons">
-                    <a href="tel:+73432663725" class="q-btn q-btn-white">
+          <div class="q-buttons">
+                    <!-- Заменили href и добавили onclick -->
+                    <a href="javascript:void(0)" class="q-btn q-btn-white" onclick="openPhoneModal()">
                         <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                         Позвонить
                     </a>
@@ -1942,13 +2040,7 @@ body.no-scroll { overflow: hidden; }
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.91-1.27 4.85-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
                         Telegram
                     </a>
-                    <a href="https://wa.me/73432663725" class="q-btn q-btn-wa">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.431 5.63 1.432h.006c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        WhatsApp
-                    </a>
                 </div>
-            </div>
-        </div>
     </section>
 
     <!-- 11. ПРЕМИАЛЬНЫЙ ФУТЕР -->
