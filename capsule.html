@@ -1251,6 +1251,30 @@ body.no-scroll { overflow: hidden; }
         font-size: 0.85rem !important;
         letter-spacing: 0.5px !important;
     }
+        /* 1. Делаем кнопку калькулятора похожей на рамку сверху */
+    .action-btns {
+        padding: 0 20px !important; /* Те же отступы, что мы дали рамке */
+    }
+
+    .btn-calc {
+        border-radius: 0 !important; /* Делаем углы острыми как у рамки */
+        padding: 1.2rem 1.5rem !important;
+        font-size: 0.9rem !important;
+        justify-content: center !important; /* Текст по центру */
+    }
+    
+    .btn-calc .icon-circle { display: none; } /* Убираем кружок со стрелкой для строгости */
+
+    /* 2. Отступы для текста (списка работ), чтобы не лип к краям */
+    .tab-content {
+        padding: 0 20px !important;
+    }
+
+    .work-list li {
+        font-size: 1rem !important;
+        line-height: 1.5;
+        padding-right: 10px; /* Чтобы текст не упирался в правый край */
+    }
 }
     </style>
 </head>
