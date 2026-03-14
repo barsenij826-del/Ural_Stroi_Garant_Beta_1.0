@@ -1166,18 +1166,23 @@ body.no-scroll { overflow: hidden; }
     .tabs-container { grid-template-columns: 1fr !important; gap: 2rem; }
     
     /* Делаем иконки вкладок горизонтальным скроллом, чтобы не занимали весь экран */
+   /* Выравниваем иконки вкладок по одной линии с текстом */
     .tabs-nav { 
         display: flex !important; 
         overflow-x: auto; 
-        gap: 10px; 
-        padding-bottom: 15px;
+        gap: 12px; 
+        /* ПАРАМЕТР НИЖЕ: 20px — это тот же отступ, который мы дали списку работ */
+        padding: 0 20px 15px !important; 
         -webkit-overflow-scrolling: touch;
+        width: 100%;
+        box-sizing: border-box;
     }
+
+    /* Убираем лишние маржины у кнопок, чтобы они не ломали выравнивание */
     .tab-item { 
         flex: 0 0 auto; 
-        padding: 0.8rem 1.2rem !important; 
-        min-width: 140px; 
-        justify-content: center;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     .tab-item span { font-size: 0.85rem !important; }
 
@@ -1397,26 +1402,33 @@ body.no-scroll { overflow: hidden; }
         
         <!-- ЛЕВАЯ КОЛОНКА: КНОПКИ -->
         <div class="tabs-nav">
-            <div class="tab-item active" onclick="showTab('floors', this)">
-                <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z"/></svg>
-                <span>Полы</span>
-            </div>
-            <div class="tab-item" onclick="showTab('walls', this)">
-                <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM8 18H3v-4h5v4zm0-6H3V8h5v4zm10 6h-8v-4h8v4zm0-6h-8V8h8v4zm5 6h-3v-4h3v4zm0-6h-3V8h3v4z"/></svg>
-                <span>Стены</span>
-            </div>
-            <div class="tab-item" onclick="showTab('ceiling', this)">
-                <svg viewBox="0 0 24 24"><path d="M2 4h20v2H2V4zm2 4h16v12H4V8zm2 2v8h12v-8H6z"/></svg>
-                <span>Потолок</span>
-            </div>
-            <div class="tab-item" onclick="showTab('plumbing', this)">
-                <svg viewBox="0 0 24 24"><path d="M18 15v-2c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-1V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v1h-1c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2v2c-1.1 0-2 .9-2 2v4h2v-4h8v4h2v-4c0-1.1-.9-2-2-2zM9 7h6v4H9V7z"/></svg>
-                <span>Сантехника</span>
-            </div>
-            <div class="tab-item" onclick="showTab('electric', this)">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-3-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm6 0c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
-                <span>Электрика</span>
-            </div>
+           <div class="tabs-nav">
+    <!-- Полы (плитка/сетка) -->
+    <div class="tab-item active" onclick="showTab('floors', this)">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z"/></svg>
+        <span>Полы</span>
+    </div>
+    <!-- Стены (кирпичная кладка) -->
+    <div class="tab-item" onclick="showTab('walls', this)">
+        <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM8 18H3v-4h5v4zm0-6H3V8h5v4zm10 6h-8v-4h8v4zm0-6h-8V8h8v4zm5 6h-3v-4h3v4zm0-6h-3V8h3v4z"/></svg>
+        <span>Стены</span>
+    </div>
+    <!-- Потолок (линия верха и лампа) -->
+    <div class="tab-item" onclick="showTab('ceiling', this)">
+        <svg viewBox="0 0 24 24"><path d="M2 4h20v2H2V4zm5 3h10v2h-3v5h-4V9H7V7z"/></svg>
+        <span>Потолок</span>
+    </div>
+    <!-- Сантехника (кран) -->
+    <div class="tab-item" onclick="showTab('plumbing', this)">
+        <svg viewBox="0 0 24 24"><path d="M18 7c0-1.1-.9-2-2-2h-3V2h-2v3H9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1c1.1 0 2 .9 2 2v1c0 1.1.9 2 2 2h1v3.5c0 1.93-1.57 3.5-3.5 3.5S6 19.43 6 17.5V17h-2v.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V14h1c1.1 0 2-.9 2-2v-1h1c1.1 0 2-.9 2-2V7z"/></svg>
+        <span>Сантехника</span>
+    </div>
+    <!-- Электрика (лампочка) -->
+    <div class="tab-item" onclick="showTab('electric', this)">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2 18h-4v1h4v-1zm1 2H9v1h6v-1z"/></svg>
+        <span>Электрика</span>
+    </div>
+</div>
         </div>
 
         <!-- ПРАВАЯ КОЛОНКА: ТЕКСТ (СПИСОК) -->
