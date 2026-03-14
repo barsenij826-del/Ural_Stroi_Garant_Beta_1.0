@@ -214,6 +214,7 @@ body.no-scroll { overflow: hidden; }
             cursor: pointer; background: transparent;
         }
         .btn-framed:hover { background: var(--copper); color: #000; }
+      
 /* ОПУСКАЕМ БЛОК "ЧТО МЫ ДЕЛАЕМ" */
 .hero-design + section {
     padding-top: 5rem !important;
@@ -315,6 +316,131 @@ body.no-scroll { overflow: hidden; }
         /* КНОПКА ПОРТФОЛИО */
         .portfolio-cta { margin-top: 5rem; display: flex; justify-content: center; align-items: center; gap: 3rem; padding: 3rem; border: 1px solid #222; background: var(--dark-card); }
         @media (max-width: 768px) { .portfolio-cta { flex-direction: column; text-align: center; } }
+      /* --- SECTION CONTROL CENTER --- */
+.control-center { padding: 8rem 0; background: var(--dark-bg); }
+
+.control-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Меню табов */
+.control-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.control-tab-btn {
+    background: var(--dark-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 1.5rem 2rem;
+    color: var(--text-muted);
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.control-tab-btn.active {
+    border-color: var(--copper);
+    color: #fff;
+    background: rgba(184, 115, 51, 0.05);
+}
+
+.control-tab-btn .tab-num {
+    color: var(--copper);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+}
+
+/* Контентная часть */
+.control-content-wrapper {
+    background: var(--dark-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 4rem;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.control-pane {
+    display: none;
+    animation: fadeInControl 0.6s ease forwards;
+}
+
+.control-pane.active { display: block; }
+
+.control-pane h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.control-pane p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    max-width: 650px;
+}
+
+.guarantee-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.guarantee-item {
+    border: 1px solid rgba(184, 115, 51, 0.2);
+    padding: 1.5rem;
+}
+
+.guarantee-item span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--copper);
+    margin-bottom: 5px;
+}
+
+.guarantee-item small {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+@keyframes fadeInControl {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптив 768px */
+@media (max-width: 768px) {
+    .control-container { grid-template-columns: 1fr; gap: 2rem; }
+    .control-tabs { display: none; } /* На мобилках превращаем в список */
+    .control-content-wrapper { 
+        padding: 2.5rem 1.5rem; 
+        border: none;
+        background: transparent;
+    }
+    .control-pane { 
+        display: block !important; 
+        margin-bottom: 4rem; 
+        border-left: 3px solid var(--copper);
+        padding-left: 20px;
+    }
+    .control-pane h3 { font-size: 1.6rem; }
+    .guarantee-grid { grid-template-columns: 1fr; }
+}
 
         /* КВИЗ (ТЕМНЫЙ) */
      /* СТИЛИ КВИЗ-КАЛЬКУЛЯТОРА */
@@ -1549,11 +1675,160 @@ section {
         <!-- 1. HERO -->
         <section class="hero-design">
             <div class="container">
-                <h1>Дизайн интерьера <br>и реализация «под ключ»</h1>
-                <a href="#quiz" class="btn-framed" style="margin-top: 2rem;">Рассчитать стоимость проекта</a>
-            </div>
+                <h1> Создаем пространство для жизни и бизнеса.<br>Реализация интерьеров «под ключ».</h1>
+                <div class="hero-action-zone">
+    <style>
+        .hero-action-zone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        /* Исправленная кнопка */
+        .btn-main-new {
+            background: none;
+            border: 1px solid #b87333; /* Ваш медный цвет */
+            color: #fff;
+            padding: 18px 40px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-main-new:hover {
+            background: #b87333;
+            color: #000;
+        }
+
+        /* Блок тегов */
+        .hero-tags-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tag-label-text {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px 25px;
+            max-width: 900px;
+        }
+
+        .tag-item {
+            font-size: 13px;
+            color: #ffffff !important;
+            text-decoration: none;
+            opacity: 0.8;
+            border-bottom: 1px solid rgba(184, 115, 51, 0.4);
+            padding-bottom: 2px;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .tag-item:hover {
+            opacity: 1;
+            color: #b87333 !important;
+            border-color: #b87333;
+        }
+
+        /* Мобильная версия */
+        @media (max-width: 768px) {
+            .hero-action-zone { gap: 25px; margin-top: 30px; }
+            .btn-main-new { width: 90%; text-align: center; padding: 15px 20px; font-size: 12px; }
+            .tags-list { gap: 10px 15px; padding: 0 20px; }
+            .tag-item { font-size: 12px; }
+        }
+    </style>
+
+    <a href="#quiz" class="btn-main-new">Рассчитать стоимость проекта</a>
+
         </section>
 
+      <section class="trust-bar">
+    <div class="container">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <span class="trust-num">20</span>
+                <p class="trust-text">лет опыта в <br>реализации</p>
+            </div>
+            <div class="trust-item">
+                <span class="trust-num">1500+</span>
+                <p class="trust-text">сданных <br>объектов</p>
+            </div>
+            <div class="trust-item">
+                <span class="trust-num">5 лет</span>
+                <p class="trust-text">гарантии по <br>договору</p>
+            </div>
+            <div class="trust-item">
+                <span class="trust-num">24/7</span>
+                <p class="trust-text">контроль и <br>видеоотчеты</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.trust-bar {
+    padding: 3rem 0;
+    background: #0a0a0a; /* Чуть темнее или светлее фона, чтобы отбить секции */
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    align-items: center;
+}
+
+.trust-item {
+    text-align: center;
+    border-right: 1px solid rgba(184, 115, 51, 0.3); /* Разделитель цвета меди */
+}
+
+.trust-item:last-child {
+    border-right: none;
+}
+
+.trust-num {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--copper);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.trust-text {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .trust-grid { grid-template-columns: 1fr 1fr; gap: 3rem 1rem; }
+    .trust-item:nth-child(2n) { border-right: none; }
+    .trust-num { font-size: 2rem; }
+}
+</style>
         <!-- 2. ЧТО МЫ ДЕЛАЕМ -->
         <section class="container">
             <h2 class="title-main">Что мы делаем</h2>
@@ -1611,7 +1886,83 @@ section {
                 <a href="showcase.html" class="btn-framed">Перейти в раздел «Портфолио»</a>
             </div>
         </section>
+<section class="control-center">
+    <div class="container">
+        <h2 class="title-main" style="margin-bottom: 3rem;">Ваш проект под <span>контролем</span></h2>
+        
+        <div class="control-container">
+            <div class="control-tabs">
+                <button class="control-tab-btn active" data-tab="timeline">
+                    <span class="tab-num">01</span> Прозрачный путь
+                </button>
+                <button class="control-tab-btn" data-tab="quality">
+                    <span class="tab-num">02</span> Технадзор 24/7
+                </button>
+                <button class="control-tab-btn" data-tab="warranty">
+                    <span class="tab-num">03</span> Твердые цифры
+                </button>
+                <button class="control-tab-btn" data-tab="bonus">
+                    <span class="tab-num">04</span> База знаний
+                </button>
+            </div>
 
+            <div class="control-content-wrapper">
+                <div class="control-pane active" id="timeline">
+                    <h3>График реализации</h3>
+                    <p>Мы фиксируем сроки в договоре. Вы всегда знаете, когда закончится демонтаж и когда приедет чистовая сантехника.</p>
+                    <div class="adv-list" style="gap: 1.5rem;">
+                        <div class="adv-item">
+                            <div class="adv-num" style="width:35px; height:35px; font-size:1rem;">1</div>
+                            <div class="adv-content"><h4>Дизайн и инженерия</h4><p>Создаем базу проекта за 45 дней.</p></div>
+                        </div>
+                        <div class="adv-item">
+                            <div class="adv-num" style="width:35px; height:35px; font-size:1rem;">2</div>
+                            <div class="adv-content"><h4>Черновой и чистовой этапы</h4><p>Реализуем проект по СНиП и ГОСТ.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-pane" id="quality">
+                    <h3>Фотоотчеты и Технадзор</h3>
+                    <p>Вы можете находиться в любой точке мира. Мы контролируем каждый миллиметр за вас.</p>
+                    <div class="bonus-card" style="margin:0; border-top:none;">
+                        <p style="margin-bottom: 10px; color: #fff;">• Чат в Telegram с фото/видео отчетами каждую пятницу.</p>
+                        <p style="margin-bottom: 10px; color: #fff;">• Видеофиксация скрытых работ (электрика, трубы).</p>
+                        <p style="margin-bottom: 0; color: #fff;">• Личный менеджер проекта на связи 24/7.</p>
+                    </div>
+                </div>
+
+              <div class="control-pane" id="warranty">
+    <h3>Юридическая защита</h3>
+    <p>Мы работаем официально по договору. Все сроки и технические обязательства зафиксированы юридически, что гарантирует вам спокойствие на каждом этапе.</p>
+    
+    <div class="guarantee-grid">
+        <div class="guarantee-item">
+            <span>5 лет</span>
+            <small>Гарантия на инженерные сети и конструктив</small>
+        </div>
+        
+        <div class="guarantee-item">
+            <span>1%</span>
+            <small>Пеня за каждый день просрочки сдачи объекта</small>
+        </div>
+        
+        <div class="guarantee-item">
+            <span>Фиксация</span>
+            <small>Стоимости работ в официальном договоре</small>
+        </div>
+    </div>
+</div>
+
+                <div class="control-pane" id="bonus">
+                    <h3>Получите пользу сейчас</h3>
+                    <p>Скачайте пример рабочего дизайн-проекта и чек-лист, чтобы знать, на чем нельзя экономить при ремонте.</p>
+                    <a href="#" class="btn-framed">Скачать материалы (PDF)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         <!-- 4. КВИЗ -->
 <section id="quiz" class="quiz-section">
     <div class="container">
@@ -2336,6 +2687,34 @@ section {
         // Открываем/закрываем текущий
         item.classList.toggle('active');
     }
+ 
+document.addEventListener('DOMContentLoaded', function() {
+    const tabBtns = document.querySelectorAll('.control-tab-btn');
+    const panes = document.querySelectorAll('.control-pane');
+
+    if (tabBtns.length > 0) {
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-tab');
+                const targetPane = document.getElementById(targetId);
+
+                if (targetPane) {
+                    // 1. Убираем активный класс у всех кнопок
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // 2. Убираем активный класс у всех вкладок
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    // 3. Добавляем активный класс нажатой кнопке
+                    this.classList.add('active');
+                    // 4. Показываем нужную вкладку
+                    targetPane.classList.add('active');
+                    
+                    console.log('Tab switched to:', targetId); // Для теста в консоли
+                }
+            });
+        });
+    }
+});
 </script>
 </body>
 </html>
