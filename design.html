@@ -197,13 +197,11 @@
 .modal-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
 
 body.no-scroll { overflow: hidden; }
-        /* HERO */
-     /* Основная секция Hero */
-.hero-design {
+     .hero-design {
     height: 100vh;
-    min-height: 800px;
-    /* ПУТЬ ПРОПИСАН ТУТ: */
-    background: linear-gradient(90deg, rgba(0,0,0,0.9) 25%, rgba(0,0,0,0.2) 100%), 
+    min-height: 750px;
+    /* Твое фото design_hero.webp с градиентом для читаемости */
+    background: linear-gradient(90deg, rgba(10, 10, 10, 0.9) 20%, rgba(10, 10, 10, 0.2) 100%), 
                 url('img/design_hero.webp') center/cover no-repeat;
     display: flex;
     align-items: center;
@@ -211,59 +209,48 @@ body.no-scroll { overflow: hidden; }
     overflow: hidden;
 }
 
-.hero-wrapper {
-    width: 100%;
-}
-
-.hero-content-left {
-    max-width: 650px;
+.hero-content {
+    max-width: 750px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    text-align: left; /* Текст строго слева */
+    gap: 32px; /* Увеличил отступы между элементами */
 }
 
-/* Маленький текст над заголовком */
-.hero-pre-title {
-    font-size: 12px;
+.hero-subtitle {
+    font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     color: var(--copper);
-    font-weight: 600;
+    font-weight: 400;
 }
 
-/* Заголовок */
-.hero-content-left h1 {
+.hero-content h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 5vw, 5rem);
-    line-height: 1;
-    color: #fff;
-    margin: 0;
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    line-height: 1.1;
+    color: #ffffff;
 }
 
-/* Выделение слова "и бизнеса" */
-.hero-content-left h1 span {
+.hero-content h1 span {
     color: var(--copper);
     font-style: italic;
 }
 
-/* Описание под заголовком */
-.hero-description {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
-    max-width: 450px;
+.hero-content p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 500px;
+    line-height: 1.5;
 }
 
-/* Навигационные теги */
-.hero-nav-tags {
+.hero-nav {
     display: flex;
-    gap: 20px;
-    margin-top: 10px;
+    gap: 24px;
+    margin-bottom: 8px;
 }
 
-.hero-nav-tags a {
-    color: #fff;
+.hero-nav a {
+    color: #ffffff;
     text-decoration: none;
     font-size: 13px;
     text-transform: uppercase;
@@ -271,54 +258,49 @@ body.no-scroll { overflow: hidden; }
     border-bottom: 1px solid rgba(184, 115, 51, 0.4);
     padding-bottom: 4px;
     transition: 0.3s ease;
+    opacity: 0.8;
 }
 
-.hero-nav-tags a:hover {
+.hero-nav a:hover {
+    opacity: 1;
     color: var(--copper);
-    border-color: var(--copper);
-    transform: translateY(-2px);
+    border-bottom: 1px solid var(--copper);
 }
 
-/* Главная кнопка с заливкой */
-.btn-gold-solid {
-    width: fit-content;
+.btn-primary {
+    display: inline-block;
     background: var(--copper);
-    color: #000;
-    padding: 22px 50px;
+    color: #000000;
+    padding: 22px 48px;
     text-decoration: none;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 14px;
     transition: 0.4s;
-    margin-top: 15px;
 }
 
-.btn-gold-solid:hover {
-    background: #fff;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+.btn-primary:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
 }
 
-/* Адаптив для мобильных устройств */
+/* Адаптив для мобилки */
 @media (max-width: 768px) {
     .hero-design {
-        background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                    url('img/hero_ai.jpg') center/cover no-repeat;
+        background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), 
+                    url('img/design_hero.webp') center/cover no-repeat;
         text-align: center;
-        height: auto;
-        padding: 120px 0 80px;
+        padding-top: 60px;
     }
-    .hero-content-left {
+    .hero-content {
         align-items: center;
         margin: 0 auto;
     }
-    .hero-nav-tags {
+    .hero-nav {
         flex-wrap: wrap;
         justify-content: center;
-    }
-    .hero-description {
-        font-size: 1rem;
+        gap: 15px;
     }
 }
       
@@ -1783,99 +1765,25 @@ section {
 <section class="hero-design">
     <div class="container">
         <div class="hero-wrapper">
-            <div class="hero-content-left">
-                <span class="hero-pre-title">Екатеринбург • с 2006 года</span>
+            <div class="hero-content">
+                <span class="hero-subtitle">Студия дизайна и реализации • Екатеринбург</span>
+                <h1>Пространства для <br>жизни и <span>бизнеса</span></h1>
+                <p>Проектирование и премиальная реализация интерьеров «под ключ» с 2006 года.</p>
                 
-                <h1>Пространства <br>для жизни <br><span>и бизнеса</span></h1>
-                
-                <p class="hero-description">
-                    Проектирование и премиальная реализация интерьеров «под ключ». 
-                    Создаем объекты, которые подчеркивают ваш статус.
-                </p>
-                
-                <div class="hero-nav-tags">
-                    <a href="#projects">Квартиры</a>
-                    <a href="#projects">Дома</a>
-                    <a href="#projects">Офисы</a>
-                    <a href="#projects">Ритейл</a>
+                <div class="hero-nav">
+                    <a href="#services">Квартиры</a>
+                    <a href="#services">Дома</a>
+                    <a href="#services">Офисы</a>
+                    <a href="#services">Ритейл</a>
                 </div>
 
-                <a href="#quiz" class="btn-gold-solid">Рассчитать проект</a>
+                <div class="hero-btns">
+                    <a href="#quiz" class="btn-primary">Рассчитать проект</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
-        
-
-      <section class="trust-bar">
-    <div class="container">
-        <div class="trust-grid">
-            <div class="trust-item">
-                <span class="trust-num">20</span>
-                <p class="trust-text">лет опыта в <br>реализации</p>
-            </div>
-            <div class="trust-item">
-                <span class="trust-num">1500+</span>
-                <p class="trust-text">сданных <br>объектов</p>
-            </div>
-            <div class="trust-item">
-                <span class="trust-num">5 лет</span>
-                <p class="trust-text">гарантии по <br>договору</p>
-            </div>
-            <div class="trust-item">
-                <span class="trust-num">24/7</span>
-                <p class="trust-text">контроль и <br>видеоотчеты</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-.trust-bar {
-    padding: 3rem 0;
-    background: #0a0a0a; /* Чуть темнее или светлее фона, чтобы отбить секции */
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.trust-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    align-items: center;
-}
-
-.trust-item {
-    text-align: center;
-    border-right: 1px solid rgba(184, 115, 51, 0.3); /* Разделитель цвета меди */
-}
-
-.trust-item:last-child {
-    border-right: none;
-}
-
-.trust-num {
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--copper);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-}
-
-.trust-text {
-    font-size: 0.8rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
-}
-
-@media (max-width: 768px) {
-    .trust-grid { grid-template-columns: 1fr 1fr; gap: 3rem 1rem; }
-    .trust-item:nth-child(2n) { border-right: none; }
-    .trust-num { font-size: 2rem; }
-}
-</style>
         <!-- 2. ЧТО МЫ ДЕЛАЕМ -->
         <section class="container">
             <h2 class="title-main">Что мы делаем</h2>
