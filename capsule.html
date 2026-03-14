@@ -416,6 +416,37 @@
         .btn-expand-all:active {
             transform: translateY(-2px);
         }
+   /* Мобильные кнопки стилей (на ПК скрыты) */
+        .mobile-expand-wrapper {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-expand-column {
+            display: inline-block;
+            background-color: var(--blue-brand);
+            color: #fff;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.3);
+            outline: none;
+        }
+
+        .btn-expand-column:hover {
+            background-color: #004494;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 86, 179, 0.5);
+        }
         /* 5. ЧТО ВЫ ПОЛУЧАЕТЕ */
 /* ИСПРАВЛЕННЫЕ СТИЛИ: 2 КОЛОНКИ И ИКОНКИ СЛЕВА */
         .benefits-section { padding: 8rem 0; background: #fff; }
@@ -1142,22 +1173,23 @@ body.no-scroll { overflow: hidden; }
     .hero-left-content h1 { font-size: 2.2rem !important; margin-bottom: 1.5rem; }
     /* 1. Сужаем блок с рамкой, чтобы он не касался краев экрана */
      /* 4. Также правим рамку в Hero, чтобы она стояла по той же линии */
-    .hero-left-content .border-box {
-        margin: 0 !important; /* УБРАЛИ margin 20px */
-        width: 100% !important;
-        padding: 1.2rem !important;
+  .hero-left-content .border-box {
+        margin: 0 15px !important; /* ПАРАМЕТР: 15px — это отступ рамки от краев экрана */
+        width: auto !important;     /* Позволяет маржинам работать */
+        padding: 1.5rem !important;
         font-size: 1.1rem !important;
     }
-    
   /* 2. Убираем серую полоску над блоком с видео */
     .subtle-divider {
         display: none !important;
     }
     .badge-group { justify-content: center; }
     /* 5. И кнопки калькулятора тоже вровень */
-    .action-btns {
-        padding: 0 !important; /* УБРАЛИ padding 20px */
+   .action-btns {
+        padding: 0 15px !important; /* Отступы для кнопок */
         margin-top: 3rem !important;
+        width: 100%;
+        box-sizing: border-box;
     }
     /* 2. VIDEO */
     .video-section { padding: 3rem 0; }
@@ -1173,11 +1205,12 @@ body.no-scroll { overflow: hidden; }
     /* Делаем иконки вкладок горизонтальным скроллом, чтобы не занимали весь экран */
    /* Выравниваем иконки вкладок по одной линии с текстом */
      /* 2. Обнуляем боковые отступы у навигации вкладок (теперь работает отступ контейнера) */
+  /* 2. Навигация вкладок: выравниваем иконку по тексту */
     .tabs-nav { 
         display: flex !important; 
         overflow-x: auto; 
         gap: 12px; 
-        padding: 0 0 15px 0 !important; /* УБРАЛИ 20px по бокам, оставили только 15px снизу */
+        padding: 0 15px 15px 15px !important; /* 15px — отступ слева для иконок */
         width: 100%;
         box-sizing: border-box;
     }
@@ -1192,9 +1225,13 @@ body.no-scroll { overflow: hidden; }
 
     /* 4. ГАЛЕРЕЯ СТИЛЕЙ */
     .styles-section { padding: 4rem 0; }
-    .styles-grid { grid-template-columns: 1fr !important; gap: 3rem; }
+    .styles-grid { grid-template-columns: 1fr !important; gap: 0rem; } /* Убрали gap, чтобы колонки шли одна за другой без дыр */
     .style-column h3 { font-size: 1.6rem !important; margin-bottom: 1.5rem; }
     .style-img-wrap { border-radius: 15px; }
+    
+    /* Переключаем видимость кнопок */
+    .styles-footer { display: none !important; } /* Прячем общую кнопку */
+    .mobile-expand-wrapper { display: block !important; } /* Показываем кнопки в колонках */
 
     /* 5. ТАРИФЫ */
     .tariffs-section { padding: 4rem 0; }
@@ -1261,10 +1298,7 @@ body.no-scroll { overflow: hidden; }
         letter-spacing: 0.5px !important;
     }
         /* 1. Делаем кнопку калькулятора похожей на рамку сверху */
-    .action-btns {
-        padding: 0 20px !important; /* Те же отступы, что мы дали рамке */
-    }
-
+ 
     .btn-calc {
         border-radius: 1 !important; /* Делаем углы острыми как у рамки */
         padding: 1.2rem 1.5rem !important;
@@ -1275,8 +1309,9 @@ body.no-scroll { overflow: hidden; }
     .btn-calc .icon-circle { display: none; } /* Убираем кружок со стрелкой для строгости */
 
  /* 3. Обнуляем боковые отступы у текста (теперь работает отступ контейнера) */
+/* 3. Текст (список работ): отводим от краев */
     .tab-content {
-        padding: 0 !important; /* УБРАЛИ 20px */
+        padding: 0 15px !important; /* Возвращаем 15px по бокам */
     }
 
     .work-list li {
@@ -1451,6 +1486,7 @@ body.no-scroll { overflow: hidden; }
         <!-- 4. ТАК МОЖЕТ ВЫГЛЯДЕТЬ ВАША КВАРТИРА -->
   <!-- 4. ТАК МОЖЕТ ВЫГЛЯДЕТЬ ВАША КВАРТИРА -->
     <!-- 4. ТАК МОЖЕТ ВЫГЛЯДЕТЬ ВАША КВАРТИРА (ЗАКРУГЛЕННЫЕ ФОТО) -->
+<!-- 4. ТАК МОЖЕТ ВЫГЛЯДЕТЬ ВАША КВАРТИРА (ЗАКРУГЛЕННЫЕ ФОТО) -->
         <section class="container styles-section">
             <div class="styles-header">
                 <h2>ТАК МОЖЕТ ВЫГЛЯДЕТЬ <span>ВАША КВАРТИРА</span></h2>
@@ -1471,6 +1507,10 @@ body.no-scroll { overflow: hidden; }
                         <div class="style-img-wrap"><img src="img/classic_7.webp" alt="Классика 7"></div>
                         <div class="style-img-wrap"><img src="img/classic_8.webp" alt="Классика 8"></div>
                     </div>
+                    <!-- Кнопка только для мобилок -->
+                    <div class="mobile-expand-wrapper">
+                        <button class="btn-expand-column" onclick="toggleColumnStyles(this)">Посмотреть ещё</button>
+                    </div>
                 </div>
 
                 <!-- ЛОФТ -->
@@ -1486,6 +1526,10 @@ body.no-scroll { overflow: hidden; }
                         <div class="style-img-wrap"><img src="img/loft_6.webp" alt="Лофт 6"></div>
                         <div class="style-img-wrap"><img src="img/loft_7.webp" alt="Лофт 7"></div>
                         <div class="style-img-wrap"><img src="img/loft_8.webp" alt="Лофт 8"></div>
+                    </div>
+                    <!-- Кнопка только для мобилок -->
+                    <div class="mobile-expand-wrapper">
+                        <button class="btn-expand-column" onclick="toggleColumnStyles(this)">Посмотреть ещё</button>
                     </div>
                 </div>
 
@@ -1503,9 +1547,14 @@ body.no-scroll { overflow: hidden; }
                         <div class="style-img-wrap"><img src="img/min_7.webp" alt="Минимализм 7"></div>
                         <div class="style-img-wrap"><img src="img/min_8.webp" alt="Минимализм 8"></div>
                     </div>
+                    <!-- Кнопка только для мобилок -->
+                    <div class="mobile-expand-wrapper">
+                        <button class="btn-expand-column" onclick="toggleColumnStyles(this)">Посмотреть ещё</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- Эта кнопка будет работать только на ПК -->
             <div class="styles-footer">
                 <button class="btn-expand-all" onclick="toggleAllStyles(this)">Посмотреть ещё</button>
             </div>
@@ -2118,7 +2167,25 @@ body.no-scroll { overflow: hidden; }
             document.querySelector('.styles-section').scrollIntoView({ behavior: 'smooth' });
         }
     }
+// 3.1 Функция раскрытия галереи для конкретной колонки (Мобильная версия)
+    function toggleColumnStyles(btn) {
+        const column = btn.closest('.style-column');
+        const gallery = column.querySelector('.hidden-gallery');
+        
+        if (!gallery) return;
 
+        const isHidden = window.getComputedStyle(gallery).display === 'none';
+
+        if (isHidden) {
+            gallery.style.display = 'flex';
+            btn.innerText = 'Свернуть';
+        } else {
+            gallery.style.display = 'none';
+            btn.innerText = 'Посмотреть ещё';
+            // Прокручиваем обратно к заголовку этой колонки
+            column.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
     // 4. Функция аккордеона в тарифах
     function toggleTariff(element) {
         element.parentElement.classList.toggle('active');
