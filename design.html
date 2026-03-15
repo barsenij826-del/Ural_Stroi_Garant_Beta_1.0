@@ -1773,6 +1773,98 @@ section.trust-line-premium {
         display: none; /* Прячем палочки на телефоне */
     }
 }
+      /* ==========================================
+   БЛОК "ХОТИТЕ ТАКЖЕ?" (DARK PREMIUM)
+========================================== */
+.want-same-premium {
+    background-color: var(--dark-card);
+    border: 1px solid rgba(184, 115, 51, 0.3);
+    border-radius: 30px;
+    padding: 4rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.want-same-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: #fff;
+    line-height: 1.2;
+}
+.want-same-text h2 span { color: var(--copper); }
+
+.want-same-text p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.want-same-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.want-same-form .input-group { width: 100%; }
+
+.want-same-form input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    padding: 1rem 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.want-same-form input:focus { border-color: var(--copper); }
+.relative-group { position: relative; }
+
+.want-same-form .submit-group {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.privacy-text {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    color: #fff;
+    text-align: center;
+    max-width: 400px;
+}
+.privacy-text a { color: var(--copper); text-decoration: underline; transition: 0.3s; }
+.privacy-text a:hover { color: #fff; }
+
+@media (max-width: 1024px) {
+    .want-same-premium { grid-template-columns: 1fr; padding: 3rem; gap: 3rem; }
+}
+
+@media (max-width: 768px) {
+    .want-same-premium {
+        padding: 2.5rem 1.5rem;
+        border-radius: 20px;
+        text-align: left;
+    }
+    .want-same-text h2 {
+        font-size: 1.8rem !important;
+        padding-left: 15px;
+        border-left: 3px solid var(--copper);
+    }
+    .want-same-form { grid-template-columns: 1fr; gap: 1.5rem; }
+    .want-same-form .submit-group { grid-column: span 1; }
+}
     </style>
 </head>
 <body>
@@ -2442,7 +2534,33 @@ section.trust-line-premium {
         </div>
     </div>
 </section>
-  
+  <!-- БЛОК "ХОТИТЕ ТАКЖЕ?" (ФИНАЛЬНЫЙ ПРИЗЫВ) -->
+<section class="container lead-magnet-section">
+    <div class="want-same-premium premium-hover">
+        <div class="want-same-text">
+            <h2>Хотите <span>также?</span></h2>
+            <p>Оставьте заявку, и наш ведущий дизайнер свяжется с вами для обсуждения вашего будущего интерьера.</p>
+        </div>
+        <form class="want-same-form" id="wantSameForm">
+            <div class="input-group">
+                <input type="text" id="wantName" placeholder="Ваше имя" required>
+            </div>
+            
+            <div class="input-group relative-group">
+                <input type="tel" id="wantPhone" placeholder="Ваш телефон" required>
+                <div id="wantPhoneWarning" style="color: #ff4d4d; font-size: 0.7rem; position: absolute; bottom: -20px; left: 0; display: none;">Используйте только цифры</div>
+            </div>
+
+            <div class="submit-group">
+                <button type="submit" class="btn-framed" style="width: 100%;">Рассчитать стоимость</button>
+                <p class="privacy-text">
+                    Нажимая кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с 
+                    <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</section>
    <footer class="footer-main">
         <div class="container">
             <div class="footer-grid">
@@ -2791,6 +2909,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+    // ========================================================
+    // 5.1 ОТПРАВКА ФОРМЫ "ХОТИТЕ ТАКЖЕ?"
+    // ========================================================
+    const wantSameForm = document.getElementById('wantSameForm');
+    if (wantSameForm) {
+        wantSameForm.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            const name = document.getElementById('wantName').value;
+            const phone = document.getElementById('wantPhone').value;
+
+            const message = `<b>🔥 ХОТИТЕ ТАКЖЕ? (ДИЗАЙН)</b>\n` +
+                            `<b>Имя:</b> ${name}\n` +
+                            `<b>Телефон:</b> ${phone}`;
+
+            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_CHAT_ID, text: message, parse_mode: 'html' })
+            })
+            .then(res => {
+                if (res.ok) {
+                    openSuccessModal(); 
+                    wantSameForm.reset();
+                } else {
+                    alert("Ошибка бота. Проверьте Token/ID.");
+                }
+            })
+            .catch(() => alert("Ошибка сети."));
+        });
+    }
 </script>
 </body>
 </html>
