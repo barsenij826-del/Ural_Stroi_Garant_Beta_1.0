@@ -303,58 +303,7 @@ body.no-scroll { overflow: hidden; }
         gap: 15px;
     }
 }
-/* ФИНАЛЬНЫЙ CSS ДЛЯ ПОЛОСКИ */
-/* ОБНУЛЯЕМ КОНФЛИКТЫ И СТАВИМ В ЦЕНТР */
-.trust-line-premium {
-    width: 100%;
-    background-color: var(--dark-bg);
-    border-bottom: 1px solid rgba(184, 115, 51, 0.2);
-    margin-bottom: 60px;
-    
-    /* Идеальная центровка через Flex */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    
-    /* Высота только через padding, чтобы текст не прыгал */
-    padding: 25px 0;
-}
 
-.trust-item {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    letter-spacing: 2px;
-    
-    /* Обнуляем межстрочку, чтобы не было лишних пикселей снизу */
-    line-height: 1;
-    margin: 0;
-    display: block;
-}
-
-.trust-divider {
-    width: 1px;
-    height: 12px;
-    background-color: var(--copper);
-    opacity: 0.5;
-    /* Не даем разделителю сжиматься */
-    flex-shrink: 0;
-}
-
-/* Адаптив: просто уменьшаем отступы, НЕ перестраивая в столбик */
-@media (max-width: 768px) {
-    .trust-line-premium {
-        gap: 12px;
-        padding: 20px 10px;
-    }
-    .trust-item {
-        font-size: 9px;
-        letter-spacing: 1px;
-    }
-}
 /* ОПУСКАЕМ БЛОК "ЧТО МЫ ДЕЛАЕМ" */
 .hero-design + section {
     padding-top: 5rem !important;
@@ -563,24 +512,6 @@ body.no-scroll { overflow: hidden; }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Адаптив 768px */
-@media (max-width: 768px) {
-    .control-container { grid-template-columns: 1fr; gap: 2rem; }
-    .control-tabs { display: none; } /* На мобилках превращаем в список */
-    .control-content-wrapper { 
-        padding: 2.5rem 1.5rem; 
-        border: none;
-        background: transparent;
-    }
-    .control-pane { 
-        display: block !important; 
-        margin-bottom: 4rem; 
-        border-left: 3px solid var(--copper);
-        padding-left: 20px;
-    }
-    .control-pane h3 { font-size: 1.6rem; }
-    .guarantee-grid { grid-template-columns: 1fr; }
-}
 
         /* КВИЗ (ТЕМНЫЙ) */
      /* СТИЛИ КВИЗ-КАЛЬКУЛЯТОРА */
@@ -1719,6 +1650,7 @@ section {
     .faq-answer {
         font-size: 0.85rem !important;
     }
+  
 }     
           
     </style>
@@ -1836,13 +1768,7 @@ section {
     </div>
 </section>
       
-<section class="trust-line-premium">
-    <p class="trust-item">20 лет опыта</p>
-    <div class="trust-divider"></div>
-    <p class="trust-item">1500+ объектов</p>
-    <div class="trust-divider"></div>
-    <p class="trust-item">Штат инженеров</p>
-</section>
+
         <!-- 2. ЧТО МЫ ДЕЛАЕМ -->
         <section class="container">
             <h2 class="title-main">Что мы делаем</h2>
