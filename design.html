@@ -1168,6 +1168,7 @@ body.no-scroll { overflow: hidden; }
         text-align: left !important; /* Меняем center на left */
         align-items: flex-start !important;
     }
+       }   
       /* ==========================================
    ОБЩИЙ АДАПТИВ ДЛЯ ВСЕХ СТРАНИЦ
 ========================================== */
@@ -1652,7 +1653,126 @@ section {
     }
   
 }     
-          
+          /* ==========================================
+   АДАПТИВ БЛОКА "ВАШ ПРОЕКТ ПОД КОНТРОЛЕМ"
+========================================== */
+@media (max-width: 768px) {
+    .control-container { 
+        grid-template-columns: 1fr !important; /* Переводим из 2 колонок в 1 */
+        gap: 1.5rem !important; 
+    }
+    
+    /* Кнопки выстраиваем в столбик по ширине экрана */
+ /* Кнопки выстраиваем в стильный горизонтальный скролл (свайп) */
+    .control-tabs {
+        display: flex !important;
+        flex-direction: row !important; /* Горизонтально */
+        flex-wrap: nowrap !important; /* Строго в один ряд */
+        overflow-x: auto !important; /* Включаем скролл вбок */
+        gap: 12px !important;
+        width: 100%;
+        padding-bottom: 10px !important; /* Воздух снизу */
+        -webkit-overflow-scrolling: touch; /* Плавный скролл на iPhone */
+        scrollbar-width: none; /* Прячем полосу прокрутки в Firefox */
+    }
+    
+    /* Прячем некрасивую полосу прокрутки в Chrome/Safari/iPhone */
+    .control-tabs::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .control-tab-btn {
+        padding: 0.8rem 1.5rem !important;
+        width: auto !important; /* Ширина подстраивается под текст */
+        flex: 0 0 auto; /* Запрещаем кнопкам сжиматься */
+        white-space: nowrap; /* Запрещаем тексту переноситься на 2 строки */
+        border-radius: 50px !important; /* Делаем овальными, как "таблетки" */
+        font-size: 0.7rem !important;
+    }
+
+    .control-tab-btn .tab-num {
+        font-size: 1rem !important; /* Цифры 01, 02 делаем чуть меньше */
+    }
+
+    /* Блок с меняющимся текстом ставим сразу под кнопками */
+    .control-content-wrapper { 
+        padding: 2rem 1.5rem !important; 
+        min-height: auto !important; /* Убираем лишнюю пустоту снизу */
+        width: 100%;
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
+
+    .control-pane h3 { 
+        font-size: 1.5rem !important; 
+        margin-bottom: 1rem !important;
+    }
+
+    /* Если открыта 3-я вкладка "Твердые цифры" - ее карточки тоже в 1 столбик */
+    .guarantee-grid { 
+        grid-template-columns: 1fr !important; 
+        gap: 15px !important;
+    }
+}
+          /* ==========================================
+   ИНФО-СТРОКА (ТРИГГЕРЫ ДОВЕРИЯ)
+========================================== */
+section.trust-line-premium {
+    background: transparent;
+    width: 100%;
+    padding: 30px 0 !important; /* Жестко фиксируем отступ */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Легкая премиальная линия снизу */
+    margin-bottom: 0;
+}
+
+.line-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+}
+
+.l-item {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5); /* Полупрозрачный серый текст */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
+}
+
+.l-sep {
+    color: var(--copper); /* Медная палочка */
+    font-size: 16px;
+    font-weight: 300;
+}
+
+/* Опускаем следующий за инфо-строкой блок ("Что мы делаем") */
+/* Уменьшаем отступ до следующего блока ("Что мы делаем") */
+section.trust-line-premium {
+    margin-bottom: 0 !important; /* Убиваем любые возможные отступы снизу */
+}
+
+.trust-line-premium + section {
+    padding-top: 2rem !important; /* Уменьшили дыру в 2.5 раза (было 5rem) */
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 768px) {
+    section.trust-line-premium {
+        padding: 20px 0 !important;
+    }
+    .line-wrapper {
+        flex-direction: column; /* Выстраиваем в столбик */
+        gap: 15px;
+    }
+    .l-sep {
+        display: none; /* Прячем палочки на телефоне */
+    }
+}
     </style>
 </head>
 <body>
@@ -1766,7 +1886,23 @@ section {
             </div>
         </div>
     </div>
+</section> <!-- Это закрывающий тег первого экрана (hero-design) -->
+
+<!-- ИНФО-СТРОКА (ТРИГГЕРЫ ДОВЕРИЯ) -->
+<section class="trust-line-premium">
+    <div class="container">
+        <div class="line-wrapper">
+            <div class="l-item">Работаем с 2006 года</div>
+            <div class="l-sep">|</div>
+            <div class="l-item">1500+ реализованных проектов</div>
+            <div class="l-sep">|</div>
+            <div class="l-item">Собственный штат инженеров</div>
+        </div>
+    </div>
 </section>
+
+<!-- 2. ЧТО МЫ ДЕЛАЕМ -->
+<section class="container">
       
 
         <!-- 2. ЧТО МЫ ДЕЛАЕМ -->
@@ -2166,9 +2302,9 @@ section {
             <!-- Отзыв 1 -->
             <div class="review-card">
                 <div class="review-header">
-                    <!-- Заглушка для фото клиента. Замени src на реальное фото -->
                     <div class="client-avatar">
-                        <img src="img/client-1.webp" alt="Екатерина">
+                        <!-- Стильная ЧБ фотография Екатерины -->
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" alt="Екатерина" style="filter: grayscale(100%);">
                     </div>
                     <div class="client-info">
                         <h4>Екатерина В.</h4>
@@ -2190,7 +2326,8 @@ section {
             <div class="review-card">
                 <div class="review-header">
                     <div class="client-avatar">
-                        <img src="img/client-2.webp" alt="Михаил">
+                        <!-- Строгий портрет Михаила -->
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&h=150&q=80" alt="Михаил" style="filter: grayscale(100%);">
                     </div>
                     <div class="client-info">
                         <h4>Михаил и Анна</h4>
@@ -2212,7 +2349,8 @@ section {
             <div class="review-card">
                 <div class="review-header">
                     <div class="client-avatar">
-                        <img src="img/client-3.webp" alt="Алексей">
+                        <!-- Уверенный портрет Алексея -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80" alt="Алексей" style="filter: grayscale(100%);">
                     </div>
                     <div class="client-info">
                         <h4>Алексей С.</h4>
@@ -2229,8 +2367,6 @@ section {
                     <a href="showcase.html" class="review-project-link">Смотреть проект <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
                 </div>
             </div>
-        </div>
-    </div>
 </section>
 
   <!-- БЛОК FAQ (ВОПРОС-ОТВЕТ) -->
